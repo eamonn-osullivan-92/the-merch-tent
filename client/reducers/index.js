@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
-import fruits from './fruits'
+import * as merch from './merch'
+import * as music from './music'
 
 export default combineReducers({
-  fruits,
+  merch,
+  music,
 })
