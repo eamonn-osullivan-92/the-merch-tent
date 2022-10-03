@@ -1,6 +1,6 @@
 const express = require('express')
 
-const db = require('../db/merch')
+const db = require('../db/merchandise')
 
 const router = express.Router()
 
