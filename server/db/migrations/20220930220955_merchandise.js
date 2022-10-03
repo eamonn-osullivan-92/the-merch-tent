@@ -12,7 +12,6 @@ exports.up = function (knex) {
     table.string('genre')
     table.integer('price')
     table.integer('quantity')
-    table.string('image_path')
   })
 }
 
