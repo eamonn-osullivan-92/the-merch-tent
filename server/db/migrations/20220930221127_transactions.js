@@ -4,10 +4,10 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable('transactions', (table) => {
-    table.integer('product_id')
-    table.string('product_type')
-    table.integer('user_id')
-    table.string('transaction_id')
+    table.increments('id')
+    table.date('created_at')
+    table.integer('user_id').references('users.id')
+    table.string('status')
   })
 }
 

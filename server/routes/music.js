@@ -25,6 +25,16 @@ router.post('/add', async (req, res) => {
   }
 })
 
+router.post('/del', async (req, res) => {
+  const id = req.body.id
+  try {
+    const del = await db.delAlbum(id)
+    res.json(del)
+  } catch (err) {
+    res.status(500).json({ msg: err.message })
+  }
+})
+
 router.patch('/update', async (req, res) => {
   try {
     await db.updateAlbum(req.body)
