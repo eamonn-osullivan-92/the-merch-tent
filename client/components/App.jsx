@@ -1,19 +1,22 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchMerch } from '../actions/merch'
+import { fetchMusic } from '../actions/music'
+
+import MusicList from './MusicList'
 
 function App() {
-  const merch = useSelector((state) => state.merch)
+  const music = useSelector((state) => state.music)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(fetchMerch())
+    dispatch(fetchMusic())
   }, [])
 
   return (
     <>
       <div className="app">
         <h1>The Merch Tent</h1>
+        <MusicList />
       </div>
     </>
   )
