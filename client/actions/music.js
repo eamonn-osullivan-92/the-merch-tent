@@ -30,7 +30,7 @@ export function fetchMusicPending() {
 export function fetchMusicSuccess(products) {
   return {
     type: FETCH_MUSIC_SUCCESS,
-    products: products,
+    payload: products,
   }
 }
 
@@ -62,6 +62,7 @@ export function fetchMusic() {
     dispatch(fetchMusicPending())
     return getMusic()
       .then((products) => {
+        console.log(products)
         dispatch(fetchMusicSuccess(products))
       })
       .catch((err) => {
@@ -71,6 +72,7 @@ export function fetchMusic() {
         // if the error is from elsewhere in the Promise chain, there won't be
         // an err.response object, so we use err.message
         const errMessage = err.response?.text || err.message
+        console.log(err.message)
         dispatch(showError(errMessage))
       })
   }

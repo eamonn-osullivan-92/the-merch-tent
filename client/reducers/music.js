@@ -10,18 +10,17 @@ import {
 const initialState = []
 
 const reducer = (state = initialState, action) => {
-  const { type, payload } = action
-  switch (type) {
+  switch (action.type) {
     case FETCH_MUSIC_SUCCESS:
-      return payload
+      return action.payload
     case ADD_ALBUM:
-      return [...state, payload]
+      return [...state, action.payload]
     case UPDATE_ALBUM:
       return [...state].map((item) =>
-        item.id == payload.id ? (item = payload) : item
+        item.id == action.payload.id ? (item = action.payload) : item
       )
     case DEL_ALBUM:
-      return [...state].filter((item) => item.id !== payload)
+      return [...state].filter((item) => item.id !== action.payload)
     default:
       return state
   }
