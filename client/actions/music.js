@@ -5,15 +5,32 @@ import {
   sendUpdatedAlbum,
 } from '../apis/music'
 
+import { showError } from '../actions/error'
+
 export const SET_MUSIC = 'SET_MUSIC'
 export const ADD_ALBUM = 'ADD_ALBUM'
 export const UPDATE_ALBUM = 'UPDATE_ALBUM'
 export const DEL_ALBUM = 'DEL_ALBUM'
+export const FETCH_MUSIC_PENDING = 'FETCH_MUSIC_PENDING'
+export const FETCH_MUSIC_SUCCESS = 'FETCH_MUSIC_SUCCESS'
 
 export function setMusic(music) {
   return {
     type: SET_MUSIC,
     payload: music,
+  }
+}
+
+export function fetchMusicPending() {
+  return {
+    type: FETCH_MUSIC_PENDING,
+  }
+}
+
+export function fetchMusicSuccess(products) {
+  return {
+    type: FETCH_MUSIC_SUCCESS,
+    products: products,
   }
 }
 
@@ -42,9 +59,20 @@ export function updateAlbum(updatedItem) {
 
 export function fetchMusic() {
   return (dispatch) => {
-    return getMusic().then((music) => {
-      dispatch(setMusic(music))
-    })
+    dispatch(fetchMusicPending())
+    return getMusic()
+      .then((products) => {
+        dispatch(fetchMusicSuccess(products))
+      })
+      .catch((err) => {
+        // if the error is from our routes, this will use the message our route
+        // sends back, rather than the generic 'Internal Server Error' from a
+        // status 500
+        // if the error is from elsewhere in the Promise chain, there won't be
+        // an err.response object, so we use err.message
+        const errMessage = err.response?.text || err.message
+        dispatch(showError(errMessage))
+      })
   }
 }
 

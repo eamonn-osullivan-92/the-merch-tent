@@ -5,7 +5,7 @@ const db = require('../db/orders')
 const router = express.Router()
 
 router.post('/add', (req, res) => {
-  const orderRequest = req.body.orderRequest
+  const orderRequest = req.body
   db.addOrder(orderRequest)
     .then(() => {
       res.status(201).json(null)

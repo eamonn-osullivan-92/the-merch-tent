@@ -1,11 +1,18 @@
-import { SET_MUSIC, ADD_ALBUM, UPDATE_ALBUM, DEL_ALBUM } from '../actions/music'
+import {
+  //   SET_MUSIC,
+  ADD_ALBUM,
+  UPDATE_ALBUM,
+  DEL_ALBUM,
+  //   FETCH_MUSIC_PENDING,
+  FETCH_MUSIC_SUCCESS,
+} from '../actions/music'
 
 const initialState = []
 
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    case SET_MUSIC:
+    case FETCH_MUSIC_SUCCESS:
       return payload
     case ADD_ALBUM:
       return [...state, payload]
