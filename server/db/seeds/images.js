@@ -127,18 +127,6 @@ exports.seed = async function (knex) {
       path: '/images/music/beach-fossils-back.jpeg',
     },
     {
-      id: 21,
-      product_id: 12,
-      product_type: 'music',
-      path: '/images/music/beach-fossils-front.jpeg',
-    },
-    {
-      id: 22,
-      product_id: 12,
-      product_type: 'music',
-      path: '/images/music/beach-fossils-back.jpeg',
-    },
-    {
       id: 23,
       product_id: 13,
       product_type: 'music',
