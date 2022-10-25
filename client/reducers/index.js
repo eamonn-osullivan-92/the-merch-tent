@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux'
 
-import merch from './merch'
 import music from './music'
 import cart from './cart'
+import errorMessage from './errorMessage'
 import waiting from './waiting'
+import orders from './orders'
 
 export default combineReducers({
-  merch,
   music,
   cart,
+  errorMessage,
   waiting,
+  orders,
 })

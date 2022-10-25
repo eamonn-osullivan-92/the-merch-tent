@@ -11,6 +11,7 @@ export async function postOrder(orderRequest) {
   }
 }
 
+// order history
 export async function getOrders() {
   try {
     const res = await request.get('api/v1/orders')

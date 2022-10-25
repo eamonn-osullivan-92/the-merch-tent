@@ -45,14 +45,15 @@ export function fetchOrders() {
 }
 
 export function placeOrder(orders) {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch(placePending())
-    try {
-      await postOrder(orders)
-      dispatch(placeOrderSuccess)
-    } catch (err) {
-      console.log(err.message)
-      dispatch(showError(err.message))
-    }
+    return postOrder(orders)
+      .then(() => {
+        dispatch(placeOrderSuccess())
+      })
+      .catch((err) => {
+        console.log(err.message)
+        dispatch(showError(err.message))
+      })
   }
 }

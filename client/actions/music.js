@@ -27,10 +27,10 @@ export function fetchMusicPending() {
   }
 }
 
-export function fetchMusicSuccess(products) {
+export function fetchMusicSuccess(music) {
   return {
     type: FETCH_MUSIC_SUCCESS,
-    payload: products,
+    payload: music,
   }
 }
 
@@ -61,9 +61,9 @@ export function fetchMusic() {
   return (dispatch) => {
     dispatch(fetchMusicPending())
     return getMusic()
-      .then((products) => {
-        console.log(products)
-        dispatch(fetchMusicSuccess(products))
+      .then((music) => {
+        console.log(music)
+        dispatch(fetchMusicSuccess(music))
       })
       .catch((err) => {
         // if the error is from our routes, this will use the message our route
@@ -94,7 +94,7 @@ export function delAndUpdateMusic(delAlbumId) {
   }
 }
 
-export function fetchUpdatedMerch(updatedAlbum) {
+export function fetchUpdatedAlbum(updatedAlbum) {
   return (dispatch) => {
     return sendUpdatedAlbum(updatedAlbum).then(() => {
       dispatch(updateAlbum(updatedAlbum))

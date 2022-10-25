@@ -4,6 +4,10 @@ const db = require('../db/orders')
 
 const router = express.Router()
 
+// router.post('/', (req, res) => {
+//   db.listOrders
+// })
+
 router.post('/add', (req, res) => {
   const orderRequest = req.body
   db.addOrder(orderRequest)

@@ -2,10 +2,7 @@ import React from 'react'
 
 function MusicListItem(props) {
   const product = props.product
-
-  function addToCart() {
-    props.addToCart(product)
-  }
+  const addAlbumToCart = props.addAlbumToCart
 
   return (
     <div className="product">
@@ -16,7 +13,7 @@ function MusicListItem(props) {
       <p className="genre">{product.genre}</p>
       <p className="price">${product.price}</p>
 
-      <button className="cart-link" onClick={addToCart}>
+      <button className="cart-link" onClick={() => addAlbumToCart(product)}>
         Add to cart
       </button>
     </div>

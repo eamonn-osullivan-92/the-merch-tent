@@ -1,4 +1,5 @@
 import { ADD_TO_CART, DELETE_FROM_CART, UPDATE_CART } from '../actions/cart'
+import { PLACE_ORDER_SUCCESS } from '../actions/orders'
 
 function cart(state = [], action) {
   const { type, payload } = action
@@ -11,7 +12,8 @@ function cart(state = [], action) {
 
     case UPDATE_CART:
       return getUpdatedCart(state, payload)
-
+    case PLACE_ORDER_SUCCESS:
+      return []
     default:
       return state
   }

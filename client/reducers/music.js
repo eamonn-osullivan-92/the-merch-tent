@@ -1,10 +1,8 @@
 import {
-  //   SET_MUSIC,
+  FETCH_MUSIC_SUCCESS,
   ADD_ALBUM,
   UPDATE_ALBUM,
   DEL_ALBUM,
-  //   FETCH_MUSIC_PENDING,
-  FETCH_MUSIC_SUCCESS,
 } from '../actions/music'
 
 const initialState = []
