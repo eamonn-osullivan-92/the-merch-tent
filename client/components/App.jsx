@@ -6,6 +6,7 @@ import { fetchMusic } from '../actions/music'
 
 import MusicList from './MusicList'
 import Cart from './Cart'
+import MyOrders from './MyOrders'
 
 function App() {
   const music = useSelector((state) => state.music)
@@ -22,7 +23,10 @@ function App() {
       <div className="app">
         <h1>The Lost Crates</h1>
         <button onClick={() => setOpenCart((prev) => !prev)}>Cart</button>
-        <Routes>{music && <Route path="/" element={<MusicList />} />}</Routes>
+        <Routes>
+          {music && <Route path="/" element={<MusicList />} />}
+          <Route path="/orders" element={<MyOrders />} />
+        </Routes>
         {openCart && <Cart setOpenCart={setOpenCart} />}
       </div>
     </>

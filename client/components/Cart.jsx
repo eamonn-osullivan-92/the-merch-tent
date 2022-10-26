@@ -5,25 +5,27 @@ import { useSelector, useDispatch } from 'react-redux'
 import { placeOrder } from '../actions/orders'
 
 import CartItem from './CartItem'
-import cart from '../reducers/cart'
+import { useNavigate } from 'react-router-dom'
 
-export default function Cart({ setCartOpen }) {
+export default function Cart({ setOpenCart }) {
+  const navigate = useNavigate()
   const isSmall = useIsSmall()
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart)
-  const closeCart = () => {
-    setCartOpen(false)
-  }
 
   const handleOrder = () => {
     dispatch(placeOrder(cartItems))
+  }
+
+  const handleOrdersNavigate = () => {
+    navigate('/orders')
   }
 
   return (
     <>
       <div className="cart-container">
         <div className="cart-heading">CART</div>
-        <button className="close-cart" onClick={closeCart}>
+        <button className="close-cart" onClick={() => setOpenCart(false)}>
           &times;
         </button>
         <div className="cart-items-list">
@@ -34,6 +36,11 @@ export default function Cart({ setCartOpen }) {
         <button className="submit" onClick={() => handleOrder()}>
           Submit Order
         </button>
+        {cartItems.length == 0 ? (
+          <button className="my-orders" onClick={() => handleOrdersNavigate()}>
+            See Orders
+          </button>
+        ) : null}
       </div>
     </>
   )

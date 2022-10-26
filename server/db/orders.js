@@ -11,11 +11,11 @@ module.exports = {
 function listOrders(db = connection) {
   return db('orders_products')
     .join('orders', 'orders_products.order_id', 'orders.id')
-    .join('products', 'orders_products.product_id', 'products.id')
+    .join('music', 'orders_products.product_id', 'music.id')
     .select(
-      'products.id as productId',
+      'music.id as musicId',
       'orders.id as orderId',
-      'quantity',
+      'orders_products.quantity as orderQuantity',
       'created_at as createdAt',
       'status',
       'artist',

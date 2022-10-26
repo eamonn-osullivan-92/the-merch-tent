@@ -4,9 +4,15 @@ const db = require('../db/orders')
 
 const router = express.Router()
 
-// router.post('/', (req, res) => {
-//   db.listOrders
-// })
+router.get('/', (req, res) => {
+  db.listOrders()
+    .then((orders) => {
+      res.status(201).json(orders)
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
+})
 
 router.post('/add', (req, res) => {
   const orderRequest = req.body
