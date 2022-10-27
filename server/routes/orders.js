@@ -6,7 +6,6 @@ const router = express.Router()
 
 router.post('/', (req, res) => {
   const id = req.body.id
-  console.log(id)
   db.findOrderById(id)
     .then((order) => {
       res.status(201).json(order)

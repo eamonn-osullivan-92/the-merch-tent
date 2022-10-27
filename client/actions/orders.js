@@ -62,7 +62,6 @@ export function placeOrder(orders) {
         return getOrder(id)
       })
       .then((order) => {
-        console.log(order)
         dispatch(logPreviousOrder(order))
       })
       .catch((err) => {

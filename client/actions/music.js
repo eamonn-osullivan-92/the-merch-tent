@@ -33,7 +33,6 @@ export function fetchMusic() {
     dispatch(fetchMusicPending())
     return getMusic()
       .then((music) => {
-        console.log(music)
         dispatch(fetchMusicSuccess(music))
       })
       .catch((err) => {

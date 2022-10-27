@@ -29,7 +29,8 @@ function addOrder(orderRequest, db = connection) {
       created_at: timestamp,
       status: 'pending',
     })
-    .then(([id]) => addOrderLines(id, order, db))
+    .returning('id')
+    .then(([{ id }]) => addOrderLines(id, order, db))
 }
 
 function addOrderLines(id, order, db = connection) {

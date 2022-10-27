@@ -7,7 +7,7 @@ import { addToCart } from '../actions/cart'
 import MusicListItem from './MusicListItem'
 import WaitIndicator from './WaitIndicator'
 
-function MusicList({ children, setOpenCart }) {
+function MusicList({ setOpenCart }) {
   const music = useSelector((state) => state.music)
 
   const dispatch = useDispatch()
@@ -21,7 +21,6 @@ function MusicList({ children, setOpenCart }) {
 
   return (
     <div className="store-container">
-      {children}
       <div className="products-grid">
         {music &&
           music.map((product) => {
