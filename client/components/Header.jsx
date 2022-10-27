@@ -10,7 +10,10 @@ export default function Navbar({ setOpenCart }) {
 
   return (
     <nav className="navbar">
-      <h1 className="heading">The Lost Crates</h1>
+      <div className="heading-container">
+        <h1 className="heading">The Lost Crates</h1>
+        <p className="disclaimer">Disclaimer: not a real store</p>
+      </div>
       <div className="nav-control">
         <ul className="nav-items">
           <li>

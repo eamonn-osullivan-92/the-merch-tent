@@ -9,8 +9,9 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Cart({ isOpen, setOpenCart }) {
   const navigate = useNavigate()
-  const isSmall = useIsSmall()
   const dispatch = useDispatch()
+  const isSmall = useIsSmall()
+
   const music = useSelector((state) => state.music)
   const cartItems = useSelector((state) => state.cart)
   const order = useSelector((state) => state.orders)

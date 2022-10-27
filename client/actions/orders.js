@@ -40,18 +40,19 @@ export function logPreviousOrder(order) {
   }
 }
 
-// export function fetchOrders() {
-//   return async (dispatch) => {
-//     dispatch(fetchPending())
-//     try {
-//       const orders = await getOrders()
-//       dispatch(fetchSuccess(orders))
-//     } catch (err) {
-//       dispatch(showError(err.message))
-//     }
-//   }
-// }
+export function fetchOrder(id) {
+  return async (dispatch) => {
+    dispatch(fetchPending())
+    try {
+      const order = await getOrder(id)
+      dispatch(fetchSuccess(order))
+    } catch (err) {
+      dispatch(showError(err.message))
+    }
+  }
+}
 
+// places order, then logs order in the order redux state to be viewed
 export function placeOrder(orders) {
   return (dispatch) => {
     dispatch(placePending())

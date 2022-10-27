@@ -89,6 +89,18 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
+nav .heading-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+nav .heading-container h1 {
+  font-size: 2.1rem;
+}
+nav .heading-container p {
+  font-size: 0.8rem;
+  color: #3B3B3B;
+}
 nav .nav-control {
   display: flex;
   gap: 1.5em;
@@ -280,6 +292,38 @@ nav .nav-control .btn span {
 .order-product-container .info p:last-of-type {
   color: #3B3B3B;
   font-size: 0.9rem;
+}
+
+.search-container {
+  padding-top: 2em;
+  width: 330px;
+}
+.search-container .search {
+  padding-top: 1em;
+  width: 200px;
+  position: relative;
+  display: flex;
+}
+.search-container .search .search-id {
+  width: 100%;
+  border: 2px solid #3B3B3B;
+  border-right: none;
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #3B3B3B;
+}
+.search-container .search .search-btn {
+  width: 40px;
+  height: 30px;
+  border: 1px solid #3B3B3B;
+  background: #3B3B3B;
+  text-align: center;
+  color: #f7f7ff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=output.css.map */

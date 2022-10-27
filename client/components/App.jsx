@@ -6,7 +6,7 @@ import { fetchMusic } from '../actions/music'
 
 import MusicList from './MusicList'
 import Cart from './Cart'
-import MyOrders from './MyOrder'
+import Order from './Order'
 import Header from './Header'
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
           {music && (
             <Route path="/" element={<MusicList setOpenCart={setOpenCart} />} />
           )}
-          <Route path="/orders" element={<MyOrders />} />
+          <Route path="/orders" element={<Order />} />
         </Routes>
         {openCart && <Cart setOpenCart={setOpenCart} isOpen={openCart} />}
       </div>
