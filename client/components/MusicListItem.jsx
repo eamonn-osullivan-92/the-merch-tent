@@ -6,7 +6,7 @@ function MusicListItem({ children, product, addAlbumToCart }) {
       {children} {/* wait indicator */}
       <img src={product.image_path[0]} alt="" className="image" />
       <p className="album">
-        {product.album} {product.year}
+        {product.album} <span>{product.year}</span>
       </p>
       <p className="artist">{product.artist}</p>
       <p className="genre">{product.genre}</p>

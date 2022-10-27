@@ -13,6 +13,7 @@ export default function Cart({ isOpen, setOpenCart }) {
   const dispatch = useDispatch()
   const music = useSelector((state) => state.music)
   const cartItems = useSelector((state) => state.cart)
+  const order = useSelector((state) => state.orders)
 
   const handleOrder = () => {
     dispatch(placeOrder(cartItems))
@@ -32,7 +33,7 @@ export default function Cart({ isOpen, setOpenCart }) {
   return (
     <>
       <AnimatePresence>
-        {isOpen ? (
+        {isOpen && (
           <motion.div
             initial={{ width: 0 }}
             animate={isSmall ? { width: 380 } : { width: 600 }}
@@ -53,20 +54,22 @@ export default function Cart({ isOpen, setOpenCart }) {
             </div>
             <div className="cart-total">
               <p className="cart-total-price">Total: ${getCartTotal()}</p>
-              <button className="btn" onClick={() => handleOrder()}>
-                Submit Order
-              </button>
-              {cartItems.length == 0 ? (
+              {cartItems.length > 0 ? (
+                <button className="btn" onClick={() => handleOrder()}>
+                  Submit Order
+                </button>
+              ) : null}
+              {order ? (
                 <button
-                  className="my-orders"
+                  className="btn btn-secondary"
                   onClick={() => handleOrdersNavigate()}
                 >
-                  See Orders
+                  See Order
                 </button>
               ) : null}
             </div>
           </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
     </>
   )

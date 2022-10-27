@@ -19,10 +19,10 @@ function createOrder(orderLine) {
 
 function createProduct(orderLine) {
   return {
-    id: orderLine.productId,
+    id: orderLine.musicId,
     artist: orderLine.artist,
     album: orderLine.album,
-    quantity: orderLine.quantity,
+    quantity: orderLine.orderQuantity,
   }
 }
 
