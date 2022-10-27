@@ -1,16 +1,8 @@
-import {
-  getMusic,
-  sendNewAlbum,
-  sendDelAlbum,
-  sendUpdatedAlbum,
-} from '../apis/music'
+import { getMusic } from '../apis/music'
 
 import { showError } from '../actions/error'
 
 export const SET_MUSIC = 'SET_MUSIC'
-export const ADD_ALBUM = 'ADD_ALBUM'
-export const UPDATE_ALBUM = 'UPDATE_ALBUM'
-export const DEL_ALBUM = 'DEL_ALBUM'
 export const FETCH_MUSIC_PENDING = 'FETCH_MUSIC_PENDING'
 export const FETCH_MUSIC_SUCCESS = 'FETCH_MUSIC_SUCCESS'
 
@@ -34,27 +26,6 @@ export function fetchMusicSuccess(music) {
   }
 }
 
-export function addAlbum(newItem) {
-  return {
-    type: ADD_ALBUM,
-    payload: newItem,
-  }
-}
-
-export function delAlbum(id) {
-  return {
-    type: DEL_ALBUM,
-    payload: id,
-  }
-}
-
-export function updateAlbum(updatedItem) {
-  return {
-    type: UPDATE_ALBUM,
-    payload: updatedItem,
-  }
-}
-
 //THUNKS
 
 export function fetchMusic() {
@@ -75,29 +46,5 @@ export function fetchMusic() {
         console.log(err.message)
         dispatch(showError(errMessage))
       })
-  }
-}
-
-export function fetchAddMusic(newAlbum) {
-  return (dispatch) => {
-    return sendNewAlbum(newAlbum).then((album) => {
-      dispatch(addAlbum(album))
-    })
-  }
-}
-
-export function delAndUpdateMusic(delAlbumId) {
-  return (dispatch) => {
-    return sendDelAlbum(delAlbumId).then(() => {
-      dispatch(delAlbum(delAlbumId))
-    })
-  }
-}
-
-export function fetchUpdatedAlbum(updatedAlbum) {
-  return (dispatch) => {
-    return sendUpdatedAlbum(updatedAlbum).then(() => {
-      dispatch(updateAlbum(updatedAlbum))
-    })
   }
 }

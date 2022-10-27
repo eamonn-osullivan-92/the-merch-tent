@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import MyOrder from './MyOrder'
 import SearchOrder from './SearchOrder'
+import WaitIndicator from './WaitIndicator'
 
 export default function Order() {
   const order = useSelector((state) => state.orders)
@@ -16,7 +17,9 @@ export default function Order() {
               <Link to="/">Back to store</Link>
             </p>
           </div>
-          <MyOrder />
+          <MyOrder>
+            <WaitIndicator />
+          </MyOrder>
         </>
       ) : (
         <div className="no-order">

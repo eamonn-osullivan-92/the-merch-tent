@@ -1,29 +1,10 @@
 const connection = require('./connection')
 
-const { formatOrder, formatOrderList } = require('../formatter')
+const { formatOrder } = require('../formatter')
 
 module.exports = {
-  listOrders,
   findOrderById,
   addOrder,
-  editOrderStatus,
-}
-
-function listOrders(db = connection) {
-  return db('orders_products')
-    .join('orders', 'orders_products.order_id', 'orders.id')
-    .join('music', 'orders_products.product_id', 'music.id')
-    .select(
-      'music.id as musicId',
-      'orders.id as orderId',
-      'orders_products.quantity as orderQuantity',
-      'created_at as createdAt',
-      'status',
-      'artist',
-      'album',
-      'price'
-    )
-    .then(formatOrderList)
 }
 
 function addOrder(orderRequest, db = connection) {
@@ -62,23 +43,6 @@ function addOrderLines(id, order, db = connection) {
   return db('orders_products')
     .insert(orderLines)
     .then(() => id)
-}
-
-function editOrderStatus(id, newStatus, db = connection) {
-  return orderExists(id, db)
-    .then(() => {
-      return db('orders').update({ status: newStatus }).where('id', id)
-    })
-    .then(() => findOrderById(id, db))
-}
-
-function orderExists(id, db = connection) {
-  return db('orders')
-    .where('id', id)
-    .first()
-    .then((order) => {
-      if (!order) throw new Error('Order not found')
-    })
 }
 
 function findOrderById(id, db = connection) {

@@ -326,4 +326,10 @@ nav .nav-control .btn span {
   font-size: 20px;
 }
 
+.wait-indicator {
+  margin: 0 5px 0 5px;
+  width: 40px;
+  height: 40px;
+}
+
 /*# sourceMappingURL=output.css.map */
