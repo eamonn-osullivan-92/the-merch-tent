@@ -1,0 +1,12 @@
+@use 'typography'
+@use 'palette'
+
+*,*::before, *::after 
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+
+body 
+  @include palette.color-scheme(palette.$scheme-default ...)
+  font: 100% typography.$font-main
+  margin: 0 5em

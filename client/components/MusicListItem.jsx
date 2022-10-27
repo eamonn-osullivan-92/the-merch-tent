@@ -1,21 +1,24 @@
 import React from 'react'
 
-function MusicListItem(props) {
-  const product = props.product
-  const addAlbumToCart = props.addAlbumToCart
-
+function MusicListItem({ children, product, addAlbumToCart }) {
   return (
     <div className="product">
+      {children} {/* wait indicator */}
       <img src={product.image_path[0]} alt="" className="image" />
+      <p className="album">
+        {product.album} {product.year}
+      </p>
       <p className="artist">{product.artist}</p>
-      <p className="album">{product.album}</p>
-      <p className="year">{product.year}</p>
       <p className="genre">{product.genre}</p>
       <p className="price">${product.price}</p>
-
-      <button className="cart-link" onClick={() => addAlbumToCart(product)}>
-        Add to cart
-      </button>
+      <div className="cart-control">
+        <button
+          className="btn btn-primary"
+          onClick={() => addAlbumToCart(product)}
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
   )
 }

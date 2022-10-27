@@ -4,10 +4,12 @@ const db = require('../db/orders')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  db.listOrders()
-    .then((orders) => {
-      res.status(201).json(orders)
+router.post('/', (req, res) => {
+  const id = req.body.id
+  console.log(id)
+  db.findOrderById(id)
+    .then((order) => {
+      res.status(201).json(order)
     })
     .catch((err) => {
       res.status(500).json({ message: err.message })
@@ -17,8 +19,8 @@ router.get('/', (req, res) => {
 router.post('/add', (req, res) => {
   const orderRequest = req.body
   db.addOrder(orderRequest)
-    .then(() => {
-      res.status(201).json(null)
+    .then((id) => {
+      res.status(201).json(id)
     })
     .catch((err) => {
       res.status(500).json({ message: err.message })

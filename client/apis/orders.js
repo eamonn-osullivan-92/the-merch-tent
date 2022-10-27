@@ -12,9 +12,9 @@ export async function postOrder(orderRequest) {
 }
 
 // order history
-export async function getOrders() {
+export async function getOrder(id) {
   try {
-    const res = await request.get('api/v1/orders')
+    const res = await request.post('/api/v1/orders').send({ id })
     return res.body
   } catch (err) {
     console.log('getOrder error:', err.message)

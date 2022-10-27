@@ -1,0 +1,14 @@
+$lightest-grey: #f7f7ff
+$lighter-grey: #E1E1E1
+$light-grey: #CFCFCF
+
+$darkest-grey: #222222
+$darker-grey: #3B3B3B
+$dark-grey: #9AA5B1
+
+$scheme-default: $lightest-grey, $darkest-grey
+$scheme-secondary: $dark-grey, $lightest-grey
+
+@mixin color-scheme($bg, $text)
+    background: $bg
+    color: $text

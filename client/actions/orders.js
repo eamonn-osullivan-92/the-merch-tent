@@ -1,4 +1,4 @@
-import { postOrder, getOrders } from '../apis/orders'
+import { postOrder, getOrder } from '../apis/orders'
 import { showError } from './error'
 
 export const PLACE_ORDER = 'PLACE_ORDER'
@@ -6,6 +6,7 @@ export const PLACE_PENDING = 'PLACE_PENDING'
 export const FETCH_ORDERS_PENDING = 'FETCH_ORDERS_PENDING'
 export const FETCH_ORDERS_SUCCESS = 'FETCH_ORDERS_SUCCESS'
 export const PLACE_ORDER_SUCCESS = 'PLACE_ORDER_SUCCESS'
+export const FETCH_ORDER = 'FETCH_ORDER'
 
 export function placePending() {
   return {
@@ -32,24 +33,36 @@ export function fetchSuccess(orders) {
   }
 }
 
-export function fetchOrders() {
-  return async (dispatch) => {
-    dispatch(fetchPending())
-    try {
-      const orders = await getOrders()
-      dispatch(fetchSuccess(orders))
-    } catch (err) {
-      dispatch(showError(err.message))
-    }
+export function logPreviousOrder(order) {
+  return {
+    type: FETCH_ORDER,
+    payload: order,
   }
 }
+
+// export function fetchOrders() {
+//   return async (dispatch) => {
+//     dispatch(fetchPending())
+//     try {
+//       const orders = await getOrders()
+//       dispatch(fetchSuccess(orders))
+//     } catch (err) {
+//       dispatch(showError(err.message))
+//     }
+//   }
+// }
 
 export function placeOrder(orders) {
   return (dispatch) => {
     dispatch(placePending())
     return postOrder(orders)
-      .then(() => {
+      .then((id) => {
         dispatch(placeOrderSuccess())
+        return getOrder(id)
+      })
+      .then((order) => {
+        console.log(order)
+        dispatch(logPreviousOrder(order))
       })
       .catch((err) => {
         console.log(err.message)

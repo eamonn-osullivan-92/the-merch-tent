@@ -1,0 +1,52 @@
+@use 'palette'
+
+.cart-item-container
+    width: 100%
+    padding-top: 2em
+    display: flex
+    justify-content: space-between
+
+    .item-content
+        padding-bottom: 8px
+
+        img
+            height: 150px
+            width: 150px
+
+        .item-info 
+
+            span 
+                font-size: 14px
+    
+    .item-total
+        display: flex
+        flex-direction: column
+        align-items: flex-end
+        gap: 10px
+
+        .price 
+            font-size: 1.2rem
+
+        .quantity-control
+            display: flex
+            gap: 5px
+
+            .quantity-btn
+                background: none
+                color: palette.$darker-grey
+                border: none
+                outline: none
+                cursor: pointer
+                font-size: 1.3rem
+                padding: 0
+                margin-bottom: 5px
+
+            .quantity-text
+                padding: 0 6px
+
+        .btn 
+            color: palette.$darkest-grey
+            border-radius: 50px
+            border: none
+            background: none
+            cursor: pointer

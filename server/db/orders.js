@@ -4,6 +4,7 @@ const { formatOrder, formatOrderList } = require('../formatter')
 
 module.exports = {
   listOrders,
+  findOrderById,
   addOrder,
   editOrderStatus,
 }
@@ -60,7 +61,7 @@ function addOrderLines(id, order, db = connection) {
   })
   return db('orders_products')
     .insert(orderLines)
-    .then(() => null)
+    .then(() => id)
 }
 
 function editOrderStatus(id, newStatus, db = connection) {
@@ -83,11 +84,11 @@ function orderExists(id, db = connection) {
 function findOrderById(id, db = connection) {
   return db('orders_products')
     .join('orders', 'orders_products.order_id', 'orders.id')
-    .join('muisc', 'orders_products.product_id', 'muisc.id')
+    .join('music', 'orders_products.product_id', 'music.id')
     .select(
-      'music.id as productId',
+      'music.id as musicId',
       'orders.id as orderId',
-      'quantity',
+      'orders_products.quantity as orderQuantity',
       'created_at as createdAt',
       'status',
       'artist',

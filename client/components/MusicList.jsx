@@ -5,36 +5,37 @@ import { addToCart } from '../actions/cart'
 // import { fetchMusic } from '../actions/music'
 
 import MusicListItem from './MusicListItem'
+import WaitIndicator from './WaitIndicator'
 
-function MusicList() {
+function MusicList({ children, setOpenCart }) {
   const music = useSelector((state) => state.music)
+
   const dispatch = useDispatch()
 
-  //   useEffect(() => {
-  //     dispatch(fetchMusic())
-  //   }, [])
-
-  function addAlbumToCart(album) {
+  const addAlbumToCart = (album) => {
     const { id, name } = album
     const newCartItem = { id, name }
     dispatch(addToCart(newCartItem))
+    setOpenCart(true)
   }
 
   return (
-    <div className="productlist">
-      <div className="welcome">
-        <p>Welcome</p>
+    <div className="store-container">
+      {children}
+      <div className="products-grid">
+        {music &&
+          music.map((product) => {
+            return (
+              <MusicListItem
+                key={product.id}
+                product={product}
+                addAlbumToCart={addAlbumToCart}
+              >
+                <WaitIndicator />{' '}
+              </MusicListItem>
+            )
+          })}
       </div>
-      {music &&
-        music.map((product) => {
-          return (
-            <MusicListItem
-              key={product.id}
-              product={product}
-              addAlbumToCart={addAlbumToCart}
-            />
-          )
-        })}
     </div>
   )
 }
