@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar({ setOpenCart }) {
   const cartItems = useSelector((state) => state.cart)
-  const cartQuantity = cartItems.reduce((total, cartItem) => {
+  const cartQuantity = cartItems?.reduce((total, cartItem) => {
     return total + cartItem.quantity
   }, 0)
 
