@@ -1,13 +1,10 @@
 const express = require('express')
-const { requireUser } = propelAuth.initAuth({
-  authUrl: 'YOUR_AUTH_URL', //
-  apiKey: 'YOUR_API_KEY', //
-})
+const { requireUser } = require('./initAuth')
 
 const db = require('../db/users')
 const router = express.Router()
 
-// TODO: use checkJwt as middleware
+// TODO: use requireUser as middleware
 // GET /api/v1/users
 router.get('/', requireUser, (req, res) => {
   const propel_id = req.user?.userId
@@ -23,11 +20,12 @@ router.get('/', requireUser, (req, res) => {
   }
 })
 
-// TODO: use checkJwt as middleware
+// TODO: use requireUser as middleware
 // POST /api/v1/users
-router.post('/', (req, res) => {
+router.post('/adduser', requireUser, (req, res) => {
   const propel_id = req.user?.userId
   const { email } = req.body
+  console.log(propel_id)
   const userDetails = {
     propel_id,
     email,

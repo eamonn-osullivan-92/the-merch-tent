@@ -1,14 +1,31 @@
 import React from 'react'
-import { withAuthInfo } from '@propelauth/react'
+import {
+  withAuthInfo,
+  useLogoutFunction,
+  useRedirectFunctions,
+} from '@propelauth/react'
 
-function Auth(props) {
-  // isLoggedIn and user are injected automatically from withAuthInfo below
-  console.log(props)
-  if (props.isLoggedIn) {
-    return <div>You are logged in as {props.user.email}</div>
+// isLoggedIn is automatically injected from withAuthInfo
+function AuthenticationButtons({ isLoggedIn }) {
+  const logoutFn = useLogoutFunction()
+  const { redirectToSignupPage, redirectToLoginPage, redirectToAccountPage } =
+    useRedirectFunctions()
+
+  if (isLoggedIn) {
+    return (
+      <div>
+        <button onClick={redirectToAccountPage}>Account</button>
+        <button onClick={() => logoutFn()}>Logout</button>
+      </div>
+    )
   } else {
-    return <div>You are not logged in</div>
+    return (
+      <div>
+        <button onClick={redirectToSignupPage}>Signup</button>
+        <button onClick={redirectToLoginPage}>Login</button>
+      </div>
+    )
   }
 }
 
-export default withAuthInfo(Auth) //
+export default withAuthInfo(AuthenticationButtons)

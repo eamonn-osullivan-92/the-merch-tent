@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { withAuthInfo } from '@propelauth/react'
 
+import { getUser } from '../apis/user'
 import { fetchMusic } from '../actions/music'
-import { clearLoggedInUser, updateLoggedInUser } from '../actions/loggedInUser'
+import {
+  clearLoggedInUser,
+  updateLoggedInUser,
+  addAndUpdateLoggedInUser,
+} from '../actions/loggedInUser'
 
 import MusicList from './MusicList'
 import Cart from './Cart'
@@ -16,7 +21,6 @@ function App(props) {
   console.log(props)
   const music = useSelector((state) => state.music)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [openCart, setOpenCart] = useState(false)
 
   useEffect(() => {
@@ -25,20 +29,21 @@ function App(props) {
 
   //Auth
   useEffect(() => {
+    console.log('use effect runs')
     if (!props.isLoggedIn) {
       dispatch(clearLoggedInUser())
     } else {
-      //   let user = {
-      //     propelId: props.user.userId,
-      //     email: props.user.email,
-      //   }
-      getUser(props.email)
+      getUser(props.accessToken)
         .then((userInDb) => {
-          userInDb ? dispatch(updateLoggedInUser(userInDb)) : dispatch(addUser)
+          userInDb
+            ? dispatch(updateLoggedInUser(userInDb))
+            : dispatch(
+                addAndUpdateLoggedInUser(props.user.email, props.accessToken)
+              )
         })
         .catch((err) => console.error(err.message))
     }
-  }, [props.user])
+  }, [props.isLoggedIn])
 
   return (
     <>

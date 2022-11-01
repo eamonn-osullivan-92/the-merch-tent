@@ -2,17 +2,18 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1/users'
 
-export function addUser(user, token) {
+export function addUser(email, token) {
+  console.log(email, token)
   return request
-    .post(`${rootUrl}/users`)
+    .post(`${rootUrl}/adduser`)
     .set('Authorization', `Bearer ${token}`)
-    .send(user)
+    .send({ email })
     .catch((err) => console.log(err.message))
 }
 
-export function getUser(email, token) {
+export function getUser(token) {
   return request
-    .get(`${rootUrl}/users`)
+    .get(`${rootUrl}/`)
     .set('Authorization', `Bearer ${token}`)
     .then((res) => res.body)
     .catch((err) => console.log(err.message))
