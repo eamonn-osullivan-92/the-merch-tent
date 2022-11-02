@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import Auth from './Auth'
+
 export default function Navbar({ setOpenCart }) {
   const cartItems = useSelector((state) => state.cart)
   const cartQuantity = cartItems?.reduce((total, cartItem) => {
@@ -23,6 +25,7 @@ export default function Navbar({ setOpenCart }) {
             <Link to="/orders">Orders</Link>
           </li>
         </ul>
+        <Auth />
         {cartQuantity > 0 && (
           <button
             className="btn btn-rounded"

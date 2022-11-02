@@ -13,12 +13,10 @@ import {
 
 import MusicList from './MusicList'
 import Cart from './Cart'
-import Order from './Order'
+import Orders from './Orders'
 import Header from './Header'
-import Auth from './Auth'
 
 function App(props) {
-  console.log(props)
   const music = useSelector((state) => state.music)
   const dispatch = useDispatch()
   const [openCart, setOpenCart] = useState(false)
@@ -29,7 +27,6 @@ function App(props) {
 
   //Auth
   useEffect(() => {
-    console.log('use effect runs')
     if (!props.isLoggedIn) {
       dispatch(clearLoggedInUser())
     } else {
@@ -49,14 +46,22 @@ function App(props) {
     <>
       <div className="app">
         <Header setOpenCart={setOpenCart} />
-        <Auth />
         <Routes>
           {music && (
             <Route path="/" element={<MusicList setOpenCart={setOpenCart} />} />
           )}
-          <Route path="/orders" element={<Order />} />
+          <Route
+            path="/orders"
+            element={<Orders token={props.accessToken} />}
+          />
         </Routes>
-        {openCart && <Cart setOpenCart={setOpenCart} isOpen={openCart} />}
+        {openCart && (
+          <Cart
+            setOpenCart={setOpenCart}
+            isOpen={openCart}
+            token={props.accessToken}
+          />
+        )}
       </div>
     </>
   )

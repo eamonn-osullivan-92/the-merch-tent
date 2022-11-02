@@ -1,13 +1,14 @@
 const connection = require('./connection')
 
-const { formatOrder } = require('../formatter')
+const { formatOrder, formatOrderList } = require('../formatter')
 
 module.exports = {
   findOrderById,
+  findOrdersByUser,
   addOrder,
 }
 
-function addOrder(orderRequest, db = connection) {
+function addOrder(orderRequest, userId, db = connection) {
   // remove item names from order (we have the id)
   const order = orderRequest.map((item) => {
     return {
@@ -28,6 +29,7 @@ function addOrder(orderRequest, db = connection) {
     .insert({
       created_at: timestamp,
       status: 'pending',
+      propel_id: userId,
     })
     .returning('id')
     .then(([{ id }]) => addOrderLines(id, order, db))
@@ -62,4 +64,22 @@ function findOrderById(id, db = connection) {
     )
     .where('orders.id', id)
     .then(formatOrder)
+}
+
+function findOrdersByUser(userId, db = connection) {
+  return db('orders_products')
+    .join('orders', 'orders_products.order_id', 'orders.id')
+    .join('music', 'orders_products.product_id', 'music.id')
+    .select(
+      'music.id as musicId',
+      'orders.id as orderId',
+      'orders_products.quantity as orderQuantity',
+      'created_at as createdAt',
+      'status',
+      'artist',
+      'album',
+      'price'
+    )
+    .where('orders.propel_id', userId)
+    .then(formatOrderList)
 }

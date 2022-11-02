@@ -1,4 +1,4 @@
-import { postOrder, getOrder } from '../apis/orders'
+import { postOrder, getOrder, getOrders } from '../apis/orders'
 import { showError } from './error'
 
 export const PLACE_ORDER = 'PLACE_ORDER'
@@ -40,11 +40,11 @@ export function logPreviousOrder(order) {
   }
 }
 
-export function fetchOrder(id) {
+export function fetchOrder(id, token) {
   return async (dispatch) => {
     dispatch(fetchPending())
     try {
-      const order = await getOrder(id)
+      const order = await getOrder(id, token)
       dispatch(fetchSuccess(order))
     } catch (err) {
       dispatch(showError(err.message))
@@ -52,14 +52,26 @@ export function fetchOrder(id) {
   }
 }
 
+export function fetchOrders(token) {
+  return async (dispatch) => {
+    dispatch(fetchPending())
+    try {
+      const orders = await getOrders(token)
+      dispatch(fetchSuccess(orders))
+    } catch (err) {
+      dispatch(showError(err.message))
+    }
+  }
+}
+
 // places order, then logs order in the order redux state to be viewed
-export function placeOrder(orders) {
+export function placeOrder(orders, token) {
   return (dispatch) => {
     dispatch(placePending())
-    return postOrder(orders)
+    return postOrder(orders, token)
       .then((id) => {
         dispatch(placeOrderSuccess())
-        return getOrder(id)
+        return getOrder(id, token)
       })
       .then((order) => {
         dispatch(logPreviousOrder(order))

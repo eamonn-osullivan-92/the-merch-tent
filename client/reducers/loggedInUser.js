@@ -4,7 +4,7 @@ import {
 } from '../actions/loggedInUser'
 
 const emptyUser = {
-  propelId: '',
+  propel_id: '',
   email: '',
 }
 

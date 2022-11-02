@@ -7,7 +7,7 @@ import { placeOrder } from '../actions/orders'
 import CartItem from './CartItem'
 import { useNavigate } from 'react-router-dom'
 
-export default function Cart({ isOpen, setOpenCart }) {
+export default function Cart({ isOpen, setOpenCart, token }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const isSmall = useIsSmall()
@@ -17,7 +17,7 @@ export default function Cart({ isOpen, setOpenCart }) {
   const order = useSelector((state) => state.orders)
 
   const handleOrder = () => {
-    dispatch(placeOrder(cartItems))
+    dispatch(placeOrder(cartItems, token))
   }
 
   const handleOrdersNavigate = () => {

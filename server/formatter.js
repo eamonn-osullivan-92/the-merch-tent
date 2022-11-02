@@ -1,5 +1,6 @@
 module.exports = {
   formatOrder,
+  formatOrderList,
 }
 
 function createDateTimeString(timestamp) {
@@ -32,6 +33,13 @@ function sortByIdAscending(arr) {
   return arr
 }
 
+function sortByIdDescending(arr) {
+  arr.sort((a, b) => {
+    return b.id - a.id
+  })
+  return arr
+}
+
 function formatOrder(orderLines) {
   let order
   orderLines.forEach((item) => {
@@ -40,5 +48,19 @@ function formatOrder(orderLines) {
       : order.products.push(createProduct(item))
   })
   order.products = sortByIdAscending(order.products)
-  return order
+  return [order]
+}
+
+function formatOrderList(orderLines) {
+  const orderList = []
+  orderLines.forEach((item) => {
+    const order = orderList.find((o) => o.id === item.orderId)
+    !order
+      ? orderList.push(createOrder(item))
+      : (order.products = sortByIdAscending([
+          ...order.products,
+          createProduct(item),
+        ]))
+  })
+  return sortByIdDescending(orderList)
 }

@@ -25,7 +25,6 @@ router.get('/', requireUser, (req, res) => {
 router.post('/adduser', requireUser, (req, res) => {
   const propel_id = req.user?.userId
   const { email } = req.body
-  console.log(propel_id)
   const userDetails = {
     propel_id,
     email,
