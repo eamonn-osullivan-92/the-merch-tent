@@ -33,13 +33,6 @@ export function fetchSuccess(orders) {
   }
 }
 
-export function logPreviousOrder(order) {
-  return {
-    type: FETCH_ORDER,
-    payload: order,
-  }
-}
-
 export function fetchOrder(id, token) {
   return async (dispatch) => {
     dispatch(fetchPending())
@@ -69,13 +62,7 @@ export function placeOrder(orders, token) {
   return (dispatch) => {
     dispatch(placePending())
     return postOrder(orders, token)
-      .then((id) => {
-        dispatch(placeOrderSuccess())
-        return getOrder(id, token)
-      })
-      .then((order) => {
-        dispatch(logPreviousOrder(order))
-      })
+      .then(() => dispatch(placeOrderSuccess()))
       .catch((err) => {
         console.log(err.message)
         dispatch(showError(err.message))

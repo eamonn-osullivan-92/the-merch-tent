@@ -15,11 +15,13 @@ import MusicList from './MusicList'
 import Cart from './Cart'
 import Orders from './Orders'
 import Header from './Header'
+import SideNav from './SideNav'
 
 function App(props) {
   const music = useSelector((state) => state.music)
   const dispatch = useDispatch()
   const [openCart, setOpenCart] = useState(false)
+  const [sideNav, setSideNav] = useState(false)
 
   useEffect(() => {
     dispatch(fetchMusic())
@@ -42,15 +44,18 @@ function App(props) {
 
   return (
     <>
-      <div className="app">
-        <Header setOpenCart={setOpenCart} />
+      <div className="container">
+        <Header setOpenCart={setOpenCart} setSideNav={setSideNav} />
+        <SideNav sideNav={sideNav} setSideNav={setSideNav} />
         <Routes>
           {music && (
             <Route path="/" element={<MusicList setOpenCart={setOpenCart} />} />
           )}
           <Route
             path="/orders"
-            element={<Orders token={props.accessToken} />}
+            element={
+              <Orders token={props.accessToken} isLoggedIn={props.isLoggedIn} />
+            }
           />
         </Routes>
         {openCart && (

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useIsSmall } from '../hooks/useMediaQuery'
 import {
   withAuthInfo,
   useLogoutFunction,
@@ -10,17 +11,18 @@ function AuthenticationButtons({ isLoggedIn }) {
   const logoutFn = useLogoutFunction()
   const { redirectToSignupPage, redirectToLoginPage, redirectToAccountPage } =
     useRedirectFunctions()
+  const isSmall = useIsSmall()
 
   if (isLoggedIn) {
     return (
-      <div>
+      <div className={` ${isSmall ? 'auth-sidebar' : 'auth-buttons'}`}>
         <button onClick={redirectToAccountPage}>Account</button>
         <button onClick={() => logoutFn()}>Logout</button>
       </div>
     )
   } else {
     return (
-      <div>
+      <div className={`${isSmall ? 'auth-sidebar' : 'auth-buttons'}`}>
         <button onClick={redirectToSignupPage}>Signup</button>
         <button onClick={redirectToLoginPage}>Login</button>
       </div>

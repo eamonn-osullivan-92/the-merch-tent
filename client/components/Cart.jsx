@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRedirectFunctions } from '@propelauth/react'
 import { useIsSmall } from '../hooks/useMediaQuery'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -16,10 +16,15 @@ export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
 
   const music = useSelector((state) => state.music)
   const cartItems = useSelector((state) => state.cart)
-  const order = useSelector((state) => state.orders)
+  const [orderPlaced, setOrderPlaced] = useState(false)
 
   const handleOrder = () => {
-    isLoggedIn ? dispatch(placeOrder(cartItems, token)) : redirectToLoginPage()
+    if (isLoggedIn) {
+      dispatch(placeOrder(cartItems, token))
+      setOrderPlaced(true)
+    } else {
+      redirectToLoginPage()
+    }
   }
 
   const handleOrdersNavigate = () => {
@@ -39,7 +44,7 @@ export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
         {isOpen && (
           <motion.div
             initial={{ width: 0 }}
-            animate={isSmall ? { width: 380 } : { width: 600 }}
+            animate={isSmall ? { width: 350 } : { width: 600 }}
             transition={{ ease: 'linear' }}
             exit={{ width: 0 }}
             className="cart-container"
@@ -62,7 +67,7 @@ export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
                   Submit Order
                 </button>
               ) : null}
-              {order.length > 0 ? (
+              {orderPlaced ? (
                 <button
                   className="btn btn-secondary"
                   onClick={() => handleOrdersNavigate()}

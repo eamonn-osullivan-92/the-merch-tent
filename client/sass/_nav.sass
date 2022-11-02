@@ -1,81 +1,40 @@
 @use 'palette'
 
-nav 
-    width: 100%
-    position: sticky
-    font-size: 18px
-    padding: 1em 0
+
+
+.nav-control
     display: flex
-    justify-content: space-between
+    gap: 1.5em
     align-items: center
 
-    .heading-container  
-        display: flex
-        flex-direction: column
-        gap: 2px
-
-        h1
-            font-size: 2.1rem
-
-        p
-            font-size: 0.8rem
-            color: palette.$darker-grey
-
-    .nav-control
+    ul
         display: flex
         gap: 1.5em
-        align-items: center
 
-        ul
-            display: flex
-            gap: 1.5em
-
-            li
-                list-style: none 
-                position: relative
-
-                a    
-                    text-decoration: none
-                    color: palette.$darkest-grey
-            
-            li::after 
-                content: ''
-                position: absolute
-                bottom: -5px
-                display: block
-                height: 2px
-                background: palette.$darkest-grey
-                transition: width 0.3s ease 0s, left 0.3s ease 0s
-                width: 0
-                left:50%
-
-
-            li:hover:after 
-                width: 100%
-                left: 0
-
-                
-
-        .btn
-            border: 1.5px solid palette.$darkest-grey
-            outline: none
-            background: none
-            border-radius: 50%
-            padding: 3px 5px
-            cursor: pointer
+        li
+            list-style: none 
             position: relative
 
-            img 
-                height: 25px
-                width: 25px
+            a    
+                text-decoration: none
+                color: palette.$darkest-grey
+        
+        li::after 
+            content: ''
+            position: absolute
+            bottom: -5px
+            display: block
+            height: 2px
+            background: palette.$darkest-grey
+            transition: width 0.3s ease 0s, left 0.3s ease 0s
+            width: 0
+            left:50%
 
-            span
-                background: palette.$darkest-grey
-                border-radius: 50%
-                color: palette.$lightest-grey
-                min-width: 15px
-                min-height: 15px
-                position: absolute
-                bottom: 0px
-                right: 0px
-                transform: translate(25%, 25%)
+
+        li:hover:after 
+            width: 100%
+            left: 0
+
+            
+
+    
