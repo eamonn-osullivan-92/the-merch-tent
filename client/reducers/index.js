@@ -5,6 +5,7 @@ import cart from './cart'
 import errorMessage from './errorMessage'
 import waiting from './waiting'
 import orders from './orders'
+import user from './loggedInUser'
 
 export default combineReducers({
   music,
@@ -12,4 +13,5 @@ export default combineReducers({
   errorMessage,
   waiting,
   orders,
+  user,
 })

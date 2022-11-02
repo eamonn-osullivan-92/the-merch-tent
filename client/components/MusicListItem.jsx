@@ -1,9 +1,8 @@
 import React from 'react'
 
-function MusicListItem({ children, product, addAlbumToCart }) {
+function MusicListItem({ product, addAlbumToCart }) {
   return (
     <div className="product">
-      {children} {/* wait indicator */}
       <img src={product.image_path[0]} alt="" className="image" />
       <p className="album">
         {product.album} <span>{product.year}</span>

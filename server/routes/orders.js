@@ -1,12 +1,12 @@
 const express = require('express')
 
 const db = require('../db/orders')
+const { requireUser } = require('./initAuth')
 
 const router = express.Router()
 
-router.post('/', (req, res) => {
+router.post('/order', requireUser, (req, res) => {
   const id = req.body.id
-  console.log(id)
   db.findOrderById(id)
     .then((order) => {
       res.status(201).json(order)
@@ -16,9 +16,21 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/add', (req, res) => {
+router.post('/orders', requireUser, (req, res) => {
+  const userId = req.user.userId
+  db.findOrdersByUser(userId)
+    .then((orders) => {
+      res.status(201).json(orders)
+    })
+    .catch((err) => {
+      res.status(500).json({ message: err.message })
+    })
+})
+
+router.post('/add', requireUser, (req, res) => {
   const orderRequest = req.body
-  db.addOrder(orderRequest)
+  const userId = req.user.userId
+  db.addOrder(orderRequest, userId)
     .then((id) => {
       res.status(201).json(id)
     })

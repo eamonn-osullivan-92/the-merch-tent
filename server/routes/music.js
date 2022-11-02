@@ -13,37 +13,6 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.post('/add', async (req, res) => {
-  const album = req.body
-  try {
-    const albumId = await db.addAlbum(album)
-    const addedAlbum = await db.getAlbunmById(albumId[0].id)
-
-    res.json(addedAlbum)
-  } catch (err) {
-    res.status(500).json({ msg: err.message })
-  }
-})
-
-router.post('/del', async (req, res) => {
-  const id = req.body.id
-  try {
-    const del = await db.delAlbum(id)
-    res.json(del)
-  } catch (err) {
-    res.status(500).json({ msg: err.message })
-  }
-})
-
-router.patch('/update', async (req, res) => {
-  try {
-    await db.updateAlbum(req.body)
-    res.json('updated')
-  } catch (err) {
-    res.status(500).json({ msg: err.message })
-  }
-})
-
 router.get('/albumimages', async (req, res) => {
   try {
     const albumsAndImages = await db.getAlbumsAndImages()

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useRedirectFunctions } from '@propelauth/react'
 import { useIsSmall } from '../hooks/useMediaQuery'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,16 +8,23 @@ import { placeOrder } from '../actions/orders'
 import CartItem from './CartItem'
 import { useNavigate } from 'react-router-dom'
 
-export default function Cart({ isOpen, setOpenCart }) {
+export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
   const navigate = useNavigate()
-  const isSmall = useIsSmall()
   const dispatch = useDispatch()
+  const isSmall = useIsSmall()
+  const { redirectToLoginPage } = useRedirectFunctions()
+
   const music = useSelector((state) => state.music)
   const cartItems = useSelector((state) => state.cart)
-  const order = useSelector((state) => state.orders)
+  const [orderPlaced, setOrderPlaced] = useState(false)
 
   const handleOrder = () => {
-    dispatch(placeOrder(cartItems))
+    if (isLoggedIn) {
+      dispatch(placeOrder(cartItems, token))
+      setOrderPlaced(true)
+    } else {
+      redirectToLoginPage()
+    }
   }
 
   const handleOrdersNavigate = () => {
@@ -36,7 +44,7 @@ export default function Cart({ isOpen, setOpenCart }) {
         {isOpen && (
           <motion.div
             initial={{ width: 0 }}
-            animate={isSmall ? { width: 380 } : { width: 600 }}
+            animate={isSmall ? { width: 350 } : { width: 600 }}
             transition={{ ease: 'linear' }}
             exit={{ width: 0 }}
             className="cart-container"
@@ -59,7 +67,7 @@ export default function Cart({ isOpen, setOpenCart }) {
                   Submit Order
                 </button>
               ) : null}
-              {order ? (
+              {orderPlaced ? (
                 <button
                   className="btn btn-secondary"
                   onClick={() => handleOrdersNavigate()}

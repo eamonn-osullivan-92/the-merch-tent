@@ -1,0 +1,73 @@
+@use 'palette'
+
+    
+header
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    
+
+    .header-wrap
+        width: 100%
+        max-width: 1000px
+        font-size: 18px
+        padding: 1em 1em
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        .heading-container  
+            display: flex
+            flex-direction: column
+            gap: 2px
+
+            h1
+                font-size: 2.1rem
+
+            p
+                font-size: 0.8rem
+                color: palette.$darker-grey
+
+    .nav-container.reverse
+        flex-direction: row-reverse
+
+    .nav-container
+        display: flex
+        gap: 1.5em
+
+
+
+        .hamburger-btn
+            outline: none
+            background: none
+            cursor: pointer
+            border: none
+
+            img 
+                height: 30px
+                width: 30px
+
+        .btn
+            border: 1.5px solid palette.$darkest-grey
+            outline: none
+            background: none
+            border-radius: 50%
+            padding: 3px 5px
+            cursor: pointer
+            position: relative
+
+            img 
+                height: 25px
+                width: 25px
+
+            span
+                background: palette.$darkest-grey
+                border-radius: 50%
+                color: palette.$lightest-grey
+                min-width: 15px
+                min-height: 15px
+                position: absolute
+                bottom: 0px
+                right: 0px
+                transform: translate(25%, 25%)

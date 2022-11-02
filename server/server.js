@@ -1,8 +1,11 @@
 const express = require('express')
 const path = require('path')
 
+require('dotenv').config()
+
 const musicRoutes = require('./routes/music')
 const ordersRoutes = require('./routes/orders')
+const usersRoutes = require('./routes/users')
 
 const server = express()
 
@@ -11,5 +14,6 @@ server.use(express.static(path.join(__dirname, 'public')))
 
 server.use('/api/v1/music', musicRoutes)
 server.use('/api/v1/orders', ordersRoutes)
+server.use('/api/v1/users', usersRoutes)
 
 module.exports = server
