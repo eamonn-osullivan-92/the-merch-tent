@@ -34,9 +34,7 @@ function App(props) {
         .then((userInDb) => {
           userInDb
             ? dispatch(updateLoggedInUser(userInDb))
-            : dispatch(
-                addAndUpdateLoggedInUser(props.user.email, props.accessToken)
-              )
+            : dispatch(addAndUpdateLoggedInUser(props.user, props.accessToken))
         })
         .catch((err) => console.error(err.message))
     }
@@ -60,6 +58,7 @@ function App(props) {
             setOpenCart={setOpenCart}
             isOpen={openCart}
             token={props.accessToken}
+            isLoggedIn={props.isLoggedIn}
           />
         )}
       </div>

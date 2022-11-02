@@ -6,6 +6,8 @@ exports.up = function (knex) {
   return knex.schema.createTable('users', (table) => {
     table.string('propel_id').primary()
     table.string('email')
+    table.string('first_name')
+    table.string('last_name')
   })
 }
 

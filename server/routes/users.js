@@ -24,10 +24,10 @@ router.get('/', requireUser, (req, res) => {
 // POST /api/v1/users
 router.post('/adduser', requireUser, (req, res) => {
   const propel_id = req.user?.userId
-  const { email } = req.body
+  const user = req.body
   const userDetails = {
     propel_id,
-    email,
+    ...user,
   }
   db.createUser(userDetails)
     .then(() => res.sendStatus(201))

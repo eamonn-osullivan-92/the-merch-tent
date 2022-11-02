@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRedirectFunctions } from '@propelauth/react'
 import { useIsSmall } from '../hooks/useMediaQuery'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,17 +8,18 @@ import { placeOrder } from '../actions/orders'
 import CartItem from './CartItem'
 import { useNavigate } from 'react-router-dom'
 
-export default function Cart({ isOpen, setOpenCart, token }) {
+export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const isSmall = useIsSmall()
+  const { redirectToLoginPage } = useRedirectFunctions()
 
   const music = useSelector((state) => state.music)
   const cartItems = useSelector((state) => state.cart)
   const order = useSelector((state) => state.orders)
 
   const handleOrder = () => {
-    dispatch(placeOrder(cartItems, token))
+    isLoggedIn ? dispatch(placeOrder(cartItems, token)) : redirectToLoginPage()
   }
 
   const handleOrdersNavigate = () => {
@@ -60,7 +62,7 @@ export default function Cart({ isOpen, setOpenCart, token }) {
                   Submit Order
                 </button>
               ) : null}
-              {order ? (
+              {order.length > 0 ? (
                 <button
                   className="btn btn-secondary"
                   onClick={() => handleOrdersNavigate()}

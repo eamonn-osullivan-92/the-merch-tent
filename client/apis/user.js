@@ -2,11 +2,11 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1/users'
 
-export function addUser(email, token) {
+export function addUser(user, token) {
   return request
     .post(`${rootUrl}/adduser`)
     .set('Authorization', `Bearer ${token}`)
-    .send({ email })
+    .send(user)
     .catch((err) => console.log(err.message))
 }
 

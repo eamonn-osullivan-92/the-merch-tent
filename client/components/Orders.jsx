@@ -5,7 +5,6 @@ import Order from './Order'
 import SearchOrder from './SearchOrder'
 import WaitIndicator from './WaitIndicator'
 import { fetchOrders } from '../actions/orders'
-import user from '../reducers/loggedInUser'
 
 export default function Orders({ token }) {
   const dispatch = useDispatch()
@@ -20,7 +19,7 @@ export default function Orders({ token }) {
   return (
     <div className="order-container">
       <div className="order-header">
-        <h3 className="order-heading">{`${user.email}'s Orders`}</h3>
+        <h3 className="order-heading">{`${user.first_name}'s Orders`}</h3>
         <p className="tertiary-btn">
           <Link to="/">Back to store</Link>
         </p>

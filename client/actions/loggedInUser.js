@@ -16,9 +16,14 @@ export function clearLoggedInUser() {
   }
 }
 
-export function addAndUpdateLoggedInUser(email, token) {
+export function addAndUpdateLoggedInUser(user, token) {
   return (dispatch) => {
-    addUser(email, token)
+    const userToAdd = {
+      email: user.email,
+      first_name: user.firstName,
+      last_name: user.lastName,
+    }
+    addUser(userToAdd, token)
       .then(() => {
         return getUser(token)
       })

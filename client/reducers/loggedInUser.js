@@ -6,6 +6,8 @@ import {
 const emptyUser = {
   propel_id: '',
   email: '',
+  first_name: '',
+  last_name: '',
 }
 
 export default function user(state = emptyUser, action) {
