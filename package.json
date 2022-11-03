@@ -7,7 +7,7 @@
     "fullstack"
   ],
   "scripts": {
-    "start": "node server",
+    "start": "node -r dotenv/config server",
     "test": "jest",
     "test:watch": "jest --noStackTrace --watchAll",
     "dev": "run-p dev:client dev:server",
