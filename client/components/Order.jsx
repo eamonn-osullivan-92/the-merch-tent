@@ -3,7 +3,6 @@ import React from 'react'
 import OrderProductItem from './OrderProductItem'
 
 export default function Order({ children, order }) {
-  console.log(order)
   return (
     <div className="order-info">
       {children}
