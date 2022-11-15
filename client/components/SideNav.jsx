@@ -23,10 +23,14 @@ export default function SideNav({ sideNav, setSideNav }) {
           <nav className="nav-control-sidebar">
             <ul className="nav-items-sidebar">
               <li>
-                <Link to="/">Store</Link>
+                <Link to="/" onClick={() => setSideNav(false)}>
+                  Store
+                </Link>
               </li>
               <li>
-                <Link to="/orders">Orders</Link>
+                <Link to="/orders" onClick={() => setSideNav(false)}>
+                  Orders
+                </Link>
               </li>
             </ul>
             <Auth />

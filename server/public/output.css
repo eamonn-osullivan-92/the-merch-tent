@@ -9,6 +9,8 @@
   background: #f7f7ff;
   color: #222222;
   font: 100% "Source Sans Pro", sans-serif;
+  min-height: 100vh;
+  height: auto;
 }
 
 .store-container {
@@ -353,7 +355,11 @@ header .nav-container .btn span {
 }
 
 .orders-container {
-  width: 350px;
+  width: 100%;
+  max-width: 1000px;
+  min-width: 350px;
+  margin: auto;
+  padding-left: 1em;
 }
 .orders-container .order-header {
   padding-top: 1em;
