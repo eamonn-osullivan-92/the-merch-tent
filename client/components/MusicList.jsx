@@ -9,12 +9,12 @@ import WaitIndicator from './WaitIndicator'
 
 function MusicList({ setOpenCart }) {
   const music = useSelector((state) => state.music)
-
   const dispatch = useDispatch()
 
-  const addAlbumToCart = (album) => {
-    const { id, name } = album
-    const newCartItem = { id, name }
+  const addAlbumToCart = (product) => {
+    const { id, album, stripe_price_id } = product
+    const newCartItem = { id, album, stripe_price_id }
+    console.log(newCartItem)
     dispatch(addToCart(newCartItem))
     setOpenCart(true)
   }

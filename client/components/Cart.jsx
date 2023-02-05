@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useRedirectFunctions } from '@propelauth/react'
 import { useIsSmall } from '../hooks/useMediaQuery'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -6,29 +6,25 @@ import { useSelector, useDispatch } from 'react-redux'
 import { placeOrder } from '../actions/orders'
 
 import CartItem from './CartItem'
-import { useNavigate } from 'react-router-dom'
 
 export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const isSmall = useIsSmall()
   const { redirectToLoginPage } = useRedirectFunctions()
 
   const music = useSelector((state) => state.music)
   const cartItems = useSelector((state) => state.cart)
-  const [orderPlaced, setOrderPlaced] = useState(false)
 
   const handleOrder = () => {
     if (isLoggedIn) {
       dispatch(placeOrder(cartItems, token))
-      setOrderPlaced(true)
+        .then((stripeUrl) => {
+          window.location.href = stripeUrl
+        })
+        .catch((err) => err.message)
     } else {
       redirectToLoginPage()
     }
-  }
-
-  const handleOrdersNavigate = () => {
-    navigate('/orders')
   }
 
   const getCartTotal = () => {
@@ -65,14 +61,6 @@ export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
               {cartItems.length > 0 ? (
                 <button className="btn" onClick={() => handleOrder()}>
                   Submit Order
-                </button>
-              ) : null}
-              {orderPlaced ? (
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => handleOrdersNavigate()}
-                >
-                  See Order
                 </button>
               ) : null}
             </div>

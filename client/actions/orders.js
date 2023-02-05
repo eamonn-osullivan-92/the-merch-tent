@@ -1,4 +1,9 @@
-import { postOrder, getOrder, getOrders } from '../apis/orders'
+import {
+  //   postOrder,
+  createStripeCheckoutSession,
+  getOrder,
+  getOrders,
+} from '../apis/orders'
 import { showError } from './error'
 
 export const PLACE_ORDER = 'PLACE_ORDER'
@@ -58,11 +63,28 @@ export function fetchOrders(token) {
 }
 
 // places order, then logs order in the order redux state to be viewed
+// export function placeOrder(orders, token) {
+//   return (dispatch) => {
+//     dispatch(placePending())
+//     return postOrder(orders, token)
+//       .then(() => dispatch(placeOrderSuccess()))
+//       .catch((err) => {
+//         console.log(err.message)
+//         dispatch(showError(err.message))
+//       })
+//   }
+// }
+
+// place order w/ Stripe payment system
 export function placeOrder(orders, token) {
   return (dispatch) => {
     dispatch(placePending())
-    return postOrder(orders, token)
-      .then(() => dispatch(placeOrderSuccess()))
+    return createStripeCheckoutSession(orders, token)
+      .then((res) => {
+        console.log(res)
+        //   .then(() => dispatch(placeOrderSuccess()))
+        return res.url
+      })
       .catch((err) => {
         console.log(err.message)
         dispatch(showError(err.message))
