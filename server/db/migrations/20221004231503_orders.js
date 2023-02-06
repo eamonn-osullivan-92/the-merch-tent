@@ -7,6 +7,7 @@ exports.up = (knex) => {
     table.increments('id')
     table.date('created_at')
     table.string('status')
+    table.string('stripe_session_id')
     table.string('propel_id')
   })
 }

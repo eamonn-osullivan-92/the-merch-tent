@@ -10,7 +10,13 @@ const stripeRoutes = require('./routes/stripe')
 
 const server = express()
 
-server.use(express.json())
+server.use((req, res, next) => {
+  if (req.originalUrl.includes('/webhook')) {
+    next()
+  } else {
+    express.json({ limit: '1mb' })(req, res, next)
+  }
+})
 server.use(express.static(path.join(__dirname, 'public')))
 
 server.use('/api/v1/music', musicRoutes)

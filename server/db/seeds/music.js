@@ -220,7 +220,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '7',
       stripe_product_id: 'prod_NIq5fOTBRL3kvZ',
-      stripe_price_id: 'price_1MYEPOEDyCcN2QeKTnkZYVhV',
+      stripe_price_id: 'price_1MYJQ1EDyCcN2QeKgzA7M1M0',
     },
     {
       id: 19,
@@ -244,7 +244,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '7',
       stripe_product_id: 'prod_NIq6WHFY9idwEP',
-      stripe_price_id: 'price_1MYEQ3EDyCcN2QeKKd4anTav',
+      stripe_price_id: 'price_1MYJPcEDyCcN2QeKIy61B7WK',
     },
   ])
 }

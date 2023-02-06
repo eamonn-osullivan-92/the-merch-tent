@@ -79,15 +79,17 @@ export function fetchOrders(token) {
 export function placeOrder(orders, token) {
   return (dispatch) => {
     dispatch(placePending())
-    return createStripeCheckoutSession(orders, token)
-      .then((res) => {
-        console.log(res)
+    return (
+      createStripeCheckoutSession(orders, token)
+        .then((res) => {
+          // returns the stripe checkout url to redirect.
+          return res.url
+        })
         //   .then(() => dispatch(placeOrderSuccess()))
-        return res.url
-      })
-      .catch((err) => {
-        console.log(err.message)
-        dispatch(showError(err.message))
-      })
+        .catch((err) => {
+          console.log(err.message)
+          dispatch(showError(err.message))
+        })
+    )
   }
 }
