@@ -17,7 +17,9 @@ export default function Order({ children, order }) {
       </p>
       <p>
         <span className="key">Status: </span>
-        {order.status}
+        <span className={order.status == 'pending' ? `danger` : ``}>
+          {order.status}
+        </span>
       </p>
 
       {order.products.map((product, i) => {

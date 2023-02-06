@@ -389,6 +389,9 @@ header .nav-container .btn span {
   color: #3B3B3B;
   font-size: 1rem;
 }
+.orders-container .order-info p .danger {
+  color: red;
+}
 
 .order-product-container {
   display: flex;

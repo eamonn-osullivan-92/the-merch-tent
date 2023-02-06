@@ -75,7 +75,7 @@ router.post(
       //     db.updateOrderStatus('Failed', paymentIntentPaymentFailed.id)
       //     break
       //   }
-      // ... handle other event types
+
       default:
         console.log(`Unhandled event type ${event.type}`)
     }
