@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: ['./client/index.js'],
@@ -6,7 +7,14 @@ module.exports = {
     path: path.join(__dirname, '..', 'server', 'public'),
     filename: 'bundle.js',
   },
-  mode: 'development',
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_AUTH_URL': JSON.stringify(
+        process.env.REACT_APP_AUTH_URL
+      ),
+    }),
+  ],
+  mode: 'prodouction',
   module: {
     rules: [
       {

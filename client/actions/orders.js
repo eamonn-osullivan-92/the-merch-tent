@@ -1,4 +1,9 @@
-import { postOrder, getOrder } from '../apis/orders'
+import {
+  //   postOrder,
+  createStripeCheckoutSession,
+  getOrder,
+  getOrders,
+} from '../apis/orders'
 import { showError } from './error'
 
 export const PLACE_ORDER = 'PLACE_ORDER'
@@ -33,18 +38,11 @@ export function fetchSuccess(orders) {
   }
 }
 
-export function logPreviousOrder(order) {
-  return {
-    type: FETCH_ORDER,
-    payload: order,
-  }
-}
-
-export function fetchOrder(id) {
+export function fetchOrder(id, token) {
   return async (dispatch) => {
     dispatch(fetchPending())
     try {
-      const order = await getOrder(id)
+      const order = await getOrder(id, token)
       dispatch(fetchSuccess(order))
     } catch (err) {
       dispatch(showError(err.message))
@@ -52,17 +50,42 @@ export function fetchOrder(id) {
   }
 }
 
+export function fetchOrders(token) {
+  return async (dispatch) => {
+    dispatch(fetchPending())
+    try {
+      const orders = await getOrders(token)
+      dispatch(fetchSuccess(orders))
+    } catch (err) {
+      dispatch(showError(err.message))
+    }
+  }
+}
+
 // places order, then logs order in the order redux state to be viewed
-export function placeOrder(orders) {
+// export function placeOrder(orders, token) {
+//   return (dispatch) => {
+//     dispatch(placePending())
+//     return postOrder(orders, token)
+//       .then(() => dispatch(placeOrderSuccess()))
+//       .catch((err) => {
+//         console.log(err.message)
+//         dispatch(showError(err.message))
+//       })
+//   }
+// }
+
+// place order w/ Stripe payment system
+export function placeOrder(orders, token) {
   return (dispatch) => {
     dispatch(placePending())
-    return postOrder(orders)
-      .then((id) => {
+    return createStripeCheckoutSession(orders, token)
+      .then((res) => {
+        // clears cart (not optimal as cart will be gone if customer cancels checkout)
         dispatch(placeOrderSuccess())
-        return getOrder(id)
-      })
-      .then((order) => {
-        dispatch(logPreviousOrder(order))
+
+        // returns the stripe checkout url to redirect.
+        return res.url
       })
       .catch((err) => {
         console.log(err.message)

@@ -1,6 +1,6 @@
 import { FETCH_ORDERS_SUCCESS, FETCH_ORDER } from '../actions/orders'
 
-function orders(state = null, action) {
+function orders(state = [], action) {
   const { type, payload } = action
   switch (type) {
     case FETCH_ORDERS_SUCCESS:

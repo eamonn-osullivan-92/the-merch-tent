@@ -15,7 +15,6 @@ const store = createStore(
 store.subscribe(() => {
   saveState({
     cart: store.getState().cart,
-    orders: store.getState().orders,
   })
 })
 

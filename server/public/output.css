@@ -1,17 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
-*, *::before, *::after {
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body {
+.container {
   background: #f7f7ff;
   color: #222222;
-  font: 100% "Source Sans Pro", sans-serif;
-  margin: 0 5em;
+  font: 100% 'Source Sans Pro', sans-serif;
+  min-height: 100vh;
+  height: auto;
 }
 
+.fade {
+  animation: fade 0.5s ease-in;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .store-container {
   width: 100%;
   padding-top: 2em;
@@ -40,14 +55,14 @@ body {
   height: auto;
 }
 .product p {
-  color: #3B3B3B;
+  color: #3b3b3b;
 }
 .product .album {
   font-size: 1.15rem;
   color: #222222;
 }
 .product .album span {
-  color: #9AA5B1;
+  color: #9aa5b1;
   font-size: 0.8rem;
   padding-left: 2px;
 }
@@ -57,7 +72,7 @@ body {
   width: 100%;
 }
 .product .cart-control .btn {
-  background: #3B3B3B;
+  background: #3b3b3b;
   color: #f7f7ff;
   border-radius: 50px;
   padding: 0.5em 1.2em;
@@ -65,7 +80,7 @@ body {
 }
 .product .cart-control .quantity-btn {
   background: none;
-  color: #3B3B3B;
+  color: #3b3b3b;
   border: none;
   outline: none;
   cursor: pointer;
@@ -80,46 +95,25 @@ body {
   margin-left: 1em;
 }
 
-nav {
-  width: 100%;
-  position: sticky;
-  font-size: 18px;
-  padding: 1em 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-nav .heading-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-nav .heading-container h1 {
-  font-size: 2.1rem;
-}
-nav .heading-container p {
-  font-size: 0.8rem;
-  color: #3B3B3B;
-}
-nav .nav-control {
+.nav-control {
   display: flex;
   gap: 1.5em;
   align-items: center;
 }
-nav .nav-control ul {
+.nav-control ul {
   display: flex;
   gap: 1.5em;
 }
-nav .nav-control ul li {
+.nav-control ul li {
   list-style: none;
   position: relative;
 }
-nav .nav-control ul li a {
+.nav-control ul li a {
   text-decoration: none;
   color: #222222;
 }
-nav .nav-control ul li::after {
-  content: "";
+.nav-control ul li::after {
+  content: '';
   position: absolute;
   bottom: -5px;
   display: block;
@@ -129,11 +123,56 @@ nav .nav-control ul li::after {
   width: 0;
   left: 50%;
 }
-nav .nav-control ul li:hover:after {
+.nav-control ul li:hover:after {
   width: 100%;
   left: 0;
 }
-nav .nav-control .btn {
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .header-wrap {
+  width: 100%;
+  max-width: 1000px;
+  font-size: 18px;
+  padding: 1em 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header-wrap .heading-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+header .header-wrap .heading-container h1 {
+  font-size: 2.1rem;
+}
+header .header-wrap .heading-container p {
+  font-size: 0.8rem;
+  color: #3b3b3b;
+}
+header .nav-container.reverse {
+  flex-direction: row-reverse;
+}
+header .nav-container {
+  display: flex;
+  gap: 1.5em;
+}
+header .nav-container .hamburger-btn {
+  outline: none;
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+header .nav-container .hamburger-btn img {
+  height: 30px;
+  width: 30px;
+}
+header .nav-container .btn {
   border: 1.5px solid #222222;
   outline: none;
   background: none;
@@ -142,11 +181,11 @@ nav .nav-control .btn {
   cursor: pointer;
   position: relative;
 }
-nav .nav-control .btn img {
+header .nav-container .btn img {
   height: 25px;
   width: 25px;
 }
-nav .nav-control .btn span {
+header .nav-container .btn span {
   background: #222222;
   border-radius: 50%;
   color: #f7f7ff;
@@ -158,8 +197,82 @@ nav .nav-control .btn span {
   transform: translate(25%, 25%);
 }
 
+.sidebar {
+  background: #9aa5b1;
+  color: #f7f7ff;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  padding: 2em;
+}
+.sidebar .close-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 2em;
+}
+.sidebar .close-container .close-sidebar {
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: 1px solid #f7f7ff;
+  border-radius: 50%;
+  color: #f7f7ff;
+}
+.sidebar .nav-control-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar .nav-control-sidebar .nav-items-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidebar .nav-control-sidebar .nav-items-sidebar li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+}
+.sidebar .nav-control-sidebar .nav-items-sidebar a {
+  text-decoration: none;
+  color: #f7f7ff;
+}
+.sidebar .nav-control-sidebar .nav-items-sidebar li:hover {
+  background-color: #cfcfcf;
+  color: #3b3b3b;
+}
+.sidebar .nav-control-sidebar .nav-items-sidebar li:hover a {
+  color: #3b3b3b;
+}
+.sidebar .auth-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar .auth-sidebar button {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+  outline: none;
+  background: none;
+  color: #f7f7ff;
+  font-size: 1rem;
+}
+.sidebar .auth-sidebar button:hover {
+  background-color: #cfcfcf;
+  color: #3b3b3b;
+}
+
 .cart-container {
-  background: #9AA5B1;
+  background: #9aa5b1;
   color: #f7f7ff;
   position: fixed;
   top: 0px;
@@ -192,7 +305,7 @@ nav .nav-control .btn span {
 .cart-container .cart-total .btn {
   margin-top: 1em;
   background: #f7f7ff;
-  color: #3B3B3B;
+  color: #3b3b3b;
   border-radius: 50px;
   padding: 0.4em;
   border: none;
@@ -236,7 +349,7 @@ nav .nav-control .btn span {
 }
 .cart-item-container .item-total .quantity-control .quantity-btn {
   background: none;
-  color: #3B3B3B;
+  color: #3b3b3b;
   border: none;
   outline: none;
   cursor: pointer;
@@ -255,24 +368,43 @@ nav .nav-control .btn span {
   cursor: pointer;
 }
 
-.order-container .order-header {
+.orders-container {
+  width: 100%;
+  max-width: 1000px;
+  min-width: 350px;
+  margin: auto;
+  padding-left: 1em;
+}
+.orders-container .order-header {
   padding-top: 1em;
 }
-.order-container .order-header a {
-  color: #3B3B3B;
+.orders-container .order-header a {
+  color: #3b3b3b;
   text-decoration: none;
   cursor: pointer;
 }
-.order-container .order-info {
-  padding-top: 1em;
+.orders-container .btn {
+  margin-top: 3em;
+  background: #3b3b3b;
+  color: #f7f7ff;
+  border-radius: 50px;
+  padding: 0.5em 1.2em;
+  border: none;
 }
-.order-container .order-info p {
+.orders-container .order-info {
+  padding: 2em 0;
+  border-bottom: 1px solid #cfcfcf;
+}
+.orders-container .order-info p {
   color: #222222;
   font-size: 1.1rem;
 }
-.order-container .order-info p .key {
-  color: #3B3B3B;
+.orders-container .order-info p .key {
+  color: #3b3b3b;
   font-size: 1rem;
+}
+.orders-container .order-info p .danger {
+  color: red;
 }
 
 .order-product-container {
@@ -290,46 +422,46 @@ nav .nav-control .btn span {
   width: 75px;
 }
 .order-product-container .info p:last-of-type {
-  color: #3B3B3B;
+  color: #3b3b3b;
   font-size: 0.9rem;
-}
-
-.search-container {
-  padding-top: 2em;
-  width: 330px;
-}
-.search-container .search {
-  padding-top: 1em;
-  width: 200px;
-  position: relative;
-  display: flex;
-}
-.search-container .search .search-id {
-  width: 100%;
-  border: 2px solid #3B3B3B;
-  border-right: none;
-  padding: 5px;
-  height: 30px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: #3B3B3B;
-}
-.search-container .search .search-btn {
-  width: 40px;
-  height: 30px;
-  border: 1px solid #3B3B3B;
-  background: #3B3B3B;
-  text-align: center;
-  color: #f7f7ff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
 }
 
 .wait-indicator {
   margin: 0 5px 0 5px;
   width: 40px;
   height: 40px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+}
+.auth-buttons button {
+  position: relative;
+  color: #222222;
+  padding: none;
+  background: none;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.auth-buttons button::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  display: block;
+  height: 2px;
+  background: #222222;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+  left: 50%;
+}
+.auth-buttons button:hover:after {
+  width: 100%;
+  left: 0;
 }
 
 /*# sourceMappingURL=output.css.map */

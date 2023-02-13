@@ -1,27 +1,30 @@
 import React from 'react'
+import { useRedirectFunctions } from '@propelauth/react'
 import { useIsSmall } from '../hooks/useMediaQuery'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux'
 import { placeOrder } from '../actions/orders'
 
 import CartItem from './CartItem'
-import { useNavigate } from 'react-router-dom'
 
-export default function Cart({ isOpen, setOpenCart }) {
-  const navigate = useNavigate()
+export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
   const dispatch = useDispatch()
   const isSmall = useIsSmall()
+  const { redirectToLoginPage } = useRedirectFunctions()
 
   const music = useSelector((state) => state.music)
   const cartItems = useSelector((state) => state.cart)
-  const order = useSelector((state) => state.orders)
 
   const handleOrder = () => {
-    dispatch(placeOrder(cartItems))
-  }
-
-  const handleOrdersNavigate = () => {
-    navigate('/orders')
+    if (isLoggedIn) {
+      dispatch(placeOrder(cartItems, token))
+        .then((stripeUrl) => {
+          window.location.href = stripeUrl
+        })
+        .catch((err) => err.message)
+    } else {
+      redirectToLoginPage()
+    }
   }
 
   const getCartTotal = () => {
@@ -37,7 +40,7 @@ export default function Cart({ isOpen, setOpenCart }) {
         {isOpen && (
           <motion.div
             initial={{ width: 0 }}
-            animate={isSmall ? { width: 380 } : { width: 600 }}
+            animate={isSmall ? { width: 350 } : { width: 600 }}
             transition={{ ease: 'linear' }}
             exit={{ width: 0 }}
             className="cart-container"
@@ -58,14 +61,6 @@ export default function Cart({ isOpen, setOpenCart }) {
               {cartItems.length > 0 ? (
                 <button className="btn" onClick={() => handleOrder()}>
                   Submit Order
-                </button>
-              ) : null}
-              {order ? (
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => handleOrdersNavigate()}
-                >
-                  See Order
                 </button>
               ) : null}
             </div>
