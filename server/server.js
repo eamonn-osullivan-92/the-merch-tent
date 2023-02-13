@@ -24,4 +24,8 @@ server.use('/api/v1/orders', ordersRoutes)
 server.use('/api/v1/users', usersRoutes)
 server.use('/api/v1/stripe', stripeRoutes)
 
+server.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'))
+})
+
 module.exports = server

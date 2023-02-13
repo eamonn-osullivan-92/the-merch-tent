@@ -3,7 +3,6 @@ import React from 'react'
 import OrderProductItem from './OrderProductItem'
 
 export default function Order({ children, order }) {
-  console.log(order)
   return (
     <div className="order-info">
       {children}
@@ -22,7 +21,7 @@ export default function Order({ children, order }) {
         </span>
       </p>
 
-      {order.products.map((product, i) => {
+      {order?.products.map((product, i) => {
         return <OrderProductItem key={i} product={product} />
       })}
     </div>

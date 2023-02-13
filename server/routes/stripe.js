@@ -5,8 +5,7 @@ const stripe = require('stripe')(process.env.REACT_APP_STRIPE_KEY)
 const db = require('../db/orders')
 const { requireUser } = require('./initAuth')
 
-// const DOMAIN = 'thelostcrates.co.nz'
-const DOMAIN = 'http://localhost:3000/'
+const DOMAIN = 'thelostcrates.co.nz'
 
 router.use((req, res, next) => {
   if (req.originalUrl.includes('/webhook')) {
@@ -19,20 +18,38 @@ router.use((req, res, next) => {
 router.post('/create-checkout-session', requireUser, async (req, res) => {
   const order = req.body
   const userId = req.user?.userId
+
+  if (order == null || order == undefined) {
+    res.status(500).send('Error: Order not found')
+  }
+
+  if (userId == null || userId == undefined) {
+    res
+      .status(500)
+      .send(
+        'Authentication error: User not found. You must be logged in to complete an order'
+      )
+  }
+
   const lineItems = order.map((item) => {
     return { price: item.stripe_price_id, quantity: item.quantity }
   })
 
+  // add order with default pending status, to be updated upon payment finalisation
+  const orderId = await db.addOrder(order, userId)
+
+  //Create stripe checkout session, pass order ID as metadata to fulfill orders on completion
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',
     success_url: `${DOMAIN}`,
     cancel_url: `${DOMAIN}?canceled=true`,
     automatic_tax: { enabled: true },
+    expires_at: new Date(Date.now() + 30 * 60000),
+    metadata: {
+      id: orderId,
+    },
   })
-
-  // add order with default pending status, to be updated upon payment finalisation
-  await db.addOrder(order, userId, session.id)
 
   res.json({ url: session.url })
 })
@@ -58,23 +75,21 @@ router.post(
     switch (event.type) {
       case 'checkout.session.completed': {
         const checkoutSessionCompleted = event.data.object
-        console.log(checkoutSessionCompleted)
+
         // Then define and call a function to handle the event checkout.session.completed
-        await db.updateOrderStatus('Confirmed', checkoutSessionCompleted.id)
+        await db.updateOrderStatus(
+          'Confirmed',
+          checkoutSessionCompleted.metadata.id
+        )
         break
       }
-      //   case 'payment_intent.canceled': {
-      //     const paymentIntentCanceled = event.data.object
-      //     // Then define and call a function to handle the event payment_intent.canceled
-      //     db.updateOrderStatus('Cancelled', paymentIntentCanceled.id)
-      //     break
-      //   }
-      //   case 'payment_intent.payment_failed': {
-      //     const paymentIntentPaymentFailed = event.data.object
-      //     // Then define and call a function to handle the event payment_intent.payment_failed
-      //     db.updateOrderStatus('Failed', paymentIntentPaymentFailed.id)
-      //     break
-      //   }
+      case 'checkout.session.expired': {
+        // checkout session will expire after 30 minutes
+        const checkoutSessionExpired = event.data.object
+
+        db.updateOrderStatus('Cancelled', checkoutSessionExpired.metadata.id)
+        break
+      }
 
       default:
         console.log(`Unhandled event type ${event.type}`)

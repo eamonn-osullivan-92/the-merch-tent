@@ -9,7 +9,7 @@ module.exports = {
   updateOrderStatus,
 }
 
-function addOrder(orderRequest, userId, sessionId, db = connection) {
+function addOrder(orderRequest, userId, db = connection) {
   // remove item names from order (we have the id)
   const order = orderRequest.map((item) => {
     return {
@@ -30,19 +30,15 @@ function addOrder(orderRequest, userId, sessionId, db = connection) {
     .insert({
       created_at: timestamp,
       status: 'pending',
-      stripe_session_id: sessionId,
       propel_id: userId,
     })
     .returning('id')
     .then(([{ id }]) => addOrderLines(id, order, db))
 }
 
-function updateOrderStatus(status, sessionId, db = connection) {
+function updateOrderStatus(status, orderId, db = connection) {
   //status is either pending / confirmed / Failed / cancelled
-  return db('orders')
-    .select()
-    .where('stripe_session_id', sessionId)
-    .update({ status: status })
+  return db('orders').select().where('id', orderId).update({ status: status })
 }
 
 function addOrderLines(id, order, db = connection) {

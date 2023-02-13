@@ -79,17 +79,17 @@ export function fetchOrders(token) {
 export function placeOrder(orders, token) {
   return (dispatch) => {
     dispatch(placePending())
-    return (
-      createStripeCheckoutSession(orders, token)
-        .then((res) => {
-          // returns the stripe checkout url to redirect.
-          return res.url
-        })
-        //   .then(() => dispatch(placeOrderSuccess()))
-        .catch((err) => {
-          console.log(err.message)
-          dispatch(showError(err.message))
-        })
-    )
+    return createStripeCheckoutSession(orders, token)
+      .then((res) => {
+        // clears cart (not optimal as cart will be gone if customer cancels checkout)
+        dispatch(placeOrderSuccess())
+
+        // returns the stripe checkout url to redirect.
+        return res.url
+      })
+      .catch((err) => {
+        console.log(err.message)
+        dispatch(showError(err.message))
+      })
   }
 }
