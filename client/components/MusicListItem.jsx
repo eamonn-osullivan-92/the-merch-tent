@@ -3,7 +3,12 @@ import React from 'react'
 function MusicListItem({ product, addAlbumToCart }) {
   return (
     <div className="product">
-      <img src={product.image_path[0]} alt="" className="image" />
+      <img
+        src={product.image_path[0]}
+        loading="lazy"
+        alt=""
+        className="image"
+      />
       <p className="album">
         {product.album} <span>{product.year}</span>
       </p>
