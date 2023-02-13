@@ -12,6 +12,8 @@ exports.up = function (knex) {
     table.string('description')
     table.integer('price')
     table.integer('quantity')
+    table.string('stripe_product_id')
+    table.string('stripe_price_id')
   })
 }
 

@@ -16,15 +16,18 @@ import Cart from './Cart'
 import Orders from './Orders'
 import Header from './Header'
 import SideNav from './SideNav'
+import { useSessionStorage } from '../hooks/useSessionStorage'
 
 function App(props) {
   const music = useSelector((state) => state.music)
   const dispatch = useDispatch()
   const [openCart, setOpenCart] = useState(false)
   const [sideNav, setSideNav] = useState(false)
+  const [firstLoad, setFirstLoad] = useSessionStorage('firstLoad', true)
 
   useEffect(() => {
     dispatch(fetchMusic())
+    setFirstLoad(false)
   }, [])
 
   //Auth
@@ -44,7 +47,7 @@ function App(props) {
 
   return (
     <>
-      <div className="container">
+      <div className={firstLoad ? `container fade` : `container`}>
         <Header setOpenCart={setOpenCart} setSideNav={setSideNav} />
         <SideNav sideNav={sideNav} setSideNav={setSideNav} />
         <Routes>

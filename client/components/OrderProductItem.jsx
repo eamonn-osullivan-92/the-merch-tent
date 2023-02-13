@@ -7,7 +7,7 @@ export default function OrderProductItem({ product }) {
 
   return (
     <div className="order-product-container">
-      <img src={item.image_path[0]} alt="" />
+      <img src={item?.image_path[0]} alt="" />
       <div className="info">
         <p>{product.album}</p>
         <p>{product.artist}</p>

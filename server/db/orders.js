@@ -6,6 +6,7 @@ module.exports = {
   findOrderById,
   findOrdersByUser,
   addOrder,
+  updateOrderStatus,
 }
 
 function addOrder(orderRequest, userId, db = connection) {
@@ -33,6 +34,11 @@ function addOrder(orderRequest, userId, db = connection) {
     })
     .returning('id')
     .then(([{ id }]) => addOrderLines(id, order, db))
+}
+
+function updateOrderStatus(status, orderId, db = connection) {
+  //status is either pending / confirmed / Failed / cancelled
+  return db('orders').select().where('id', orderId).update({ status: status })
 }
 
 function addOrderLines(id, order, db = connection) {

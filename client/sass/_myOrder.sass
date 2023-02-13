@@ -1,11 +1,9 @@
 @use 'palette'
 
 .orders-container
-    width: 100%
-    max-width: 1000px
-    min-width: 350px
-    margin: auto
-    padding-left: 1em
+    width: 350px
+    min-height: 100vh
+    padding-left: 5em
 
     .order-header
         padding-top: 1em
@@ -14,6 +12,14 @@
             color: palette.$darker-grey
             text-decoration: none
             cursor: pointer
+    
+    .btn 
+        margin-top: 3em
+        background: palette.$darker-grey
+        color: palette.$lightest-grey
+        border-radius: 50px
+        padding: 0.5em 1.2em
+        border: none
 
     .order-info
         padding: 2em 0
@@ -26,3 +32,6 @@
             .key
                 color: palette.$darker-grey
                 font-size: 1rem
+
+            .danger
+                color: red
