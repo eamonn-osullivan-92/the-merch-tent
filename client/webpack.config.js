@@ -1,6 +1,5 @@
 const path = require('path')
-const Dotenv = require('dotenv-webpack')
-require('dotenv').config()
+const webpack = require('webpack')
 
 module.exports = {
   entry: ['./client/index.js'],
@@ -9,11 +8,13 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new Dotenv({
-      path: path.join(__dirname, '../.env'),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_AUTH_URL': JSON.stringify(
+        process.env.REACT_APP_AUTH_URL
+      ),
     }),
   ],
-  mode: 'development',
+  mode: 'prodouction',
   module: {
     rules: [
       {

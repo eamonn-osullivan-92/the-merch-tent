@@ -1,5 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
-*, *::before, *::after {
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -8,7 +10,9 @@
 .container {
   background: #f7f7ff;
   color: #222222;
-  font: 100% "Source Sans Pro", sans-serif;
+  font: 100% 'Source Sans Pro', sans-serif;
+  min-height: 100vh;
+  height: auto;
 }
 
 .fade {
@@ -51,14 +55,14 @@
   height: auto;
 }
 .product p {
-  color: #3B3B3B;
+  color: #3b3b3b;
 }
 .product .album {
   font-size: 1.15rem;
   color: #222222;
 }
 .product .album span {
-  color: #9AA5B1;
+  color: #9aa5b1;
   font-size: 0.8rem;
   padding-left: 2px;
 }
@@ -68,7 +72,7 @@
   width: 100%;
 }
 .product .cart-control .btn {
-  background: #3B3B3B;
+  background: #3b3b3b;
   color: #f7f7ff;
   border-radius: 50px;
   padding: 0.5em 1.2em;
@@ -76,7 +80,7 @@
 }
 .product .cart-control .quantity-btn {
   background: none;
-  color: #3B3B3B;
+  color: #3b3b3b;
   border: none;
   outline: none;
   cursor: pointer;
@@ -109,7 +113,7 @@
   color: #222222;
 }
 .nav-control ul li::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -5px;
   display: block;
@@ -149,7 +153,7 @@ header .header-wrap .heading-container h1 {
 }
 header .header-wrap .heading-container p {
   font-size: 0.8rem;
-  color: #3B3B3B;
+  color: #3b3b3b;
 }
 header .nav-container.reverse {
   flex-direction: row-reverse;
@@ -194,7 +198,7 @@ header .nav-container .btn span {
 }
 
 .sidebar {
-  background: #9AA5B1;
+  background: #9aa5b1;
   color: #f7f7ff;
   position: fixed;
   top: 0px;
@@ -239,11 +243,11 @@ header .nav-container .btn span {
   color: #f7f7ff;
 }
 .sidebar .nav-control-sidebar .nav-items-sidebar li:hover {
-  background-color: #CFCFCF;
-  color: #3B3B3B;
+  background-color: #cfcfcf;
+  color: #3b3b3b;
 }
 .sidebar .nav-control-sidebar .nav-items-sidebar li:hover a {
-  color: #3B3B3B;
+  color: #3b3b3b;
 }
 .sidebar .auth-sidebar {
   display: flex;
@@ -263,12 +267,12 @@ header .nav-container .btn span {
   font-size: 1rem;
 }
 .sidebar .auth-sidebar button:hover {
-  background-color: #CFCFCF;
-  color: #3B3B3B;
+  background-color: #cfcfcf;
+  color: #3b3b3b;
 }
 
 .cart-container {
-  background: #9AA5B1;
+  background: #9aa5b1;
   color: #f7f7ff;
   position: fixed;
   top: 0px;
@@ -301,7 +305,7 @@ header .nav-container .btn span {
 .cart-container .cart-total .btn {
   margin-top: 1em;
   background: #f7f7ff;
-  color: #3B3B3B;
+  color: #3b3b3b;
   border-radius: 50px;
   padding: 0.4em;
   border: none;
@@ -345,7 +349,7 @@ header .nav-container .btn span {
 }
 .cart-item-container .item-total .quantity-control .quantity-btn {
   background: none;
-  color: #3B3B3B;
+  color: #3b3b3b;
   border: none;
   outline: none;
   cursor: pointer;
@@ -365,21 +369,23 @@ header .nav-container .btn span {
 }
 
 .orders-container {
-  width: 350px;
-  min-height: 100vh;
-  padding-left: 5em;
+  width: 100%;
+  max-width: 1000px;
+  min-width: 350px;
+  margin: auto;
+  padding-left: 1em;
 }
 .orders-container .order-header {
   padding-top: 1em;
 }
 .orders-container .order-header a {
-  color: #3B3B3B;
+  color: #3b3b3b;
   text-decoration: none;
   cursor: pointer;
 }
 .orders-container .btn {
   margin-top: 3em;
-  background: #3B3B3B;
+  background: #3b3b3b;
   color: #f7f7ff;
   border-radius: 50px;
   padding: 0.5em 1.2em;
@@ -387,14 +393,14 @@ header .nav-container .btn span {
 }
 .orders-container .order-info {
   padding: 2em 0;
-  border-bottom: 1px solid #CFCFCF;
+  border-bottom: 1px solid #cfcfcf;
 }
 .orders-container .order-info p {
   color: #222222;
   font-size: 1.1rem;
 }
 .orders-container .order-info p .key {
-  color: #3B3B3B;
+  color: #3b3b3b;
   font-size: 1rem;
 }
 .orders-container .order-info p .danger {
@@ -416,7 +422,7 @@ header .nav-container .btn span {
   width: 75px;
 }
 .order-product-container .info p:last-of-type {
-  color: #3B3B3B;
+  color: #3b3b3b;
   font-size: 0.9rem;
 }
 
@@ -443,7 +449,7 @@ header .nav-container .btn span {
   font-size: 1rem;
 }
 .auth-buttons button::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -5px;
   display: block;
