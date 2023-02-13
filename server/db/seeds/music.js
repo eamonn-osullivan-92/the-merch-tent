@@ -16,7 +16,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '10',
       stripe_product_id: 'prod_NIpyio4t6v7qrr',
-      stripe_price_id: 'price_1MYEIuEDyCcN2QeK4x07Loj3',
+      stripe_price_id: 'price_1MbAaeEDyCcN2QeKjClqDypK',
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ exports.seed = async function (knex) {
       price: 60,
       quantity: '3',
       stripe_product_id: 'prod_NIpzggdcqdBKvZ',
-      stripe_price_id: 'price_1MYEJJEDyCcN2QeKS65Bf96D',
+      stripe_price_id: 'price_1MbAb3EDyCcN2QeKAFjPlFrZ',
     },
     {
       id: 3,
@@ -40,7 +40,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '5',
       stripe_product_id: 'prod_NIq0Tc6Hw60Af1',
-      stripe_price_id: 'price_1MYEK3EDyCcN2QeKVV81Ex93',
+      stripe_price_id: 'price_1MbAbxEDyCcN2QeKNH3hnyUO',
     },
     {
       id: 4,
@@ -52,7 +52,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '10',
       stripe_product_id: 'prod_NIq0600ae5bU0s',
-      stripe_price_id: 'price_1MYEKLEDyCcN2QeKFZnQNK73',
+      stripe_price_id: 'price_1MbAcJEDyCcN2QeKuePsgf4w',
     },
     {
       id: 5,
@@ -64,7 +64,7 @@ exports.seed = async function (knex) {
       price: 59,
       quantity: '5',
       stripe_product_id: 'prod_NIq0pVak8xRRcw',
-      stripe_price_id: 'price_1MYEKfEDyCcN2QeKtm5XgH9J',
+      stripe_price_id: 'price_1MbAcmEDyCcN2QeKLQYgCJ59',
     },
     {
       id: 6,
@@ -76,7 +76,7 @@ exports.seed = async function (knex) {
       price: 44,
       quantity: '5',
       stripe_product_id: 'prod_NIq1oAcTQQySX3',
-      stripe_price_id: 'price_1MYEL1EDyCcN2QeKQBuPF5oT',
+      stripe_price_id: 'price_1MbAdGEDyCcN2QeKQIpEJTyp',
     },
     {
       id: 7,
@@ -88,7 +88,7 @@ exports.seed = async function (knex) {
       price: 54,
       quantity: '10',
       stripe_product_id: 'prod_NIq14WuuQL0n7s',
-      stripe_price_id: 'price_1MYELTEDyCcN2QeKoiacoyJA',
+      stripe_price_id: 'price_1MbAdVEDyCcN2QeKrIUbS0zP',
     },
     {
       id: 8,
@@ -100,7 +100,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '3',
       stripe_product_id: 'prod_NIq1LrK6fzo2wQ',
-      stripe_price_id: 'price_1MYELmEDyCcN2QeKgqCAgdiC',
+      stripe_price_id: 'price_1MbAdmEDyCcN2QeKTT70fY6z',
     },
     {
       id: 9,
@@ -112,7 +112,7 @@ exports.seed = async function (knex) {
       price: 58,
       quantity: '2',
       stripe_product_id: 'prod_NIpyfpe6h25wPO',
-      stripe_price_id: 'price_1MYEINEDyCcN2QeK8pCWmUMI',
+      stripe_price_id: 'price_1MbAeAEDyCcN2QeKYtWQoK8O',
     },
     {
       id: 10,
@@ -124,7 +124,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '1',
       stripe_product_id: 'prod_NIq2uuZuf9ZKfd',
-      stripe_price_id: 'price_1MYEMAEDyCcN2QeKoYzA0v1F',
+      stripe_price_id: 'price_1MbAePEDyCcN2QeKWt4t6wWz',
     },
     {
       id: 11,
@@ -136,7 +136,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '10',
       stripe_product_id: 'prod_NIq2u3wDmFHTHt',
-      stripe_price_id: 'price_1MYEMUEDyCcN2QeKSSSiwhoV',
+      stripe_price_id: 'price_1MbAejEDyCcN2QeKak5FDYHK',
     },
     {
       id: 12,
@@ -148,7 +148,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '7',
       stripe_product_id: 'prod_NIq2wGBSlS4sfx',
-      stripe_price_id: 'price_1MYEMoEDyCcN2QeK3nn8MYqg',
+      stripe_price_id: 'price_1MbAexEDyCcN2QeKdTkRiZCA',
     },
     {
       id: 13,
@@ -160,7 +160,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '4',
       stripe_product_id: 'prod_NIq3arDbvpK1J7',
-      stripe_price_id: 'price_1MYENBEDyCcN2QeKBJRoHRw9',
+      stripe_price_id: 'price_1MbAfIEDyCcN2QeK5vEv2tnQ',
     },
     {
       id: 14,
@@ -172,7 +172,7 @@ exports.seed = async function (knex) {
       price: 42,
       quantity: '5',
       stripe_product_id: 'prod_NIq3qtv5veZHSv',
-      stripe_price_id: 'price_1MYENZEDyCcN2QeKZW9hbtRZ',
+      stripe_price_id: 'price_1MbAfXEDyCcN2QeKoQDp3WiG',
     },
     {
       id: 15,
@@ -184,7 +184,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '7',
       stripe_product_id: 'prod_NIq4Pks4UN3nH9',
-      stripe_price_id: 'price_1MYEOBEDyCcN2QeKOQtcu1kC',
+      stripe_price_id: 'price_1MbAfoEDyCcN2QeKhSMwMlUn',
     },
     {
       id: 16,
@@ -196,7 +196,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '7',
       stripe_product_id: 'prod_NIq4o5waf6YJOK',
-      stripe_price_id: 'price_1MYEObEDyCcN2QeKef564WYa',
+      stripe_price_id: 'price_1MbAg6EDyCcN2QeK5eQICSU7',
     },
     {
       id: 17,
@@ -208,7 +208,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '4',
       stripe_product_id: 'prod_NIq5ao4LcclVF1',
-      stripe_price_id: 'price_1MYEOvEDyCcN2QeK5FtmojX5',
+      stripe_price_id: 'price_1MbAgSEDyCcN2QeKPVk7jyyf',
     },
     {
       id: 18,
@@ -220,7 +220,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '7',
       stripe_product_id: 'prod_NIq5fOTBRL3kvZ',
-      stripe_price_id: 'price_1MYJQ1EDyCcN2QeKgzA7M1M0',
+      stripe_price_id: 'price_1MYEPOEDyCcN2QeKTnkZYVhV',
     },
     {
       id: 19,
@@ -232,7 +232,7 @@ exports.seed = async function (knex) {
       price: 35,
       quantity: '3',
       stripe_product_id: 'prod_NIq53cj7kqtfxe',
-      stripe_price_id: 'price_1MYEPmEDyCcN2QeK3mCVeURz',
+      stripe_price_id: 'price_1MbAgrEDyCcN2QeK06sQD4Fj',
     },
     {
       id: 20,
@@ -244,7 +244,7 @@ exports.seed = async function (knex) {
       price: 47,
       quantity: '7',
       stripe_product_id: 'prod_NIq6WHFY9idwEP',
-      stripe_price_id: 'price_1MYJPcEDyCcN2QeKIy61B7WK',
+      stripe_price_id: 'price_1MYEQ3EDyCcN2QeKKd4anTav',
     },
   ])
 }
