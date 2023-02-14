@@ -34,7 +34,6 @@ test('fetchMusic', () => {
 
   return fetchMusic()(dispatch).then(() => {
     expect(dispatch.mock.calls).toHaveLength(2)
-    console.log(dispatch.mock.calls[1][0])
     expect(dispatch.mock.calls[0][0].type).toBe('FETCH_MUSIC_PENDING')
     expect(dispatch.mock.calls[1][0].type).toBe('FETCH_MUSIC_SUCCESS')
     expect(dispatch.mock.calls[1][0].payload[1].album).toBe('Low End Theory')
