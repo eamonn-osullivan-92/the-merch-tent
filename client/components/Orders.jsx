@@ -30,11 +30,19 @@ export default function Orders({ token, isLoggedIn }) {
             </p>
           </div>
           {!showPending ? (
-            <button className="btn" onClick={() => handleShowPending()}>
+            <button
+              data-testid="pendingBtn"
+              className="btn"
+              onClick={() => handleShowPending()}
+            >
               Show Pending & Cancelled Orders
             </button>
           ) : (
-            <button className="btn" onClick={() => handleShowPending()}>
+            <button
+              data-testid="pendingBtn"
+              className="btn"
+              onClick={() => handleShowPending()}
+            >
               Hide Pending & Cancelled Orders
             </button>
           )}

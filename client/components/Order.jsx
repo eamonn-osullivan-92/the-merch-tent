@@ -4,7 +4,7 @@ import OrderProductItem from './OrderProductItem'
 
 export default function Order({ children, order }) {
   return (
-    <div className="order-info">
+    <div className="order-info" data-testid="order">
       {children}
       <p>
         <span className="key">Order ID: </span>
