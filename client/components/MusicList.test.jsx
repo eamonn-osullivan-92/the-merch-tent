@@ -11,8 +11,8 @@ function renderWithContext(element) {
   return { store }
 }
 
-describe('App is rendered correctly', () => {
-  test('renders albums from API on load', async () => {
+describe('Music List', () => {
+  test('renders music from redux state', async () => {
     //arrange
     const fakeMusic = [
       {

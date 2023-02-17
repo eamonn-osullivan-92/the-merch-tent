@@ -30,13 +30,19 @@ export default function CartItem({ id }) {
       <div className="item-content">
         <img src={item.image_path[0]} alt="" />
         <div className="item-info">
-          <p className="album">{item.album}</p>
+          <p className="album" data-testid="cart-item-album">
+            {item.album}
+          </p>
           <p className="artist">{item.artist}</p>
-          <p className="price">${item.price}</p>
+          <p data-testid="cart-item-price" className="price">
+            ${item.price}
+          </p>
         </div>
       </div>
       <div className="item-total">
-        <p className="price">${quantity * item.price}</p>
+        <p className="price" data-testid="cart-total-price">
+          ${quantity * item.price}
+        </p>
         <div className="quantity-control">
           <button
             className="quantity-btn"

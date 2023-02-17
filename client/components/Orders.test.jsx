@@ -79,12 +79,11 @@ describe('Orders', () => {
     //arrange
 
     await store.dispatch({ type: 'FETCH_ORDERS_SUCCESS', payload: fakeOrders })
-    console.log(store.getState())
 
     renderWithContext(<Orders isLoggedIn={true} />)
 
     //act
-    const showPendingBtn = screen.getByTestId('pendingBtn')
+    const showPendingBtn = await screen.getByTestId('pendingBtn')
     fireEvent.click(showPendingBtn)
     //assert
     const pendings = await screen.findAllByText(/pending/)

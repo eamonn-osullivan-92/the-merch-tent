@@ -15,6 +15,7 @@ function MusicListItem({ product, addAlbumToCart }) {
       <div className="cart-control">
         <button
           className="btn btn-primary"
+          data-testid="addToCartBtn"
           onClick={() => addAlbumToCart(product)}
         >
           Add to Cart

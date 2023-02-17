@@ -14,7 +14,6 @@ function MusicList({ setOpenCart }) {
   const addAlbumToCart = (product) => {
     const { id, album, stripe_price_id } = product
     const newCartItem = { id, album, stripe_price_id }
-    console.log(newCartItem)
     dispatch(addToCart(newCartItem))
     setOpenCart(true)
   }

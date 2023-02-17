@@ -4,8 +4,8 @@ import '@testing-library/jest-dom'
 import MusicListItem from './MusicListItem'
 // import '@testing-library/jest-dom'
 
-describe('App is rendered correctly', () => {
-  test('renders albums from API on load', async () => {
+describe('MusicListItem', () => {
+  test('Individual album is loaded correctly from state', async () => {
     render(
       <MusicListItem
         product={{
