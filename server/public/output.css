@@ -1,32 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
-*,
-*::before,
-*::after {
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+*, *::before, *::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-.container {
+body {
   background: #f7f7ff;
   color: #222222;
-  font: 100% 'Source Sans Pro', sans-serif;
+  font: 100% "Source Sans Pro", sans-serif;
   min-height: 100vh;
   height: auto;
 }
 
-.fade {
-  animation: fade 0.5s ease-in;
+.hero {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.hero .parralax-bg {
+  background-color: #f7f7ff;
 }
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.hero__image-container {
+  position: relative;
+  height: 90vh;
+  z-index: -1;
 }
+.hero__image-container .hero__image {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.6;
+}
+.hero__image-container .hero__title {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(25%, 25%);
+}
+
 .store-container {
   width: 100%;
   padding-top: 2em;
@@ -55,14 +70,14 @@
   height: auto;
 }
 .product p {
-  color: #3b3b3b;
+  color: #3B3B3B;
 }
 .product .album {
   font-size: 1.15rem;
   color: #222222;
 }
 .product .album span {
-  color: #9aa5b1;
+  color: #9AA5B1;
   font-size: 0.8rem;
   padding-left: 2px;
 }
@@ -72,7 +87,7 @@
   width: 100%;
 }
 .product .cart-control .btn {
-  background: #3b3b3b;
+  background: #3B3B3B;
   color: #f7f7ff;
   border-radius: 50px;
   padding: 0.5em 1.2em;
@@ -80,7 +95,7 @@
 }
 .product .cart-control .quantity-btn {
   background: none;
-  color: #3b3b3b;
+  color: #3B3B3B;
   border: none;
   outline: none;
   cursor: pointer;
@@ -113,7 +128,7 @@
   color: #222222;
 }
 .nav-control ul li::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   display: block;
@@ -128,13 +143,20 @@
   left: 0;
 }
 
-header {
+.header {
+  position: sticky;
+  top: 0px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease-in;
 }
-header .header-wrap {
+.header--active {
+  background-color: #f7f7ff;
+  transition: background-color 0.3s ease-in;
+}
+.header .header-wrap {
   width: 100%;
   max-width: 1000px;
   font-size: 18px;
@@ -143,36 +165,36 @@ header .header-wrap {
   justify-content: space-between;
   align-items: center;
 }
-header .header-wrap .heading-container {
+.header .header-wrap .heading-container {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
-header .header-wrap .heading-container h1 {
+.header .header-wrap .heading-container h1 {
   font-size: 2.1rem;
 }
-header .header-wrap .heading-container p {
+.header .header-wrap .heading-container p {
   font-size: 0.8rem;
-  color: #3b3b3b;
+  color: #3B3B3B;
 }
-header .nav-container.reverse {
+.header .nav-container.reverse {
   flex-direction: row-reverse;
 }
-header .nav-container {
+.header .nav-container {
   display: flex;
   gap: 1.5em;
 }
-header .nav-container .hamburger-btn {
+.header .nav-container .hamburger-btn {
   outline: none;
   background: none;
   cursor: pointer;
   border: none;
 }
-header .nav-container .hamburger-btn img {
+.header .nav-container .hamburger-btn img {
   height: 30px;
   width: 30px;
 }
-header .nav-container .btn {
+.header .nav-container .btn {
   border: 1.5px solid #222222;
   outline: none;
   background: none;
@@ -181,11 +203,11 @@ header .nav-container .btn {
   cursor: pointer;
   position: relative;
 }
-header .nav-container .btn img {
+.header .nav-container .btn img {
   height: 25px;
   width: 25px;
 }
-header .nav-container .btn span {
+.header .nav-container .btn span {
   background: #222222;
   border-radius: 50%;
   color: #f7f7ff;
@@ -198,7 +220,7 @@ header .nav-container .btn span {
 }
 
 .sidebar {
-  background: #9aa5b1;
+  background: #9AA5B1;
   color: #f7f7ff;
   position: fixed;
   top: 0px;
@@ -243,11 +265,11 @@ header .nav-container .btn span {
   color: #f7f7ff;
 }
 .sidebar .nav-control-sidebar .nav-items-sidebar li:hover {
-  background-color: #cfcfcf;
-  color: #3b3b3b;
+  background-color: #CFCFCF;
+  color: #3B3B3B;
 }
 .sidebar .nav-control-sidebar .nav-items-sidebar li:hover a {
-  color: #3b3b3b;
+  color: #3B3B3B;
 }
 .sidebar .auth-sidebar {
   display: flex;
@@ -267,12 +289,12 @@ header .nav-container .btn span {
   font-size: 1rem;
 }
 .sidebar .auth-sidebar button:hover {
-  background-color: #cfcfcf;
-  color: #3b3b3b;
+  background-color: #CFCFCF;
+  color: #3B3B3B;
 }
 
 .cart-container {
-  background: #9aa5b1;
+  background: #9AA5B1;
   color: #f7f7ff;
   position: fixed;
   top: 0px;
@@ -305,7 +327,7 @@ header .nav-container .btn span {
 .cart-container .cart-total .btn {
   margin-top: 1em;
   background: #f7f7ff;
-  color: #3b3b3b;
+  color: #3B3B3B;
   border-radius: 50px;
   padding: 0.4em;
   border: none;
@@ -349,7 +371,7 @@ header .nav-container .btn span {
 }
 .cart-item-container .item-total .quantity-control .quantity-btn {
   background: none;
-  color: #3b3b3b;
+  color: #3B3B3B;
   border: none;
   outline: none;
   cursor: pointer;
@@ -379,13 +401,13 @@ header .nav-container .btn span {
   padding-top: 1em;
 }
 .orders-container .order-header a {
-  color: #3b3b3b;
+  color: #3B3B3B;
   text-decoration: none;
   cursor: pointer;
 }
 .orders-container .btn {
   margin-top: 3em;
-  background: #3b3b3b;
+  background: #3B3B3B;
   color: #f7f7ff;
   border-radius: 50px;
   padding: 0.5em 1.2em;
@@ -393,14 +415,14 @@ header .nav-container .btn span {
 }
 .orders-container .order-info {
   padding: 2em 0;
-  border-bottom: 1px solid #cfcfcf;
+  border-bottom: 1px solid #CFCFCF;
 }
 .orders-container .order-info p {
   color: #222222;
   font-size: 1.1rem;
 }
 .orders-container .order-info p .key {
-  color: #3b3b3b;
+  color: #3B3B3B;
   font-size: 1rem;
 }
 .orders-container .order-info p .danger {
@@ -422,7 +444,7 @@ header .nav-container .btn span {
   width: 75px;
 }
 .order-product-container .info p:last-of-type {
-  color: #3b3b3b;
+  color: #3B3B3B;
   font-size: 0.9rem;
 }
 
@@ -449,7 +471,7 @@ header .nav-container .btn span {
   font-size: 1rem;
 }
 .auth-buttons button::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   display: block;

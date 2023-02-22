@@ -4,7 +4,11 @@ import { useSelector } from 'react-redux'
 
 import { useIsSmall } from '../hooks/useMediaQuery'
 
-export default function Navbar({ setOpenCart, setSideNav }) {
+export default function Navbar({
+  setOpenCart,
+  setSideNav,
+  headerClass = 'header header--active',
+}) {
   const isSmall = useIsSmall()
   const cartItems = useSelector((state) => state.cart)
   const cartQuantity = cartItems?.reduce((total, cartItem) => {
@@ -13,7 +17,7 @@ export default function Navbar({ setOpenCart, setSideNav }) {
 
   return (
     <>
-      <header className="header">
+      <header className={headerClass}>
         <div className="header-wrap">
           <div className="heading-container">
             <h1 className="heading">The Lost Crates</h1>

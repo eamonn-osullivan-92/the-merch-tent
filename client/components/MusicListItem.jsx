@@ -1,6 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../actions/cart'
 
-function MusicListItem({ product, addAlbumToCart }) {
+function MusicListItem({ product }) {
+  const dispatch = useDispatch()
+
+  const addAlbumToCart = (product) => {
+    const { id, album, stripe_price_id } = product
+    const newCartItem = { id, album, stripe_price_id }
+    dispatch(addToCart(newCartItem))
+  }
+
   return (
     <div className="product">
       <img src={product?.image_path[0]} alt="" className="image" />

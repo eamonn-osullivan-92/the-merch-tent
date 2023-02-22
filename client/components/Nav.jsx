@@ -8,7 +8,7 @@ export default function Nav() {
     <nav className="nav-control">
       <ul className="nav-items">
         <li>
-          <Link to="/">Store</Link>
+          <Link to="/store">Store</Link>
         </li>
         <li>
           <Link to="/orders">Orders</Link>

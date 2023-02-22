@@ -1,12 +1,18 @@
 @use 'palette'
 
     
-header
+.header
+    position: sticky
+    top: 0px
     width: 100%
     display: flex
     align-items: center
     justify-content: center
+    transition: background-color 0.3s ease-in
     
+    &--active
+        background-color: palette.$lightest-grey
+        transition: background-color 0.3s ease-in
 
     .header-wrap
         width: 100%
