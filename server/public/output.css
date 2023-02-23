@@ -4,6 +4,11 @@
   src: url("./typography/GOShoegoo-Goo.ttf");
   size-adjust: 200%;
 }
+@font-face {
+  font-family: "GoShoegoo-sml";
+  src: url("./typography/GOShoegoo-Goo.ttf");
+  size-adjust: 150%;
+}
 *, *::before, *::after {
   padding: 0;
   margin: 0;
@@ -84,9 +89,14 @@ li {
   right: 50%;
   font: 100% "GoShoegoo", sans-serif;
   letter-spacing: 2px;
-  transform: translate(25%, 25%);
+  transform: translate(50%, 50%);
 }
 
+@media (max-width: 560px) {
+  .hero__image-container .hero__title {
+    text-align: center;
+  }
+}
 .image-banner {
   padding-top: 6em;
   width: 100%;
@@ -99,6 +109,15 @@ li {
   object-fit: cover;
 }
 
+@media (max-width: 450px) {
+  .image-banner {
+    padding-top: 3em;
+    flex-direction: column;
+  }
+  .image-banner .image-banner__image {
+    width: 100%;
+  }
+}
 .highlights {
   padding: 6em 2em 0em 2em;
   width: 100%;
@@ -124,6 +143,11 @@ li {
   overflow-x: auto;
 }
 
+@media (max-width: 450px) {
+  .highlights {
+    padding: 3em 1em 0em 1em;
+  }
+}
 .store {
   width: 100%;
   padding: 2em;
@@ -139,6 +163,7 @@ li {
 
 .product {
   min-width: 200px;
+  min-height: 400px;
 }
 .product .product__image {
   max-width: 350px;
@@ -175,6 +200,7 @@ li {
 .nav .nav__items .nav__item {
   list-style: none;
   position: relative;
+  cursor: pointer;
 }
 .nav .nav__items .nav__item::after {
   content: "";
@@ -190,6 +216,13 @@ li {
 .nav .nav__items .nav__item:hover:after {
   width: 100%;
   left: 0;
+}
+.nav .nav__items .nav__item .auth__btn {
+  background: none;
+  outline: transparent;
+  border: none;
+  color: #3B3B3B;
+  font-size: 0.9rem;
 }
 
 .header {
@@ -266,6 +299,11 @@ li {
   transform: translate(25%, 25%);
 }
 
+@media (max-width: 400px) {
+  .header .header__heading-container .header__heading {
+    font: 100% "GoShoegoo-sml", sans-serif;
+  }
+}
 .sidebar {
   background: #9AA5B1;
   color: #f7f7ff;
@@ -324,11 +362,7 @@ li {
 .sidebar .sidebar__nav-control .sidebar__nav-items .sidebar__nav-item a:hover {
   color: #3B3B3B;
 }
-.sidebar .sidebar__nav-control .auth__sidebar {
-  display: flex;
-  flex-direction: column;
-}
-.sidebar .sidebar__nav-control .auth__sidebar .auth__btn {
+.sidebar .sidebar__nav-control .sidebar__nav-items .sidebar__nav-item .auth__btn {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -341,7 +375,7 @@ li {
   color: #f7f7ff;
   font-size: 1rem;
 }
-.sidebar .sidebar__nav-control .auth__sidebar .auth__btn:hover {
+.sidebar .sidebar__nav-control .sidebar__nav-items .sidebar__nav-item .auth__btn:hover {
   background-color: #CFCFCF;
   color: #3B3B3B;
 }
@@ -489,38 +523,6 @@ li {
   margin: 0 5px 0 5px;
   width: 40px;
   height: 40px;
-}
-
-.auth__nav {
-  display: flex;
-  gap: 1.5em;
-  align-items: center;
-}
-.auth__nav .auth__btn {
-  position: relative;
-  color: #222222;
-  padding: none;
-  background: none;
-  border: none;
-  background: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 1rem;
-}
-.auth__nav .auth__btn::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  display: block;
-  height: 2px;
-  background: #222222;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0;
-  left: 50%;
-}
-.auth__nav .auth__btn:hover:after {
-  width: 100%;
-  left: 0;
 }
 
 /*# sourceMappingURL=output.css.map */

@@ -14,6 +14,7 @@
         .nav__item
             list-style: none 
             position: relative
+            cursor: pointer
             &::after 
                 content: ''
                 position: absolute
@@ -29,6 +30,13 @@
             &:hover:after 
                 width: 100%
                 left: 0
+
+            .auth__btn
+                background: none
+                outline: transparent
+                border: none
+                color: palette.$darker-grey
+                font-size: 0.9rem
 
             
 

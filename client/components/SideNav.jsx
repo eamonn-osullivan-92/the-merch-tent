@@ -31,8 +31,8 @@ export default function SideNav({ sideNav, setSideNav }) {
                 Orders
               </Link>
             </li>
+            <Auth sideNav={sideNav} />
           </ul>
-          <Auth />
         </nav>
       </div>
     </>

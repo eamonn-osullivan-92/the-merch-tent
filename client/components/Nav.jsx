@@ -16,8 +16,8 @@ export default function Nav() {
         <li className="nav__item">
           <Link to="/orders">Orders</Link>
         </li>
+        <Auth />
       </ul>
-      <Auth />
     </nav>
   )
 }
