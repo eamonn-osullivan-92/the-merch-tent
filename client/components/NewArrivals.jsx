@@ -29,16 +29,20 @@ export default function NewArrivals() {
 
   return (
     <section className="highlights">
-      <div className="highlights__heading">New Arrivals</div>
+      <div className="highlights__heading-flex">
+        <div className="highlights__heading">New Arrivals</div>
+
+        <button className="btn-tertiary ">
+          <Link to="/store">Shop All </Link>
+        </button>
+      </div>
+
       <div className="highlights__flex">
         {music &&
           newArrivals?.map((item) => (
             <MusicListItem product={item} key={item.id} />
           ))}
       </div>
-      <Link to="/store">
-        <button className="highlights__btn">Shop All</button>
-      </Link>
     </section>
   )
 }

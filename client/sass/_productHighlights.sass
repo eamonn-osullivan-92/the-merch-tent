@@ -1,11 +1,20 @@
+@use 'typography'
 
 .highlights
-    padding: 5em 2em
+    padding: 6em 2em 0em 2em
     width: 100%
-    
-    .highlights__heading
-        font-size: 1.4rem
+    &:last-of-type
+        padding-bottom: 6em
+
+    .highlights__heading-flex
+        width: 100%
+        display: flex
+        justify-content: space-between
         padding-bottom: 1em
+      
+    
+        .highlights__heading
+            font-size: 1.4rem
 
     .highlights__flex
         display: flex
@@ -13,9 +22,6 @@
         justify-content: flex-start
         gap: 2em
         flex-wrap: nowrap
-        
-        // display: grid
-        // grid-template-columns: repeat(auto-fill, minmax(250px, 1fr) )
-        // gap: 2em
-        // overflow: hidden
+        overflow-x: auto
+
 

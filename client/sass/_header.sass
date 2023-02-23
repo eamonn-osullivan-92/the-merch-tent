@@ -1,9 +1,9 @@
 @use 'palette'
-
+@use 'typography'
     
 .header
     position: sticky
-    top: 0px
+    top: -1px
     width: 100%
     display: flex
     align-items: center
@@ -22,7 +22,12 @@
         gap: 2px
 
         .header__heading
-            font-size: 2.1rem
+            font: 100% typography.$font-hero
+            letter-spacing: 2px
+            opacity: 0
+            transition: opacity 0.3s ease-in
+            &--active
+                opacity: 1
 
         .heading__disclaimer
             font-size: 0.7rem

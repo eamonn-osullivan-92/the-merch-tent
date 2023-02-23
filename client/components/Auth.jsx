@@ -15,7 +15,7 @@ function AuthenticationButtons({ isLoggedIn }) {
 
   if (isLoggedIn) {
     return (
-      <div className={` ${isMed ? 'auth--sidebar' : 'auth--nav'}`}>
+      <div className={` ${isMed ? 'auth__sidebar' : 'auth__nav'}`}>
         <button onClick={redirectToAccountPage} className="auth__btn">
           Account
         </button>
@@ -26,7 +26,7 @@ function AuthenticationButtons({ isLoggedIn }) {
     )
   } else {
     return (
-      <div className={`${isMed ? 'auth--sidebar' : 'auth--nav'}`}>
+      <div className={`${isMed ? 'auth__sidebar' : 'auth__nav'}`}>
         <button onClick={redirectToSignupPage} className="auth__btn">
           Signup
         </button>

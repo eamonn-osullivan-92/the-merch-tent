@@ -8,6 +8,9 @@ export default function Nav() {
     <nav className="nav">
       <ul className="nav__items">
         <li className="nav__item">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="nav__item">
           <Link to="/store">Store</Link>
         </li>
         <li className="nav__item">

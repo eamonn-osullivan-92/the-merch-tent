@@ -4,6 +4,7 @@ import { addToCart } from '../actions/cart'
 
 function MusicListItem({ product }) {
   const dispatch = useDispatch()
+  console.log(product.image_path[1])
 
   const addAlbumToCart = (product) => {
     const { id, album, stripe_price_id } = product
@@ -11,9 +12,27 @@ function MusicListItem({ product }) {
     dispatch(addToCart(newCartItem))
   }
 
+  const handleImage = (e) => {
+    if (product.image_path[1]) {
+      e.target.src = product.image_path[1]
+    }
+  }
+
+  const handleImageReset = (e) => {
+    if (product.image_path[1]) {
+      e.target.src = product.image_path[0]
+    }
+  }
   return (
     <div className="product">
-      <img src={product?.image_path[0]} alt="" className="product__image" />
+      <img
+        src={product?.image_path[0]}
+        alt=""
+        className="product__image"
+        onMouseEnter={(e) => handleImage(e)}
+        onMouseLeave={(e) => handleImageReset(e)}
+      />
+
       <p className="product__info product__album">
         {product?.album} <span className="product__year">{product?.year}</span>
       </p>

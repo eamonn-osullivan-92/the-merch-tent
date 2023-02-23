@@ -19,7 +19,15 @@ export default function Header({
     <>
       <header className={headerClass}>
         <div className="header__heading-container">
-          <h1 className="header__heading">The Lost Crates</h1>
+          <h1
+            className={
+              headerClass == 'header header--active'
+                ? 'header__heading header__heading--active'
+                : 'header__heading'
+            }
+          >
+            The Lost Crates
+          </h1>
           <p className="heading__disclaimer">Disclaimer: not a real store</p>
         </div>
         <div className={`header__nav ${isMed ? 'header__nav--reverse' : null}`}>

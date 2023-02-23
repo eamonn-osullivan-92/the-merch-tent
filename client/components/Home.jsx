@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import GenreHighlight from './GenreHighlight'
 import Header from './Header'
 import HeroImage from './HeroImage'
+import ImageBanner from './ImageBanner'
 import NewArrivals from './NewArrivals'
 
 export default function Home({ setOpenCart, setSideNav }) {
@@ -30,6 +31,7 @@ export default function Home({ setOpenCart, setSideNav }) {
 
       <div className="parralax-bg">
         <NewArrivals />
+        <ImageBanner />
         <GenreHighlight genre="hip-hop/rap" />
         <GenreHighlight genre="Indie/Alternative" />
         {/* BLOG/ARTICLES SECTION */}
