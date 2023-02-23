@@ -1,5 +1,5 @@
 import React from 'react'
-import { useIsSmall } from '../hooks/useMediaQuery'
+import { useIsMed } from '../hooks/useMediaQuery'
 import {
   withAuthInfo,
   useLogoutFunction,
@@ -11,20 +11,28 @@ function AuthenticationButtons({ isLoggedIn }) {
   const logoutFn = useLogoutFunction()
   const { redirectToSignupPage, redirectToLoginPage, redirectToAccountPage } =
     useRedirectFunctions()
-  const isSmall = useIsSmall()
+  const isMed = useIsMed()
 
   if (isLoggedIn) {
     return (
-      <div className={` ${isSmall ? 'auth-sidebar' : 'auth-buttons'}`}>
-        <button onClick={redirectToAccountPage}>Account</button>
-        <button onClick={() => logoutFn()}>Logout</button>
+      <div className={` ${isMed ? 'auth--sidebar' : 'auth--nav'}`}>
+        <button onClick={redirectToAccountPage} className="auth__btn">
+          Account
+        </button>
+        <button onClick={() => logoutFn()} className="auth__btn">
+          Logout
+        </button>
       </div>
     )
   } else {
     return (
-      <div className={`${isSmall ? 'auth-sidebar' : 'auth-buttons'}`}>
-        <button onClick={redirectToSignupPage}>Signup</button>
-        <button onClick={redirectToLoginPage}>Login</button>
+      <div className={`${isMed ? 'auth--sidebar' : 'auth--nav'}`}>
+        <button onClick={redirectToSignupPage} className="auth__btn">
+          Signup
+        </button>
+        <button onClick={redirectToLoginPage} className="auth__btn">
+          Login
+        </button>
       </div>
     )
   }

@@ -4,18 +4,18 @@ import OrderProductItem from './OrderProductItem'
 
 export default function Order({ children, order }) {
   return (
-    <div className="order-info" data-testid="order">
+    <div className="order" data-testid="order">
       {children}
-      <p data-testid="order-id">
-        <span className="key">Order ID: </span>
+      <p data-testid="order-id" className="order__info">
+        <span className="order__info-key">Order ID: </span>
         {order.id}
       </p>
-      <p>
-        <span className="key">Created date: </span>
+      <p className="order__info">
+        <span className="order__info-key">Created date: </span>
         {order.createdAt}
       </p>
-      <p data-testid="order-status">
-        <span className="key">Status: </span>
+      <p data-testid="order-status" className="order__info">
+        <span className="order__info-key">Status: </span>
         <span className={order.status == 'pending' ? `danger` : ``}>
           {order.status}
         </span>

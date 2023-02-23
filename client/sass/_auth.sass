@@ -1,11 +1,11 @@
 @use 'palette'
 
-.auth-buttons
+.auth--nav
     display: flex
     gap: 1.5em
     align-items: center
 
-    button
+    .auth__btn
         position: relative
         color: palette.$darkest-grey
         padding: none
@@ -16,19 +16,19 @@
         cursor: pointer
         font-size: 1rem
 
-    button::after 
-        content: ''
-        position: absolute
-        bottom: -5px
-        display: block
-        height: 2px
-        background: palette.$darkest-grey
-        transition: width 0.3s ease 0s, left 0.3s ease 0s
-        width: 0
-        left:50%
+        &::after 
+            content: ''
+            position: absolute
+            bottom: -5px
+            display: block
+            height: 2px
+            background: palette.$darkest-grey
+            transition: width 0.3s ease 0s, left 0.3s ease 0s
+            width: 0
+            left:50%
 
 
-    button:hover:after 
-        width: 100%
-        left: 0
+        &:hover:after 
+            width: 100%
+            left: 0
         

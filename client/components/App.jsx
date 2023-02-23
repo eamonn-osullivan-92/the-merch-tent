@@ -58,7 +58,7 @@ function App(props) {
             path="/store"
             element={
               <>
-                <Header />
+                <Header setOpenCart={setOpenCart} setSideNav={setSideNav} />
                 <MusicList setOpenCart={setOpenCart} />
               </>
             }
@@ -68,20 +68,18 @@ function App(props) {
           path="/orders"
           element={
             <>
-              <Header />
+              <Header setOpenCart={setOpenCart} setSideNav={setSideNav} />
               <Orders token={props.accessToken} isLoggedIn={props.isLoggedIn} />
             </>
           }
         />
       </Routes>
-      {openCart && (
-        <Cart
-          setOpenCart={setOpenCart}
-          isOpen={openCart}
-          token={props.accessToken}
-          isLoggedIn={props.isLoggedIn}
-        />
-      )}
+      <Cart
+        setOpenCart={setOpenCart}
+        isOpen={openCart}
+        token={props.accessToken}
+        isLoggedIn={props.isLoggedIn}
+      />
     </>
   )
 }

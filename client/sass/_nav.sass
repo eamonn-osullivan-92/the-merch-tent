@@ -2,38 +2,33 @@
 
 
 
-.nav-control
+.nav
     display: flex
     gap: 1.5em
     align-items: center
 
-    ul
+    .nav__items
         display: flex
         gap: 1.5em
 
-        li
+        .nav__item
             list-style: none 
             position: relative
-
-            a    
-                text-decoration: none
-                color: palette.$darkest-grey
-        
-        li::after 
-            content: ''
-            position: absolute
-            bottom: -5px
-            display: block
-            height: 2px
-            background: palette.$darkest-grey
-            transition: width 0.3s ease 0s, left 0.3s ease 0s
-            width: 0
-            left:50%
+            &::after 
+                content: ''
+                position: absolute
+                bottom: -5px
+                display: block
+                height: 2px
+                background: palette.$darkest-grey
+                transition: width 0.3s ease 0s, left 0.3s ease 0s
+                width: 0
+                left:50%
 
 
-        li:hover:after 
-            width: 100%
-            left: 0
+            &:hover:after 
+                width: 100%
+                left: 0
 
             
 

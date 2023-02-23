@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import GenreHighlight from './GenreHighlight'
 import Header from './Header'
 import HeroImage from './HeroImage'
@@ -8,8 +8,7 @@ export default function Home({ setOpenCart, setSideNav }) {
   const [headerClass, setHeaderClass] = useState('header')
   const headerLocation = useRef()
 
-  const stickHeader = (e) => {
-    console.log(e.target.scrollTop)
+  const stickHeader = () => {
     //sets background color when header sticks to top.
     const headerPos = headerLocation.current.getBoundingClientRect().top
     if (headerPos <= 0) {
@@ -17,11 +16,10 @@ export default function Home({ setOpenCart, setSideNav }) {
     } else {
       setHeaderClass('header')
     }
-    console.log(headerClass)
   }
 
   return (
-    <div className="hero" onScroll={(e) => stickHeader(e)}>
+    <div className="hero" onScroll={() => stickHeader()}>
       <HeroImage />
       <span ref={headerLocation}></span>
       <Header

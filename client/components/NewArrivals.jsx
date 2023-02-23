@@ -2,19 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import MusicListItem from './MusicListItem'
+import { useIsSmall, useIsMed } from '../hooks/useMediaQuery'
 
 export default function NewArrivals() {
-  const music = useSelector((state) => state.music)
+  const music = useSelector((state) => state.music).sort(
+    () => 0.5 - Math.random()
+  )
   const [newArrivals, setNewArrivals] = useState([])
+  const isSmall = useIsSmall()
+  const isMed = useIsMed()
 
-  const randomizeNewArrivals = () => {
-    const newMusic = music?.sort(() => 0.5 - Math.random()).slice(0, 3)
-    setNewArrivals(newMusic)
+  const setHighlights = () => {
+    //refreshes music (shuffles) if resizing window between breakpoints
+    if (isSmall) {
+      setNewArrivals(music.slice(0, 2))
+    } else if (isMed) {
+      setNewArrivals(music.slice(0, 4))
+    } else {
+      setNewArrivals(music.slice(0, 5))
+    }
   }
 
   useEffect(() => {
-    randomizeNewArrivals()
-  }, [music])
+    setHighlights()
+  }, [music, isSmall, isMed])
 
   return (
     <section className="highlights">

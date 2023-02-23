@@ -13,16 +13,16 @@ function MusicListItem({ product }) {
 
   return (
     <div className="product">
-      <img src={product?.image_path[0]} alt="" className="image" />
-      <p className="album">
-        {product?.album} <span>{product?.year}</span>
+      <img src={product?.image_path[0]} alt="" className="product__image" />
+      <p className="product__info product__album">
+        {product?.album} <span className="product__year">{product?.year}</span>
       </p>
-      <p className="artist" data-testid="artist">
+      <p className="product__info" data-testid="artist">
         {product?.artist}
       </p>
-      <p className="genre">{product?.genre}</p>
-      <p className="price">${product?.price}</p>
-      <div className="cart-control">
+      <p className="product__info">{product?.genre}</p>
+      <p className="product__info">${product?.price}</p>
+      <div className="product__cart-control">
         <button
           className="btn btn-primary"
           data-testid="addToCartBtn"

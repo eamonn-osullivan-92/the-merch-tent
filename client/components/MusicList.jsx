@@ -10,8 +10,8 @@ function MusicList({ setOpenCart }) {
   const music = useSelector((state) => state.music)
 
   return (
-    <div className="store-container">
-      <div className="products-grid">
+    <div className="store">
+      <div className="store__grid">
         {music &&
           music.map((product) => {
             return (
