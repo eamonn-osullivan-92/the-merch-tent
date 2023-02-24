@@ -31,6 +31,7 @@ function MusicListItem({ product }) {
         className="product__image"
         onMouseEnter={(e) => handleImage(e)}
         onMouseLeave={(e) => handleImageReset(e)}
+        loading="lazy"
       />
 
       <p className="product__info product__album">

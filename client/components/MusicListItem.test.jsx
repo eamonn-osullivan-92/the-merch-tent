@@ -14,7 +14,7 @@ describe('MusicListItem', () => {
           album: 'Low End Theory',
           year: '1991',
           genre: 'hip-hop/rap',
-          image_path: ['/images/music/ATCQ-low-end-theory-front.jpeg'],
+          image_path: ['/images/music/ATCQ-low-end-theory-front.webp'],
           description: 'description',
           price: 60,
           quantity: '3',
