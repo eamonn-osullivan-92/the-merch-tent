@@ -3,6 +3,7 @@ import GenreHighlight from './GenreHighlight'
 import Header from './Header'
 import HeroImage from './HeroImage'
 import ImageBanner from './ImageBanner'
+import ImageBannerVert from './ImageBannerVert'
 import NewArrivals from './NewArrivals'
 
 export default function Home({ setOpenCart, setSideNav }) {
@@ -31,8 +32,9 @@ export default function Home({ setOpenCart, setSideNav }) {
 
       <div className="parralax-bg">
         <NewArrivals />
-        <ImageBanner />
+        <ImageBannerVert />
         <GenreHighlight genre="hip-hop/rap" />
+        <ImageBanner />
         <GenreHighlight genre="Indie/Alternative" />
         {/* BLOG/ARTICLES SECTION */}
       </div>
