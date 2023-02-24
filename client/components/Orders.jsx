@@ -40,7 +40,7 @@ export default function Orders({ token, isLoggedIn }) {
           ) : (
             <button
               data-testid="pendingBtn"
-              className="orders__btn"
+              className="btn orders__btn"
               onClick={() => handleShowPending()}
             >
               Hide Pending & Cancelled Orders
@@ -61,7 +61,7 @@ export default function Orders({ token, isLoggedIn }) {
                 ))}
         </div>
       ) : (
-        <div className="no-order">Please log in to view your orders</div>
+        <div className="no-order danger">Please log in to view your orders</div>
       )}
     </>
   )

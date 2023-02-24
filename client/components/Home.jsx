@@ -1,14 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import GenreHighlight from './GenreHighlight'
 import Header from './Header'
 import HeroImage from './HeroImage'
 import ImageBanner from './ImageBanner'
 import ImageBannerVert from './ImageBannerVert'
 import NewArrivals from './NewArrivals'
+import { useSessionStorage } from '../hooks/useSessionStorage'
 
 export default function Home({ setOpenCart, setSideNav }) {
   const [headerClass, setHeaderClass] = useState('header')
   const headerLocation = useRef()
+  const [firstLoad, setFirstLoad] = useSessionStorage('firstLoad', true)
 
   const stickHeader = () => {
     //sets background color when header sticks to top.
@@ -20,8 +22,15 @@ export default function Home({ setOpenCart, setSideNav }) {
     }
   }
 
+  useEffect(() => {
+    setFirstLoad(false)
+  }, [])
+
   return (
-    <div className="hero" onScroll={() => stickHeader()}>
+    <div
+      className={firstLoad ? 'hero fade' : 'hero'}
+      onScroll={() => stickHeader()}
+    >
       <HeroImage />
       <span ref={headerLocation}></span>
       <Header

@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../actions/cart'
 
-function MusicListItem({ product }) {
+function MusicListItem({ product, setOpenCart }) {
   const dispatch = useDispatch()
   console.log(product.image_path[1])
 
@@ -10,6 +10,7 @@ function MusicListItem({ product }) {
     const { id, album, stripe_price_id } = product
     const newCartItem = { id, album, stripe_price_id }
     dispatch(addToCart(newCartItem))
+    setOpenCart(true)
   }
 
   const handleImage = (e) => {
