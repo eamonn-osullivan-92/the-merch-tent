@@ -22,19 +22,27 @@ export default function Orders({ token, isLoggedIn }) {
   return (
     <>
       {isLoggedIn ? (
-        <div className="orders-container">
-          <div className="order-header">
-            <h3 className="order-heading">{`${user.first_name}'s Orders`}</h3>
-            <p className="tertiary-btn">
-              <Link to="/">Back to store</Link>
-            </p>
+        <div className="orders">
+          <div className="orders__header">
+            <h3 className="orders__heading">{`${user.first_name}'s Orders`}</h3>
+            <Link className="tertiary-btn" to="/">
+              Back to store
+            </Link>
           </div>
           {!showPending ? (
-            <button className="btn" onClick={() => handleShowPending()}>
+            <button
+              data-testid="pendingBtn"
+              className="btn orders__btn"
+              onClick={() => handleShowPending()}
+            >
               Show Pending & Cancelled Orders
             </button>
           ) : (
-            <button className="btn" onClick={() => handleShowPending()}>
+            <button
+              data-testid="pendingBtn"
+              className="orders__btn"
+              onClick={() => handleShowPending()}
+            >
               Hide Pending & Cancelled Orders
             </button>
           )}

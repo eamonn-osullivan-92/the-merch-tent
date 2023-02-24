@@ -5,16 +5,19 @@ import Auth from './Auth'
 
 export default function Nav() {
   return (
-    <nav className="nav-control">
-      <ul className="nav-items">
-        <li>
-          <Link to="/">Store</Link>
+    <nav className="nav">
+      <ul className="nav__items">
+        <li className="nav__item">
+          <Link to="/">Home</Link>
         </li>
-        <li>
+        <li className="nav__item">
+          <Link to="/store">Store</Link>
+        </li>
+        <li className="nav__item">
           <Link to="/orders">Orders</Link>
         </li>
+        <Auth />
       </ul>
-      <Auth />
     </nav>
   )
 }

@@ -1,37 +1,27 @@
 @use 'palette'
 
-.orders-container
-    width: 350px
-    min-height: 100vh
-    padding-left: 5em
+.orders
+    width: 100%
+    max-width: 1000px
+    min-width: 350px
+    margin: auto
+    padding-left: 1em
 
-    .order-header
+    .orders__header
         padding-top: 1em
 
-        a
+    .orders__btn
+        margin-top: 2em
+            
+
+.order
+    padding: 2em 0
+    border-bottom: 1px solid palette.$light-grey
+
+    .order__info 
+        color: palette.$darkest-grey
+        font-size: 1.1rem
+
+        .order__info-key
             color: palette.$darker-grey
-            text-decoration: none
-            cursor: pointer
-    
-    .btn 
-        margin-top: 3em
-        background: palette.$darker-grey
-        color: palette.$lightest-grey
-        border-radius: 50px
-        padding: 0.5em 1.2em
-        border: none
-
-    .order-info
-        padding: 2em 0
-        border-bottom: 1px solid palette.$light-grey
-
-        p 
-            color: palette.$darkest-grey
-            font-size: 1.1rem
-
-            .key
-                color: palette.$darker-grey
-                font-size: 1rem
-
-            .danger
-                color: red
+            font-size: 1rem

@@ -1,0 +1,18 @@
+.image-banner--vert
+    padding-top: 6em
+    width: 100%
+    display: flex
+    justify-content: center
+    gap: 1em
+
+    .image-banner__image
+        width: calc(33% - 1em)
+        object-fit: cover
+
+@media (max-width: 450px)
+    .image-banner
+        padding-top: 3em
+        flex-direction: column
+        
+        .image-banner__image
+            width: 100%

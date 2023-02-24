@@ -1,5 +1,4 @@
 import React from 'react'
-import { useIsSmall } from '../hooks/useMediaQuery'
 import {
   withAuthInfo,
   useLogoutFunction,
@@ -7,25 +6,40 @@ import {
 } from '@propelauth/react'
 
 // isLoggedIn is automatically injected from withAuthInfo
-function AuthenticationButtons({ isLoggedIn }) {
+function AuthenticationButtons({ isLoggedIn, sideNav }) {
   const logoutFn = useLogoutFunction()
   const { redirectToSignupPage, redirectToLoginPage, redirectToAccountPage } =
     useRedirectFunctions()
-  const isSmall = useIsSmall()
 
   if (isLoggedIn) {
     return (
-      <div className={` ${isSmall ? 'auth-sidebar' : 'auth-buttons'}`}>
-        <button onClick={redirectToAccountPage}>Account</button>
-        <button onClick={() => logoutFn()}>Logout</button>
-      </div>
+      <>
+        <li className={sideNav ? 'sidebar__nav-item' : ' nav__item'}>
+          <button onClick={redirectToAccountPage} className="auth__btn">
+            Account
+          </button>
+        </li>
+        <li className={sideNav ? 'sidebar__nav-item' : ' nav__item'}>
+          <button onClick={() => logoutFn()} className="auth__btn">
+            Logout
+          </button>
+        </li>
+      </>
     )
   } else {
     return (
-      <div className={`${isSmall ? 'auth-sidebar' : 'auth-buttons'}`}>
-        <button onClick={redirectToSignupPage}>Signup</button>
-        <button onClick={redirectToLoginPage}>Login</button>
-      </div>
+      <>
+        <li className={sideNav ? 'sidebar__nav-item' : ' nav__item'}>
+          <button onClick={redirectToSignupPage} className="auth__btn">
+            Signup
+          </button>
+        </li>
+        <li className={sideNav ? 'sidebar__nav-item' : ' nav__item'}>
+          <button onClick={redirectToLoginPage} className="auth__btn">
+            Login
+          </button>
+        </li>
+      </>
     )
   }
 }

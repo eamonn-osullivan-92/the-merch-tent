@@ -6,7 +6,7 @@ export default function OrderProductItem({ product }) {
   const item = music.find((album) => album.id == product.id)
 
   return (
-    <div className="order-product-container">
+    <div className="order-product-container" data-testid="order-product-item">
       <img src={item?.image_path[0]} alt="" />
       <div className="info">
         <p>{product.album}</p>

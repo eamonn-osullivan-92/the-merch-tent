@@ -1,44 +1,46 @@
 @use 'palette'
-
+@use 'typography'
     
-header
+.header
+    position: sticky
+    top: -1px
     width: 100%
     display: flex
     align-items: center
-    justify-content: center
+    justify-content: space-between
+    padding: 0.5em 2em
+    transition: background-color 0.3s ease-in
     
+    &--active
+        background-color: palette.$lightest-grey
+        transition: background-color 0.3s ease-in
 
-    .header-wrap
-        width: 100%
-        max-width: 1000px
-        font-size: 18px
-        padding: 1em 1em
+
+    .header__heading-container 
         display: flex
-        justify-content: space-between
-        align-items: center
+        flex-direction: column
+        gap: 2px
 
-        .heading-container  
-            display: flex
-            flex-direction: column
-            gap: 2px
+        .header__heading
+            font: 100% typography.$font-hero
+            letter-spacing: 2px
+            opacity: 0
+            transition: opacity 0.3s ease-in
+            &--active
+                opacity: 1
 
-            h1
-                font-size: 2.1rem
+        .heading__disclaimer
+            font-size: 0.7rem
+            color: palette.$darker-grey
 
-            p
-                font-size: 0.8rem
-                color: palette.$darker-grey
-
-    .nav-container.reverse
-        flex-direction: row-reverse
-
-    .nav-container
+    .header__nav
         display: flex
         gap: 1.5em
 
+        &--reverse
+            flex-direction: row-reverse
 
-
-        .hamburger-btn
+        .header__nav-btn
             outline: none
             background: none
             cursor: pointer
@@ -48,7 +50,7 @@ header
                 height: 30px
                 width: 30px
 
-        .btn
+        .header__cart-btn
             border: 1.5px solid palette.$darkest-grey
             outline: none
             background: none
@@ -61,7 +63,7 @@ header
                 height: 25px
                 width: 25px
 
-            span
+            .cart-items
                 background: palette.$darkest-grey
                 border-radius: 50%
                 color: palette.$lightest-grey
@@ -71,3 +73,9 @@ header
                 bottom: 0px
                 right: 0px
                 transform: translate(25%, 25%)
+
+@media (max-width: 400px)
+    .header
+        .header__heading-container 
+            .header__heading
+                font: 100% typography.$font-hero-sml

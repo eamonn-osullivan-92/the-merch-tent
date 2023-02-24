@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "start": "node server",
-    "test": "jest",
+    "test": "jest --setupFiles dotenv/config",
     "test:watch": "jest --noStackTrace --watchAll",
     "dev": "run-p dev:client dev:server",
     "dev:client": "npm run webpack -- --watch",
@@ -42,7 +42,6 @@
     "dotenv": "^16.0.3",
     "dotenv-webpack": "^8.0.1",
     "express": "^4.17.2",
-    "framer-motion": "^6.5.1",
     "knex": "^2.1.0",
     "nock": "^13.2.9",
     "pg": "^8.8.0",

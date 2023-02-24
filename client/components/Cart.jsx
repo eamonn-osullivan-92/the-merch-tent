@@ -1,7 +1,5 @@
 import React from 'react'
 import { useRedirectFunctions } from '@propelauth/react'
-import { useIsSmall } from '../hooks/useMediaQuery'
-import { motion, AnimatePresence } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux'
 import { placeOrder } from '../actions/orders'
 
@@ -9,7 +7,6 @@ import CartItem from './CartItem'
 
 export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
   const dispatch = useDispatch()
-  const isSmall = useIsSmall()
   const { redirectToLoginPage } = useRedirectFunctions()
 
   const music = useSelector((state) => state.music)
@@ -36,37 +33,30 @@ export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
 
   return (
     <>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ width: 0 }}
-            animate={isSmall ? { width: 350 } : { width: 600 }}
-            transition={{ ease: 'linear' }}
-            exit={{ width: 0 }}
-            className="cart-container"
-          >
-            <div className="cart-heading">
-              <h2 className="cart-heading">Cart</h2>
-              <button className="close-cart" onClick={() => setOpenCart(false)}>
-                &times;
-              </button>
-            </div>
-            <div className="cart-items-list">
-              {cartItems.map((item) => (
-                <CartItem key={item.id} id={item.id} />
-              ))}
-            </div>
-            <div className="cart-total">
-              <p className="cart-total-price">Total: ${getCartTotal()}</p>
-              {cartItems.length > 0 ? (
-                <button className="btn" onClick={() => handleOrder()}>
-                  Submit Order
-                </button>
-              ) : null}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className={isOpen ? 'cart cart--active' : 'cart'}>
+        <div className="cart__heading-flex">
+          <h2 className="cart-heading">Cart</h2>
+          <button className="cart__close" onClick={() => setOpenCart(false)}>
+            &times;
+          </button>
+        </div>
+        <div className="cart-items-list">
+          {cartItems?.map((item) => (
+            <CartItem key={item.id} id={item.id} />
+          ))}
+        </div>
+        <div className="cart__total">
+          <p className="cart-total-price">Total: ${getCartTotal()}</p>
+          {cartItems.length > 0 ? (
+            <button
+              className="btn-secondary cart__btn"
+              onClick={() => handleOrder()}
+            >
+              Submit Order
+            </button>
+          ) : null}
+        </div>
+      </div>
     </>
   )
 }

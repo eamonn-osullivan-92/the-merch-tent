@@ -10,24 +10,24 @@ import {
   updateLoggedInUser,
   addAndUpdateLoggedInUser,
 } from '../actions/loggedInUser'
-
+import Home from './Home'
 import MusicList from './MusicList'
 import Cart from './Cart'
 import Orders from './Orders'
-import Header from './Header'
 import SideNav from './SideNav'
-import { useSessionStorage } from '../hooks/useSessionStorage'
+import Header from './Header'
+// import { useSessionStorage } from '../hooks/useSessionStorage'
 
 function App(props) {
   const music = useSelector((state) => state.music)
   const dispatch = useDispatch()
   const [openCart, setOpenCart] = useState(false)
   const [sideNav, setSideNav] = useState(false)
-  const [firstLoad, setFirstLoad] = useSessionStorage('firstLoad', true)
+  //   const [firstLoad, setFirstLoad] = useSessionStorage('firstLoad', true)
 
   useEffect(() => {
     dispatch(fetchMusic())
-    setFirstLoad(false)
+    // setFirstLoad(false)
   }, [])
 
   //Auth
@@ -47,29 +47,39 @@ function App(props) {
 
   return (
     <>
-      <div className={firstLoad ? `container fade` : `container`}>
-        <Header setOpenCart={setOpenCart} setSideNav={setSideNav} />
-        <SideNav sideNav={sideNav} setSideNav={setSideNav} />
-        <Routes>
-          {music && (
-            <Route path="/" element={<MusicList setOpenCart={setOpenCart} />} />
-          )}
+      <SideNav sideNav={sideNav} setSideNav={setSideNav} />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home setOpenCart={setOpenCart} setSideNav={setSideNav} />}
+        />
+        {music && (
           <Route
-            path="/orders"
+            path="/store"
             element={
-              <Orders token={props.accessToken} isLoggedIn={props.isLoggedIn} />
+              <>
+                <Header setOpenCart={setOpenCart} setSideNav={setSideNav} />
+                <MusicList setOpenCart={setOpenCart} />
+              </>
             }
           />
-        </Routes>
-        {openCart && (
-          <Cart
-            setOpenCart={setOpenCart}
-            isOpen={openCart}
-            token={props.accessToken}
-            isLoggedIn={props.isLoggedIn}
-          />
         )}
-      </div>
+        <Route
+          path="/orders"
+          element={
+            <>
+              <Header setOpenCart={setOpenCart} setSideNav={setSideNav} />
+              <Orders token={props.accessToken} isLoggedIn={props.isLoggedIn} />
+            </>
+          }
+        />
+      </Routes>
+      <Cart
+        setOpenCart={setOpenCart}
+        isOpen={openCart}
+        token={props.accessToken}
+        isLoggedIn={props.isLoggedIn}
+      />
     </>
   )
 }

@@ -2,50 +2,28 @@
 
 .product 
     min-width: 200px
-    height: 500px
+    min-height: 400px
 
-    img
+    .product__image
         max-width: 350px
         width: 100%
         height: auto
+        
+            
 
-    p 
+    .product__info 
         color: palette.$darker-grey
 
-    .album
-        font-size: 1.15rem
-        color: palette.$darkest-grey
+        &.product__album
+            font-size: 1.15rem
+            color: palette.$darkest-grey
 
-        span
+        .product__year
             color: palette.$dark-grey
             font-size: 0.8rem
             padding-left: 2px
 
-    .cart-control
+    .product__cart-control
         padding-top: 5px
         display: flex
         width: 100%
-
-
-        .btn 
-            background: palette.$darker-grey
-            color: palette.$lightest-grey
-            border-radius: 50px
-            padding: 0.5em 1.2em
-            border: none
-
-        .quantity-btn
-            background: none
-            color: palette.$darker-grey
-            border: none
-            outline: none
-            cursor: pointer
-            font-size: 1.3rem
-            padding: 0
-            margin-bottom: 5px
-
-        .quantity-text
-            padding: 0 6px
-        
-        .btn-remove
-            margin-left: 1em

@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+require('dotenv').config()
 
 module.exports = {
   entry: ['./client/index.js'],
@@ -14,7 +15,7 @@ module.exports = {
       ),
     }),
   ],
-  mode: 'prodouction',
+  mode: 'development',
   module: {
     rules: [
       {

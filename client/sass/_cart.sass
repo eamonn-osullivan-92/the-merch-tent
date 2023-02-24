@@ -1,21 +1,27 @@
 @use 'palette'
 
-.cart-container
+.cart
     @include palette.color-scheme(palette.$scheme-secondary ...)
     position: fixed
-    top: 0px
-    right: 0px
+    width: 600px
+    top: 0
+    right: 0
     height: 100%
     padding: 2em
     overflow: scroll
- 
+    transform: translateX(100%)
+    transition: transform 0.3s ease-in-out
+    -webkit-transition: transform 0.3s ease-in-out
+    -moz-transition: transform 0.3s ease-in-out
+    &--active
+        transform: translateX(0)
     
-    .cart-heading
+    .cart__heading-flex
         display: flex
         width: 100%
         justify-content: space-between
 
-        .close-cart
+        .cart__close
             width: 30px
             height: 30px
             background: none
@@ -23,7 +29,7 @@
             border-radius: 50%
             color: palette.$lightest-grey
 
-    .cart-total 
+    .cart__total 
         padding-top: 2em
         width: 100%
         text-align: right
@@ -31,17 +37,5 @@
         flex-direction: column
         align-items: flex-end
 
-        .btn 
+        .cart__btn
             margin-top: 1em
-            background: palette.$lightest-grey
-            color: palette.$darker-grey
-            border-radius: 50px
-            padding: 0.4em 
-            border: none
-            font-size: 0.8rem
-            width: 110px
-
-        .btn-secondary
-            background: none
-            color: palette.$lightest-grey 
-            border: 1px solid palette.$lightest-grey
