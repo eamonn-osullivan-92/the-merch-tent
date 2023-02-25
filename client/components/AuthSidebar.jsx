@@ -14,12 +14,12 @@ function AuthenticationButtons({ isLoggedIn }) {
   if (isLoggedIn) {
     return (
       <>
-        <li className="nav__item">
+        <li className="sidebar__nav-item">
           <button onClick={redirectToAccountPage} className="auth__btn">
             Account
           </button>
         </li>
-        <li className="nav__item">
+        <li className="sidebar__nav-item">
           <button onClick={() => logoutFn()} className="auth__btn">
             Logout
           </button>
@@ -29,12 +29,12 @@ function AuthenticationButtons({ isLoggedIn }) {
   } else {
     return (
       <>
-        <li className="nav__item">
+        <li className="sidebar__nav-item">
           <button onClick={redirectToSignupPage} className="auth__btn">
             Signup
           </button>
         </li>
-        <li className="nav__item">
+        <li className="sidebar__nav-item">
           <button onClick={redirectToLoginPage} className="auth__btn">
             Login
           </button>

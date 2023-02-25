@@ -28,7 +28,7 @@ export default function NewArrivals() {
       </div>
 
       <div className="highlights__flex">
-        {music &&
+        {newArrivals &&
           newArrivals?.map((item) => (
             <MusicListItem product={item} key={item.id} />
           ))}

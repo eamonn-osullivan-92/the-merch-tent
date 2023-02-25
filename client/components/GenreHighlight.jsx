@@ -27,7 +27,7 @@ export default function GenreHighlight({ genre }) {
         </button>
       </div>
       <div className="highlights__flex">
-        {music &&
+        {genreHighlights &&
           genreHighlights?.map((item) => (
             <MusicListItem product={item} key={item.id} />
           ))}

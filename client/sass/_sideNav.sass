@@ -9,10 +9,21 @@
     padding: 2em
     width: 300px
     z-index: 2
+    -webkit-transform: translateX(100%)
+    -moz-transform: translateX(100%)
+    -ms-transform: translateX(100%)
+    -o-transform: translateX(100%)
     transform: translateX(100%)
+    -webkit-transition: -webkit-transform 0.3s ease-in-out
+    -moz-transition: transform 0.6s ease-out
+    -o-transition: transform 0.6s ease-out
     transition: transform 0.3s ease-in-out
     &--active
-        transform: translateX(0)
+        -webkit-transform: translateX(0%)
+        -moz-transform: translateX(0%)
+        -ms-transform: translateX(0%)
+        -o-transform: translateX(0%)
+        transform: translateX(0%)
 
     .sidebar__close-container
         display: flex

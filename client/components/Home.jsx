@@ -11,6 +11,7 @@ export default function Home({ setOpenCart, setSideNav }) {
   const [headerClass, setHeaderClass] = useState('header')
   const headerLocation = useRef()
   const [firstLoad, setFirstLoad] = useSessionStorage('firstLoad', true)
+  const [fade, setFade] = useState(false)
 
   const stickHeader = () => {
     //sets background color when header sticks to top.
@@ -22,15 +23,27 @@ export default function Home({ setOpenCart, setSideNav }) {
     }
   }
 
+  // This will run one time after the component mounts
   useEffect(() => {
-    setFirstLoad(false)
+    const onPageLoad = () => {
+      setFade(true)
+    }
+
+    // Check if the page has already loaded
+    if (firstLoad) {
+      if (document.readyState === 'complete') {
+        onPageLoad()
+      } else {
+        window.addEventListener('load', onPageLoad)
+        // Remove the event listener when component unmounts
+        return () => window.removeEventListener('load', onPageLoad)
+      }
+      setFirstLoad(false)
+    }
   }, [])
 
   return (
-    <div
-      className={firstLoad ? 'hero fade' : 'hero'}
-      onScroll={() => stickHeader()}
-    >
+    <div className={fade ? 'hero fade' : 'hero'} onScroll={() => stickHeader()}>
       <HeroImage />
       <span ref={headerLocation}></span>
       <Header
