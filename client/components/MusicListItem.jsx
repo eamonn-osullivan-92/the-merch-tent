@@ -4,7 +4,6 @@ import { addToCart } from '../actions/cart'
 
 function MusicListItem({ product, setOpenCart }) {
   const dispatch = useDispatch()
-  console.log(product.image_path[1])
 
   const addAlbumToCart = (product) => {
     const { id, album, stripe_price_id } = product
