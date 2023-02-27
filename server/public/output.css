@@ -33,6 +33,7 @@ body {
 a {
   text-decoration: none;
   color: #3B3B3B;
+  outline-color: #3B3B3B;
 }
 
 li {
@@ -44,12 +45,17 @@ li {
   color: #f7f7ff;
   border-radius: 50px;
   padding: 0.5em 1.2em;
+  outline-color: transparent;
   border: none;
+}
+.btn:focus {
+  background: #9AA5B1;
 }
 
 .btn-secondary {
   background: #f7f7ff;
   color: #3B3B3B;
+  outline-color: #3B3B3B;
   border-radius: 50px;
   padding: 0.4em 1em;
   border: none;
@@ -59,7 +65,7 @@ li {
 .btn-tertiary {
   background: none;
   border: none;
-  outline: transparent;
+  outline: none;
   color: #3B3B3B;
   cursor: pointer;
 }
@@ -188,6 +194,42 @@ li {
   width: 100%;
   padding: 2em;
 }
+.store .store__controller {
+  display: flex;
+  gap: 1em;
+}
+.store .store__controller .store__search-control {
+  display: flex;
+  width: 200px;
+  align-items: center;
+  position: relative;
+}
+.store .store__controller .store__search-control .store__search {
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #3B3B3B;
+  padding: 5px;
+  width: 200px;
+  margin-right: 1em;
+}
+.store .store__controller .store__search-control .store__search::placeholder {
+  color: #3B3B3B;
+}
+.store .store__controller .store__search-control .store__search-icon {
+  position: absolute;
+  right: 15px;
+  font-size: 0.9rem;
+}
+.store .store__controller .store__filter {
+  background: none;
+  outline: none;
+  border: none;
+  width: 189px;
+  border-bottom: 1px solid #3B3B3B;
+  padding: 5px;
+  color: #3B3B3B;
+}
 .store .store__grid {
   padding-top: 2rem;
   margin: 0 auto;
@@ -197,6 +239,18 @@ li {
   gap: 2em;
 }
 
+@media (max-width: 400px) {
+  .store .store__controller .store__search-control {
+    width: 150px;
+  }
+  .store .store__controller .store__search-control .store__search-icon {
+    right: 0px;
+    font-size: 0.9rem;
+  }
+  .store .store__controller .store__filter {
+    width: 150px;
+  }
+}
 .product {
   min-width: 200px;
   min-height: 400px;
@@ -249,13 +303,16 @@ li {
   width: 0;
   left: 50%;
 }
+.nav .nav__items .nav__item a {
+  outline-color: #3B3B3B;
+}
 .nav .nav__items .nav__item:hover:after {
   width: 100%;
   left: 0;
 }
 .nav .nav__items .nav__item .auth__btn {
   background: none;
-  outline: transparent;
+  outline-color: #3B3B3B;
   border: none;
   color: #3B3B3B;
   font-size: 0.9rem;
@@ -301,7 +358,7 @@ li {
   flex-direction: row-reverse;
 }
 .header .header__nav .header__nav-btn {
-  outline: none;
+  outline-color: #3B3B3B;
   background: none;
   cursor: pointer;
   border: none;
@@ -312,7 +369,7 @@ li {
 }
 .header .header__nav .header__cart-btn {
   border: 1.5px solid #222222;
-  outline: none;
+  outline-color: #3B3B3B;
   background: none;
   border-radius: 50%;
   padding: 3px 5px;
@@ -417,7 +474,7 @@ li {
   border-radius: 5px;
   text-align: center;
   border: none;
-  outline: none;
+  outline-color: #3B3B3B;
   background: none;
   color: #f7f7ff;
   font-size: 1rem;
@@ -517,7 +574,7 @@ li {
   background: none;
   color: #3B3B3B;
   border: none;
-  outline: none;
+  outline-color: #3B3B3B;
   cursor: pointer;
   font-size: 1.3rem;
   padding: 0;
