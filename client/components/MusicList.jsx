@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useQuery } from '../hooks/useQuery'
 
@@ -10,6 +10,7 @@ import WaitIndicator from './WaitIndicator'
 function MusicList({ setOpenCart }) {
   const music = useSelector((state) => state.music)
   let query = useQuery('genre')
+  const filter = useRef()
   const genres = [...new Set(music.map((product) => product.genre))]
   const [filteredMusic, setFilteredMusic] = useState(music)
 
@@ -33,6 +34,7 @@ function MusicList({ setOpenCart }) {
         }
       })
     })
+    filter.current.value = ''
     setFilteredMusic(search)
   }
 
@@ -62,12 +64,18 @@ function MusicList({ setOpenCart }) {
           name="genre"
           id="genre"
           onChange={(e) => handleFilter(e)}
-          value={query ? query : undefined}
           className="store__filter"
+          ref={filter}
         >
-          <option value="">Filter</option>
+          <option value="" selected={query ? false : true}>
+            Filter
+          </option>
           {genres.map((genre) => (
-            <option key={genre} value={genre}>
+            <option
+              key={genre}
+              value={genre}
+              selected={query == genre ? true : false}
+            >
               {genre}
             </option>
           ))}
