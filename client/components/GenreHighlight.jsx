@@ -23,11 +23,11 @@ export default function GenreHighlight({ genre }) {
         <div className="highlights__heading">Shop the latest {genre}</div>
 
         <button className="btn-tertiary ">
-          <Link to="/store">Shop All </Link>
+          <Link to={`/store?genre=${genre}`}>Shop All </Link>
         </button>
       </div>
       <div className="highlights__flex">
-        {music &&
+        {genreHighlights &&
           genreHighlights?.map((item) => (
             <MusicListItem product={item} key={item.id} />
           ))}

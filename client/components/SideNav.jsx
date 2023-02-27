@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Auth from './Auth'
+import AuthSidebar from './AuthSidebar'
 
 export default function SideNav({ sideNav, setSideNav }) {
   return (
@@ -31,7 +31,7 @@ export default function SideNav({ sideNav, setSideNav }) {
                 Orders
               </Link>
             </li>
-            <Auth sideNav={sideNav} />
+            <AuthSidebar />
           </ul>
         </nav>
       </div>

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
+import { useQuery } from '../hooks/useQuery'
 
 // import { fetchMusic } from '../actions/music'
 
@@ -8,12 +9,81 @@ import WaitIndicator from './WaitIndicator'
 
 function MusicList({ setOpenCart }) {
   const music = useSelector((state) => state.music)
+  let query = useQuery('genre')
+  const filter = useRef()
+  const genres = [...new Set(music.map((product) => product.genre))]
+  const [filteredMusic, setFilteredMusic] = useState(music)
+
+  const handleFilter = (e) => {
+    if (!e.target.value) {
+      setFilteredMusic(music)
+    } else {
+      setFilteredMusic(
+        music.filter((product) => product.genre == e.target.value)
+      )
+    }
+  }
+
+  const handleSearch = (e) => {
+    let search = music.filter((product) => {
+      return Object.keys(product).some((key) => {
+        if (key == 'artist' || key == 'album' || key == 'genre') {
+          return product[key]
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase())
+        }
+      })
+    })
+    filter.current.value = ''
+    setFilteredMusic(search)
+  }
+
+  useEffect(() => {
+    if (query) {
+      setFilteredMusic(music.filter((product) => product.genre == query))
+    } else {
+      setFilteredMusic(music)
+    }
+  }, [music])
 
   return (
     <div className="store">
+      <div className="store__controller">
+        <div className="store__search-control">
+          <input
+            type="text"
+            className="store__search"
+            placeholder="Search"
+            onChange={(e) => handleSearch(e)}
+          />
+          <span className="material-symbols-outlined store__search-icon">
+            search
+          </span>
+        </div>
+        <select
+          name="genre"
+          id="genre"
+          onChange={(e) => handleFilter(e)}
+          className="store__filter"
+          ref={filter}
+        >
+          <option value="" selected={query ? false : true}>
+            Filter
+          </option>
+          {genres.map((genre) => (
+            <option
+              key={genre}
+              value={genre}
+              selected={query == genre ? true : false}
+            >
+              {genre}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="store__grid">
         {music &&
-          music.map((product) => {
+          filteredMusic.map((product) => {
             return (
               <MusicListItem
                 key={product.id}

@@ -5,7 +5,7 @@ const stripe = require('stripe')(process.env.REACT_APP_STRIPE_KEY)
 const db = require('../db/orders')
 const { requireUser } = require('./initAuth')
 
-const DOMAIN = 'thelostcrates.co.nz'
+const DOMAIN = 'https://www.thelostcrates.co.nz/'
 
 router.use((req, res, next) => {
   if (req.originalUrl.includes('/webhook')) {

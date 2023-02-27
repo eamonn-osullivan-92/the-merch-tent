@@ -15,6 +15,7 @@
             list-style: none 
             position: relative
             cursor: pointer
+            
             &::after 
                 content: ''
                 position: absolute
@@ -25,6 +26,9 @@
                 transition: width 0.3s ease 0s, left 0.3s ease 0s
                 width: 0
                 left:50%
+                
+            & a
+                outline-color: palette.$darker-grey
 
 
             &:hover:after 
@@ -33,7 +37,7 @@
 
             .auth__btn
                 background: none
-                outline: transparent
+                outline-color: palette.$darker-grey
                 border: none
                 color: palette.$darker-grey
                 font-size: 0.9rem
