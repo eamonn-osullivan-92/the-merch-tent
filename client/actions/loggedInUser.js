@@ -17,11 +17,16 @@ export function clearLoggedInUser() {
 }
 
 export function addAndUpdateLoggedInUser(user, token) {
+  let admin
+  if (user.email == 'admin@test.com') {
+    admin = true
+  }
   return (dispatch) => {
     const userToAdd = {
       email: user.email,
       first_name: user.firstName,
       last_name: user.lastName,
+      role: admin ? 'admin' : 'guest',
     }
     addUser(userToAdd, token)
       .then(() => {

@@ -10,3 +10,21 @@ export async function getMusic() {
     console.error(err.message)
   }
 }
+
+export async function updateMusicItem(objToUpdate) {
+  try {
+    const res = await request.put(rootUrl + '/edit').send(objToUpdate)
+    return res.body
+  } catch (err) {
+    console.error(err.message)
+  }
+}
+
+export async function deleteMusicItem(id) {
+  try {
+    const res = await request.del(rootUrl + '/delete').send({ id })
+    return res.body
+  } catch (err) {
+    console.error(err.message)
+  }
+}

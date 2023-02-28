@@ -10,7 +10,7 @@ router.get('/', requireUser, (req, res) => {
   const propel_id = req.user?.userId
 
   if (!propel_id) {
-    res.send(null)
+    res.status(500).send('ERROR: User not found')
   } else {
     db.getUser(propel_id)
       .then((user) => {

@@ -8,6 +8,7 @@ const emptyUser = {
   email: '',
   first_name: '',
   last_name: '',
+  role: 'guest',
 }
 
 export default function user(state = emptyUser, action) {

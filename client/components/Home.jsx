@@ -53,11 +53,11 @@ export default function Home({ setOpenCart, setSideNav }) {
       />
 
       <div className="parralax-bg">
-        <NewArrivals />
+        <NewArrivals setOpenCart={setOpenCart} />
         <ImageBannerVert />
-        <GenreHighlight genre="hip-hop/rap" />
+        <GenreHighlight genre="hip-hop/rap" setOpenCart={setOpenCart} />
         <ImageBanner />
-        <GenreHighlight genre="Indie/Alternative" />
+        <GenreHighlight genre="Indie/Alternative" setOpenCart={setOpenCart} />
         {/* BLOG/ARTICLES SECTION */}
       </div>
     </div>

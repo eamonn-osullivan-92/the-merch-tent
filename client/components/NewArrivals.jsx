@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import MusicListItem from './MusicListItem'
 
-export default function NewArrivals() {
+export default function NewArrivals({ setOpenCart }) {
   const music = useSelector((state) => state.music).sort(
     () => 0.5 - Math.random()
   )
@@ -30,7 +30,11 @@ export default function NewArrivals() {
       <div className="highlights__flex">
         {newArrivals &&
           newArrivals?.map((item) => (
-            <MusicListItem product={item} key={item.id} />
+            <MusicListItem
+              product={item}
+              key={item.id}
+              setOpenCart={setOpenCart}
+            />
           ))}
       </div>
     </section>

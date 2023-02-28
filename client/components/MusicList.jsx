@@ -65,16 +65,20 @@ function MusicList({ setOpenCart }) {
           id="genre"
           onChange={(e) => handleFilter(e)}
           className="store__filter"
+          defaultValue={query ? query : ''}
           ref={filter}
         >
-          <option value="" selected={query ? false : true}>
+          <option
+            value=""
+            //   selected={query ? false : true}
+          >
             Filter
           </option>
           {genres.map((genre) => (
             <option
               key={genre}
               value={genre}
-              selected={query == genre ? true : false}
+              //   selected={query == genre ? true : false}
             >
               {genre}
             </option>

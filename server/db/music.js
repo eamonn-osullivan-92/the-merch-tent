@@ -8,20 +8,20 @@ function getAlbumById(id, db = connection) {
   return db('music').select().where('id', id).first()
 }
 
-function getMusicByGenre(genre, db = connection) {
-  return db('music').select().where('genre', genre)
-}
-
 function addAlbum(album, db = connection) {
   return db('music').insert(album).returning('id')
 }
 
-function delAlbum(id, db = connection) {
-  return db('music').delete().where('id', id)
+function deleteMusicItem(id, db = connection) {
+  return db('music').select().where('id', id).del()
 }
 
-function updateAlbum(albumId, updatedAlbum, db = connection) {
-  return db('music').select().where('id', albumId).update(updatedAlbum)
+function updateAlbum(updatedAlbum, db = connection) {
+  return db('music')
+    .select()
+    .where('id', updatedAlbum.id)
+    .update(updatedAlbum)
+    .returning('id')
 }
 
 function getAlbumsAndImages(db = connection) {
@@ -34,9 +34,8 @@ function getAlbumsAndImages(db = connection) {
 module.exports = {
   getMusic,
   getAlbumById,
-  getMusicByGenre,
   addAlbum,
-  delAlbum,
+  deleteMusicItem,
   updateAlbum,
   getAlbumsAndImages,
 }

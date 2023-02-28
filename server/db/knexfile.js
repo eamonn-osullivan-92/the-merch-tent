@@ -7,6 +7,9 @@ module.exports = {
       filename: path.join(__dirname, 'dev.sqlite3'),
     },
     useNullAsDefault: true,
+    pool: {
+      afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
+    },
   },
 
   test: {
