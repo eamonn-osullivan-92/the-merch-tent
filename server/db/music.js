@@ -16,12 +16,8 @@ function deleteMusicItem(id, db = connection) {
   return db('music').select().where('id', id).del()
 }
 
-function updateAlbum(updatedAlbum, db = connection) {
-  return db('music')
-    .select()
-    .where('id', updatedAlbum.id)
-    .update(updatedAlbum)
-    .returning('id')
+function updateMusicItem(updatedAlbum, db = connection) {
+  return db('music').select().where('id', updatedAlbum.id).update(updatedAlbum)
 }
 
 function getAlbumsAndImages(db = connection) {
@@ -36,6 +32,6 @@ module.exports = {
   getAlbumById,
   addAlbum,
   deleteMusicItem,
-  updateAlbum,
+  updateMusicItem,
   getAlbumsAndImages,
 }

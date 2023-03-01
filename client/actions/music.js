@@ -66,9 +66,11 @@ export function fetchMusic() {
 
 export function updateMusicAndState(objToUpdate) {
   return (dispatch) => {
+    //databse
     return updateMusicItem(objToUpdate)
-      .then((updatedObj) => {
-        return dispatch(updateMusic(updatedObj))
+      .then(() => {
+        //state
+        return dispatch(updateMusic(objToUpdate))
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
@@ -78,10 +80,22 @@ export function updateMusicAndState(objToUpdate) {
   }
 }
 
+export function updateImageAndState(image, product_id) {
+  return (dispatch) => {
+    //database
+    return updateImage(image).then(() => {
+      //state
+      return dispatch(updateImageState)
+    })
+  }
+}
+
 export function deleteMusicAndState(id) {
   return (dispatch) => {
+    //database
     return deleteMusicItem(id)
       .then(() => {
+        //state
         return dispatch(deleteMusic(id))
       })
       .catch((err) => {

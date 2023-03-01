@@ -41,9 +41,7 @@ router.put('/edit', async (req, res) => {
       .status(500)
       .json({ message: 'Error: Object to update not found in request' })
   }
-
-  console.log(req.body)
-  const { objToUpdate } = req.body
+  const objToUpdate = req.body
   try {
     const updatedObj = await db.updateMusicItem(objToUpdate)
     res.json(updatedObj)
@@ -61,7 +59,6 @@ router.delete('/delete', async (req, res) => {
   const { id } = req.body
   try {
     const delObjId = await db.deleteMusicItem(id)
-    console.log('delObjId: ', delObjId)
     res.json(delObjId)
   } catch (err) {
     res.status(500).json({ message: 'Error: unable to delete object' })
