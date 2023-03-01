@@ -1,10 +1,16 @@
-import { getMusic, updateMusicItem, deleteMusicItem } from '../apis/music'
+import {
+  getMusic,
+  updateMusicItem,
+  deleteMusicItem,
+  sendImage,
+} from '../apis/music'
 
 import { showError } from '../actions/error'
 
 export const SET_MUSIC = 'SET_MUSIC'
 export const DEL_MUSIC = 'DEL_MUSIC'
 export const UPDATE_MUSIC = 'UPDATE_MUSIC'
+export const UPDATE_IMAGE_STATE = 'UPDATE_IMAGE_STATE'
 export const FETCH_MUSIC_PENDING = 'FETCH_MUSIC_PENDING'
 export const FETCH_MUSIC_SUCCESS = 'FETCH_MUSIC_SUCCESS'
 
@@ -26,6 +32,13 @@ export function updateMusic(updatedObj) {
   return {
     type: UPDATE_MUSIC,
     payload: updatedObj,
+  }
+}
+
+export function updateImage(image_path, product_id) {
+  return {
+    type: UPDATE_IMAGE_STATE,
+    payload: { image_path, product_id },
   }
 }
 
@@ -83,9 +96,9 @@ export function updateMusicAndState(objToUpdate) {
 export function updateImageAndState(image, product_id) {
   return (dispatch) => {
     //database
-    return updateImage(image).then(() => {
+    return sendImage(image, product_id).then((image_path) => {
       //state
-      return dispatch(updateImageState)
+      return dispatch(updateImage(image_path, product_id))
     })
   }
 }

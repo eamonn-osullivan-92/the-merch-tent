@@ -20,6 +20,15 @@ export async function updateMusicItem(objToUpdate) {
   }
 }
 
+export async function sendImage(file) {
+  try {
+    const res = await request.post(rootUrl + '/upload').attach('image', file)
+    return res.body
+  } catch (err) {
+    console.error(err.message)
+  }
+}
+
 export async function deleteMusicItem(id) {
   try {
     const res = await request.del(rootUrl + '/delete').send({ id })

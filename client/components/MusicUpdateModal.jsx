@@ -30,6 +30,7 @@ export default function MusicUpdateModal({ setOpenUpdateModal, product }) {
     e.preventDefault()
     dispatch(updateMusicAndState(updateInfo))
     if (imageFile) dispatch(updateImageAndState(imageFile, product.id))
+    // potentially send and index to reference if image is replacing image 1 or 2 (if using splice)
 
     setOpenUpdateModal(false)
   }

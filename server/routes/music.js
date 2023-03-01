@@ -1,5 +1,5 @@
 const express = require('express')
-
+const path = require('path')
 const db = require('../db/music')
 
 const router = express.Router()
@@ -47,6 +47,27 @@ router.put('/edit', async (req, res) => {
     res.json(updatedObj)
   } catch (err) {
     res.status(500).json({ message: 'Error: unable to update object' })
+  }
+})
+
+router.post('/upload', async (req, res) => {
+  try {
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.')
+    }
+    const file = req.files.image
+    const uploadPath = path.join(
+      __dirname,
+      '../public/images/music/',
+      file.name
+    )
+
+    file.mv(uploadPath, function (err) {
+      if (err) return res.status(500).send(err)
+    })
+    res.json(`/images/music/${file.name}`)
+  } catch (err) {
+    res.status(500).json({ msg: err.message })
   }
 })
 
