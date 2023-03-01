@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const fileUpload = require('express-fileupload')
 
 require('dotenv').config()
 
@@ -18,6 +19,7 @@ server.use((req, res, next) => {
   }
 })
 server.use(express.static(path.join(__dirname, 'public')))
+server.use(fileUpload())
 
 server.use('/api/v1/music', musicRoutes)
 server.use('/api/v1/orders', ordersRoutes)

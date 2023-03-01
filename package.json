@@ -42,6 +42,7 @@
     "dotenv": "^16.0.3",
     "dotenv-webpack": "^8.0.1",
     "express": "^4.17.2",
+    "express-fileupload": "^1.4.0",
     "knex": "^2.1.0",
     "pg": "^8.8.0",
     "process": "^0.11.10",

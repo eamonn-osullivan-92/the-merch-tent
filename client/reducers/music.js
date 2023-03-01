@@ -18,14 +18,15 @@ const reducer = (state = initialState, action) => {
         music.id === action.payload.id ? { ...music, ...action.payload } : music
       )
     case UPDATE_IMAGE_STATE:
-      //   return state.map((music) =>
-      //     music.id === action.payload.product_id
-      //       ? music.image_path.unshift(action.payload.image_path).pop()
-      //       : music
-      //   )
       return state.map((music) =>
         music.id === action.payload.product_id
-          ? music.image_path.splice(0, 1, action.payload.image_path)
+          ? {
+              ...music,
+              image_path: [
+                action.payload.image_path,
+                ...music.image_path,
+              ].pop(),
+            }
           : music
       )
     default:

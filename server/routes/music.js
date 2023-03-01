@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const db = require('../db/music')
+const imageDb = require('../db/images')
 
 const router = express.Router()
 
@@ -50,21 +51,29 @@ router.put('/edit', async (req, res) => {
   }
 })
 
-router.post('/upload', async (req, res) => {
+router.post('/upload/:product_id', async (req, res) => {
   try {
+    console.log(req.files)
+    //check for file
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.')
     }
     const file = req.files.image
+    const { product_id } = req.params
+
+    //add file to public directory
     const uploadPath = path.join(
       __dirname,
       '../public/images/music/',
       file.name
     )
-
     file.mv(uploadPath, function (err) {
       if (err) return res.status(500).send(err)
     })
+    // update record in db
+    await imageDb.updateMusicImage(`/images/music/${file.name}`, product_id)
+
+    // return path to update redux state
     res.json(`/images/music/${file.name}`)
   } catch (err) {
     res.status(500).json({ msg: err.message })

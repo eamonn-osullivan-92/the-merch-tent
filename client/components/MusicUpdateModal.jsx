@@ -29,6 +29,7 @@ export default function MusicUpdateModal({ setOpenUpdateModal, product }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(updateMusicAndState(updateInfo))
+    console.log(imageFile)
     if (imageFile) dispatch(updateImageAndState(imageFile, product.id))
     // potentially send and index to reference if image is replacing image 1 or 2 (if using splice)
 

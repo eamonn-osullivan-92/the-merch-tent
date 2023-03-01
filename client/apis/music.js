@@ -20,9 +20,11 @@ export async function updateMusicItem(objToUpdate) {
   }
 }
 
-export async function sendImage(file) {
+export async function sendImage(image, product_id) {
   try {
-    const res = await request.post(rootUrl + '/upload').attach('image', file)
+    const res = await request
+      .post(rootUrl + `/upload/${product_id}`)
+      .attach('image', image)
     return res.body
   } catch (err) {
     console.error(err.message)

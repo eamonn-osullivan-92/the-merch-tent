@@ -8,8 +8,13 @@ import MusicUpdateModal from './MusicUpdateModal'
 
 function MusicListItem({ product, setOpenCart }) {
   const user = useSelector((state) => state.user)
+  const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
   const [openUpdateModal, setOpenUpdateModal] = useState(false)
+
+  const getProductCartQuantity = () => {
+    return cart.find((item) => item.id == product.id)?.quantity || 0
+  }
 
   const addAlbumToCart = (product) => {
     const { id, album, stripe_price_id } = product
@@ -60,13 +65,24 @@ function MusicListItem({ product, setOpenCart }) {
         <p className="product__info">${product?.price}</p>
 
         <div className="product__cart-control">
-          <button
-            className="btn btn-primary"
-            data-testid="addToCartBtn"
-            onClick={() => addAlbumToCart(product)}
-          >
-            Add to Cart
-          </button>
+          {getProductCartQuantity() === 0 ? (
+            <button
+              className="btn btn-primary"
+              data-testid="addToCartBtn"
+              onClick={() => addAlbumToCart(product)}
+            >
+              Add to Cart
+            </button>
+          ) : (
+            <button
+              className="btn btn-primary"
+              data-testid="addToCartBtn"
+              onClick={() => addAlbumToCart(product)}
+            >
+              {getProductCartQuantity()} in Cart
+            </button>
+          )}
+
           {hasPermission(user.role, actions.MODIFY_PRODUCT) && (
             <div className="product__admin-control">
               <button
