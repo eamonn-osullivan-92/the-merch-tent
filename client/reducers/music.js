@@ -1,5 +1,6 @@
 import {
   FETCH_MUSIC_SUCCESS,
+  ADD_MUSIC,
   DEL_MUSIC,
   UPDATE_MUSIC,
   UPDATE_IMAGE_STATE,
@@ -11,6 +12,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_MUSIC_SUCCESS:
       return action.payload
+    case ADD_MUSIC:
+      return [action.payload, ...state]
     case DEL_MUSIC:
       return state.filter((music) => music.id !== action.payload)
     case UPDATE_MUSIC:

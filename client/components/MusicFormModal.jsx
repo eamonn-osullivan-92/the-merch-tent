@@ -1,16 +1,30 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { FileUploader } from 'react-drag-drop-files'
-import { updateMusicAndState, updateImageAndState } from '../actions/music.js'
 
-export default function MusicUpdateModal({ setOpenUpdateModal, product }) {
-  const dispatch = useDispatch()
+const defaultProduct = {
+  artist: '',
+  album: '',
+  year: '',
+  genre: '',
+  price: 0,
+  quantity: 0,
+  stripe_product_id: '',
+  stripe_price_id: '',
+  image_path: [],
+}
+
+export default function MusicFormModal({
+  openModalFn,
+  product = defaultProduct,
+  handleSubmit,
+}) {
+  // eslint-disable-next-line no-unused-vars
   const { image_path, ...rest } = product
   const [imageFile, setImageFile] = useState(null)
-  const [updateInfo, setUpdateInfo] = useState(rest)
+  const [musicInfo, setMusicInfo] = useState(rest)
 
   const handleInfoChange = (e) => {
-    setUpdateInfo({ ...updateInfo, [e.target.name]: e.target.value })
+    setMusicInfo({ ...musicInfo, [e.target.name]: e.target.value })
   }
 
   const handleChange = (file) => {
@@ -26,137 +40,128 @@ export default function MusicUpdateModal({ setOpenUpdateModal, product }) {
     handleChange: handleChange,
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(updateMusicAndState(updateInfo))
-    console.log(imageFile)
-    if (imageFile) dispatch(updateImageAndState(imageFile, product.id))
-    // potentially send and index to reference if image is replacing image 1 or 2 (if using splice)
-
-    setOpenUpdateModal(false)
-  }
-
   return (
-    <div className="update-modal-blur">
-      <div className="update-modal__modal">
-        <div className="update-modal__heading">
-          <h3 className="update-modal-title">Update Product:</h3>
-          <button
-            className="update-modal__close"
-            onClick={() => setOpenUpdateModal(false)}
-          >
+    <div className="modal-blur">
+      <div className="modal__modal">
+        <div className="modal__heading">
+          <h3 className="modal-title">Update Product:</h3>
+          <button className="modal__close" onClick={() => openModalFn(false)}>
             &times;
           </button>
         </div>
 
         <FileUploader {...imageOptions} />
 
-        <form action="" className="update-modal__form" onSubmit={handleSubmit}>
-          <div className="update-modal__input-control">
-            <label htmlFor="artist" className="update-modal__label">
+        <form
+          action=""
+          className="modal__form"
+          onSubmit={(e) => handleSubmit(e, imageFile, musicInfo)}
+        >
+          <div className="modal__input-control">
+            <label htmlFor="artist" className="modal__label">
               Artist:
             </label>
             <input
               type="text"
-              className="update-modal__input"
+              className="modal__input"
               id="artist"
               name="artist"
               onChange={handleChange}
               defaultValue={product.artist}
             />
           </div>
-          <div className="update-modal__input-control">
-            <label htmlFor="album" className="update-modal__label">
+          <div className="modal__input-control">
+            <label htmlFor="album" className="modal__label">
               Album:
             </label>
             <input
               type="text"
-              className="update-modal__input"
+              className="modal__input"
               id="album"
               name="album"
               onChange={handleInfoChange}
               defaultValue={product.album}
             />
           </div>
-          <div className="update-modal__input-control">
-            <label htmlFor="year" className="update-modal__label">
+          <div className="modal__input-control">
+            <label htmlFor="year" className="modal__label">
               Year:
             </label>
             <input
               type="text"
-              className="update-modal__input"
+              className="modal__input"
               id="year"
               name="year"
               onChange={handleInfoChange}
               defaultValue={product.year}
             />
           </div>
-          <div className="update-modal__input-control">
-            <label htmlFor="genre" className="update-modal__label">
+          <div className="modal__input-control">
+            <label htmlFor="genre" className="modal__label">
               Genre:
             </label>
             <input
               type="text"
-              className="update-modal__input"
+              className="modal__input"
               id="genre"
               name="genre"
               onChange={handleInfoChange}
               defaultValue={product.genre}
             />
           </div>
-          <div className="update-modal__input-control">
-            <label htmlFor="price" className="update-modal__label">
+          <div className="modal__input-control">
+            <label htmlFor="price" className="modal__label">
               Price:
             </label>
             <input
               type="number"
-              className="update-modal__input"
+              className="modal__input"
               id="price"
               name="price"
               onChange={handleInfoChange}
               defaultValue={product.price}
             />
           </div>
-          <div className="update-modal__input-control">
-            <label htmlFor="quantity" className="update-modal__label">
+          <div className="modal__input-control">
+            <label htmlFor="quantity" className="modal__label">
               Quantity:
             </label>
             <input
               type="number"
-              className="update-modal__input"
+              className="modal__input"
               id="quantity"
               name="quantity"
               onChange={handleInfoChange}
               defaultValue={product.quantity}
             />
           </div>
-          <div className="update-modal__input-control">
-            <label htmlFor="stripe_product_id" className="update-modal__label">
+          <div className="modal__input-control">
+            <label htmlFor="stripe_product_id" className="modal__label">
               Stripe Product Id:
             </label>
             <input
               type="text"
-              className="update-modal__input"
+              className="modal__input"
               id="stripe_product_id"
               name="stripe_product_id"
               onChange={handleInfoChange}
               defaultValue={product.stripe_product_id}
             />
           </div>
-          <div className="update-modal__input-control">
-            <label htmlFor="stripe_price_id" className="update-modal__label">
+          <div className="modal__input-control">
+            <label htmlFor="stripe_price_id" className="modal__label">
               Stripe Price Id:
             </label>
             <input
               type="text"
-              className="update-modal__input"
+              className="modal__input"
               id="stripe_price_id"
               name="stripe_price_id"
               onChange={handleInfoChange}
               defaultValue={product.stripe_price_id}
             />
           </div>
-          <button className="update-modal__submit btn" type="submit">
+          <button className="modal__submit btn" type="submit">
             Save
           </button>
         </form>

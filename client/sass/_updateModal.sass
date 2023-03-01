@@ -1,6 +1,6 @@
 @use 'palette'
 
-.update-modal-blur
+.modal-blur
     position: fixed
     width: 100vw
     height: 100vh
@@ -13,7 +13,7 @@
     justify-content: center
     align-items: center
 
-    .update-modal__modal
+    .modal__modal
         width: 500px
         height: auto
         max-height: 600px
@@ -22,34 +22,34 @@
         padding: 3em 2em 3em 2em
         background: palette.$lightest-grey
 
-        .update-modal__heading
+        .modal__heading
             display: flex
             justify-content: space-between
             padding-bottom: 1em
 
-            .update-modal__close
+            .modal__close
                 font-size: 1.2rem
                 background: none
                 border: none
                 outline-color: palette.$darker-grey
 
 
-        .update-modal__form
+        .modal__form
  
-            .update-modal__input-control
+            .modal__input-control
                 display: flex
                 flex-direction: column
                 padding-bottom: 0.7em
                 &:first-of-type
                     padding-top: 0.7em
 
-                .update-modal__input
+                .modal__input
                     padding: 10px
                     outline-color: palette.$darker-grey
                     border: none
                     border-radius: 5px
         
-        .update-modal__submit
+        .modal__submit
             width: 100%
             padding: 10px
             border-radius: 5px

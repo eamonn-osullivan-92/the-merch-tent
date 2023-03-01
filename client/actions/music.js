@@ -1,5 +1,6 @@
 import {
   getMusic,
+  addMusicItem,
   updateMusicItem,
   deleteMusicItem,
   sendImage,
@@ -8,6 +9,7 @@ import {
 import { showError } from '../actions/error'
 
 export const SET_MUSIC = 'SET_MUSIC'
+export const ADD_MUSIC = 'ADD_MUSIC'
 export const DEL_MUSIC = 'DEL_MUSIC'
 export const UPDATE_MUSIC = 'UPDATE_MUSIC'
 export const UPDATE_IMAGE_STATE = 'UPDATE_IMAGE_STATE'
@@ -18,6 +20,13 @@ export function setMusic(music) {
   return {
     type: SET_MUSIC,
     payload: music,
+  }
+}
+
+export function addMusic(newObj) {
+  return {
+    type: ADD_MUSIC,
+    payload: newObj,
   }
 }
 
@@ -70,6 +79,28 @@ export function fetchMusic() {
         // status 500
         // if the error is from elsewhere in the Promise chain, there won't be
         // an err.response object, so we use err.message
+        const errMessage = err.response?.text || err.message
+        console.log(err.message)
+        dispatch(showError(errMessage))
+      })
+  }
+}
+
+export function addMusicAndState(objToAdd, image) {
+  return (dispatch) => {
+    return addMusicItem(objToAdd)
+      .then((product_id) => {
+        const newProduct = {
+          ...objToAdd,
+          id: product_id,
+        }
+        dispatch(addMusic(newProduct))
+        return sendImage(image, product_id)
+      })
+      .then((image_path, product_id) => {
+        return dispatch(updateImage(image_path, product_id))
+      })
+      .catch((err) => {
         const errMessage = err.response?.text || err.message
         console.log(err.message)
         dispatch(showError(errMessage))

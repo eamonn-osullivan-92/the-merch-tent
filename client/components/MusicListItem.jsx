@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../actions/cart'
-import { deleteMusicAndState } from '../actions/music'
+import {
+  deleteMusicAndState,
+  updateMusicAndState,
+  updateImageAndState,
+} from '../actions/music'
 import { actions } from '../permissions/constants.js'
 import hasPermission from '../permissions/permissions.js'
-import MusicUpdateModal from './MusicUpdateModal'
+import MusicFromModal from './MusicFormModal'
 
 function MusicListItem({ product, setOpenCart }) {
   const user = useSelector((state) => state.user)
@@ -40,6 +44,19 @@ function MusicListItem({ product, setOpenCart }) {
       console.log(product.id)
       dispatch(deleteMusicAndState(product.id))
     }
+  }
+
+  // update function passed through to musicFormModal
+  const handleUpdate = (e, imageFile, musicInfo) => {
+    e.preventDefault()
+    dispatch(updateMusicAndState(musicInfo))
+    if (imageFile) {
+      dispatch(updateImageAndState(imageFile, product.id))
+    }
+
+    // potentially send and index to reference if image is replacing image 1 or 2 (if using splice)
+
+    setOpenUpdateModal(false)
   }
 
   return (
@@ -103,10 +120,10 @@ function MusicListItem({ product, setOpenCart }) {
       </div>
 
       {openUpdateModal && (
-        <MusicUpdateModal
+        <MusicFromModal
           product={product}
-          openUpdateModal={openUpdateModal}
-          setOpenUpdateModal={setOpenUpdateModal}
+          openModalFn={setOpenUpdateModal}
+          handleSubmit={handleUpdate}
         />
       )}
     </>

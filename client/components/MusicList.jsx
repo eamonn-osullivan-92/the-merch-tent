@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useQuery } from '../hooks/useQuery'
+import { actions } from '../permissions/constants.js'
+import hasPermission from '../permissions/permissions.js'
+import MusicFromModal from './MusicFormModal'
 
 // import { fetchMusic } from '../actions/music'
 
@@ -8,11 +11,14 @@ import MusicListItem from './MusicListItem'
 import WaitIndicator from './WaitIndicator'
 
 function MusicList({ setOpenCart }) {
+  const user = useSelector((state) => state.user)
   const music = useSelector((state) => state.music)
+  const dispatch = useDispatch()
   let query = useQuery('genre')
   const filter = useRef()
   const genres = [...new Set(music.map((product) => product.genre))]
   const [filteredMusic, setFilteredMusic] = useState(music)
+  const [openNewProductModal, setOpenNewProductModal] = useState(false)
 
   const handleFilter = (e) => {
     if (!e.target.value) {
@@ -38,6 +44,16 @@ function MusicList({ setOpenCart }) {
     setFilteredMusic(search)
   }
 
+  const handleAddMusic = (e, imageFile, musicInfo) => {
+    e.preventDefault()
+    dispatch(addMusicAndState(musicInfo))
+    if (imageFile) {
+      dispatch(addImageAndState(imageFile, product_id))
+    }
+    // potentially send and index to reference if image is replacing image 1 or 2 (if using splice)
+    setOpenNewProductModal(false)
+  }
+
   useEffect(() => {
     if (query) {
       setFilteredMusic(music.filter((product) => product.genre == query))
@@ -47,59 +63,69 @@ function MusicList({ setOpenCart }) {
   }, [music])
 
   return (
-    <div className="store">
-      <div className="store__controller">
-        <div className="store__search-control">
-          <input
-            type="text"
-            className="store__search"
-            placeholder="Search"
-            onChange={(e) => handleSearch(e)}
-          />
-          <span className="material-symbols-outlined store__search-icon">
-            search
-          </span>
-        </div>
-        <select
-          name="genre"
-          id="genre"
-          onChange={(e) => handleFilter(e)}
-          className="store__filter"
-          defaultValue={query ? query : ''}
-          ref={filter}
-        >
-          <option
-            value=""
-            //   selected={query ? false : true}
+    <>
+      <div className="store">
+        <div className="store__controller">
+          <div className="store__search-control">
+            <input
+              type="text"
+              className="store__search"
+              placeholder="Search"
+              onChange={(e) => handleSearch(e)}
+            />
+            <span className="material-symbols-outlined store__search-icon">
+              search
+            </span>
+          </div>
+          <select
+            name="genre"
+            id="genre"
+            onChange={(e) => handleFilter(e)}
+            className="store__filter"
+            defaultValue={query ? query : ''}
+            ref={filter}
           >
-            Filter
-          </option>
-          {genres.map((genre) => (
-            <option
-              key={genre}
-              value={genre}
-              //   selected={query == genre ? true : false}
-            >
-              {genre}
-            </option>
-          ))}
-        </select>
+            <option value="">Filter</option>
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="store__grid">
+          {hasPermission(user.role, actions.CREATE_PRODUCT) && (
+            <div className="store__new-product">
+              <button onClick={() => setOpenNewProductModal(true)}>
+                <img
+                  src="https://placehold.co/400x400/EEE/31343C?font=source-sans-pro&text=Add%20new%20product"
+                  alt=""
+                  className="store__new-product-image"
+                />
+              </button>
+            </div>
+          )}
+          {music &&
+            filteredMusic.map((product) => {
+              return (
+                <MusicListItem
+                  key={product.id}
+                  product={product}
+                  setOpenCart={setOpenCart}
+                >
+                  <WaitIndicator />{' '}
+                </MusicListItem>
+              )
+            })}
+        </div>
       </div>
-      <div className="store__grid">
-        {music &&
-          filteredMusic.map((product) => {
-            return (
-              <MusicListItem
-                key={product.id}
-                product={product}
-                setOpenCart={setOpenCart}
-              >
-                <WaitIndicator />{' '}
-              </MusicListItem>
-            )
-          })}
-      </div>
-    </div>
+      {openNewProductModal && (
+        <MusicFromModal
+          openModalFn={setOpenNewProductModal}
+          handleSubmit={handleAddMusic}
+        />
+      )}
+    </>
   )
 }
 

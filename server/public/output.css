@@ -238,6 +238,20 @@ li {
   place-items: center;
   gap: 2em;
 }
+.store .store__grid .store__new-product {
+  min-width: 200px;
+  min-height: 400px;
+}
+.store .store__grid .store__new-product button {
+  border: none;
+  cursor: pointer;
+  outline-color: #3B3B3B;
+}
+.store .store__grid .store__new-product button .store__new-product-image {
+  max-width: 350px;
+  width: 100%;
+  height: auto;
+}
 
 @media (max-width: 400px) {
   .store .store__controller .store__search-control {
@@ -279,7 +293,7 @@ li {
   width: 100%;
 }
 
-.update-modal-blur {
+.modal-blur {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -292,7 +306,7 @@ li {
   justify-content: center;
   align-items: center;
 }
-.update-modal-blur .update-modal__modal {
+.modal-blur .modal__modal {
   width: 500px;
   height: auto;
   max-height: 600px;
@@ -301,32 +315,32 @@ li {
   padding: 3em 2em 3em 2em;
   background: #f7f7ff;
 }
-.update-modal-blur .update-modal__modal .update-modal__heading {
+.modal-blur .modal__modal .modal__heading {
   display: flex;
   justify-content: space-between;
   padding-bottom: 1em;
 }
-.update-modal-blur .update-modal__modal .update-modal__heading .update-modal__close {
+.modal-blur .modal__modal .modal__heading .modal__close {
   font-size: 1.2rem;
   background: none;
   border: none;
   outline-color: #3B3B3B;
 }
-.update-modal-blur .update-modal__modal .update-modal__form .update-modal__input-control {
+.modal-blur .modal__modal .modal__form .modal__input-control {
   display: flex;
   flex-direction: column;
   padding-bottom: 0.7em;
 }
-.update-modal-blur .update-modal__modal .update-modal__form .update-modal__input-control:first-of-type {
+.modal-blur .modal__modal .modal__form .modal__input-control:first-of-type {
   padding-top: 0.7em;
 }
-.update-modal-blur .update-modal__modal .update-modal__form .update-modal__input-control .update-modal__input {
+.modal-blur .modal__modal .modal__form .modal__input-control .modal__input {
   padding: 10px;
   outline-color: #3B3B3B;
   border: none;
   border-radius: 5px;
 }
-.update-modal-blur .update-modal__modal .update-modal__submit {
+.modal-blur .modal__modal .modal__submit {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
@@ -380,6 +394,7 @@ li {
   align-items: center;
   justify-content: space-between;
   padding: 0.5em 2em;
+  z-index: 2;
   transition: background-color 0.3s ease-in;
 }
 .header--active {

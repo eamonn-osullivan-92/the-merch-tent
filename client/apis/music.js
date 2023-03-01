@@ -11,6 +11,15 @@ export async function getMusic() {
   }
 }
 
+export async function addMusicItem(objToAdd) {
+  try {
+    const res = await request.put(rootUrl + '/edit').send(objToAdd)
+    return res.body
+  } catch (err) {
+    console.error(err.message)
+  }
+}
+
 export async function updateMusicItem(objToUpdate) {
   try {
     const res = await request.put(rootUrl + '/edit').send(objToUpdate)
