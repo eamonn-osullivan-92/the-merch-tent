@@ -7,7 +7,6 @@ exports.seed = async function (knex) {
   await knex('music').del()
   await knex('music').insert([
     {
-      id: 1,
       artist: 'Avantdale Bowling Club',
       album: 'Trees',
       year: '2022',
@@ -19,7 +18,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAaeEDyCcN2QeKjClqDypK',
     },
     {
-      id: 2,
       artist: 'A Tribe Called Quest',
       album: 'Low End Theory',
       year: '1991',
@@ -31,7 +29,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAb3EDyCcN2QeKAFjPlFrZ',
     },
     {
-      id: 3,
       artist: 'Blu & Exile',
       album: 'Below the Heavens',
       year: '2007',
@@ -43,7 +40,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAbxEDyCcN2QeKNH3hnyUO',
     },
     {
-      id: 4,
       artist: 'Ivan Ave',
       album: 'Double Goodbyes',
       year: '2020',
@@ -55,7 +51,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAcJEDyCcN2QeKuePsgf4w',
     },
     {
-      id: 5,
       artist: 'J Dilla',
       album: 'Donuts',
       year: '2006',
@@ -67,7 +62,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAcmEDyCcN2QeKLQYgCJ59',
     },
     {
-      id: 6,
       artist: 'Kofi Stone',
       album: 'Nobody Cares Till Everybody Does',
       year: '2019',
@@ -79,7 +73,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAdGEDyCcN2QeKQIpEJTyp',
     },
     {
-      id: 7,
       artist: 'Little Brother',
       album: 'The Listening',
       year: '2003',
@@ -91,7 +84,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAdVEDyCcN2QeKrIUbS0zP',
     },
     {
-      id: 8,
       artist: 'Nas',
       album: 'Illmatic',
       year: '1994',
@@ -103,7 +95,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAdmEDyCcN2QeKTT70fY6z',
     },
     {
-      id: 9,
       artist: 'People Under The Stairs',
       album: 'O.S.T',
       year: '2002',
@@ -115,7 +106,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAeAEDyCcN2QeKYtWQoK8O',
     },
     {
-      id: 10,
       artist: 'Royal Flush',
       album: 'Ghetto Millionaire',
       year: '1997',
@@ -127,7 +117,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAePEDyCcN2QeKWt4t6wWz',
     },
     {
-      id: 11,
       artist: 'Amen Dunes',
       album: 'Freedom',
       year: '2018',
@@ -139,7 +128,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAejEDyCcN2QeKak5FDYHK',
     },
     {
-      id: 12,
       artist: 'Beach Fossils',
       album: 'Somersault',
       year: '2017',
@@ -151,7 +139,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAexEDyCcN2QeKdTkRiZCA',
     },
     {
-      id: 13,
       artist: 'Do Nothing',
       album: 'Zero Dollar Bill',
       year: '2020',
@@ -163,7 +150,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAfIEDyCcN2QeK5vEv2tnQ',
     },
     {
-      id: 14,
       artist: 'Floodlights',
       album: 'From a View',
       year: '2020',
@@ -175,7 +161,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAfXEDyCcN2QeKoQDp3WiG',
     },
     {
-      id: 15,
       artist: 'Fontaines D.C.',
       album: 'Dogrel',
       year: '2019',
@@ -187,7 +172,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAfoEDyCcN2QeKhSMwMlUn',
     },
     {
-      id: 16,
       artist: 'Idles',
       album: 'Joy as an Act of Resistance',
       year: '2018',
@@ -199,7 +183,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAg6EDyCcN2QeK5eQICSU7',
     },
     {
-      id: 17,
       artist: 'Parquet Courts',
       album: 'Light Up Gold',
       year: '2012',
@@ -211,7 +194,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAgSEDyCcN2QeKPVk7jyyf',
     },
     {
-      id: 18,
       artist: 'Parquet Courts',
       album: 'Wide Awake',
       year: '2018',
@@ -223,7 +205,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MYEPOEDyCcN2QeKTnkZYVhV',
     },
     {
-      id: 19,
       artist: 'The Slingers',
       album: 'One More Day / This Time',
       year: '2017',
@@ -235,7 +216,6 @@ exports.seed = async function (knex) {
       stripe_price_id: 'price_1MbAgrEDyCcN2QeK06sQD4Fj',
     },
     {
-      id: 20,
       artist: 'Yard Act',
       album: 'The Overload',
       year: '2022',
