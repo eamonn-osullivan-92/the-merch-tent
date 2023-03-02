@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
         music.id === action.payload.product_id
           ? {
               ...music,
-              image_path: [action.payload.image_path, music.image_path.pop()],
+              image_path: [action.payload.image_path, music.image_path[0]],
             }
           : music
       )

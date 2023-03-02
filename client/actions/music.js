@@ -12,6 +12,7 @@ export const SET_MUSIC = 'SET_MUSIC'
 export const ADD_MUSIC = 'ADD_MUSIC'
 export const DEL_MUSIC = 'DEL_MUSIC'
 export const UPDATE_MUSIC = 'UPDATE_MUSIC'
+export const ADD_IMAGE_STATE = 'ADD_IMAGE_STATE'
 export const UPDATE_IMAGE_STATE = 'UPDATE_IMAGE_STATE'
 export const FETCH_MUSIC_PENDING = 'FETCH_MUSIC_PENDING'
 export const FETCH_MUSIC_SUCCESS = 'FETCH_MUSIC_SUCCESS'
@@ -41,6 +42,13 @@ export function updateMusic(updatedObj) {
   return {
     type: UPDATE_MUSIC,
     payload: updatedObj,
+  }
+}
+
+export function addImage(image_path, product_id) {
+  return {
+    type: ADD_IMAGE_STATE,
+    payload: { image_path, product_id },
   }
 }
 
@@ -89,16 +97,17 @@ export function fetchMusic() {
 export function addMusicAndState(objToAdd, image) {
   return (dispatch) => {
     return addMusicItem(objToAdd)
-      .then((product_id) => {
+      .then(([{ id }]) => {
         const newProduct = {
           ...objToAdd,
-          id: product_id,
+          id: id,
+          image_path: [],
         }
         dispatch(addMusic(newProduct))
-        return sendImage(image, product_id)
+        return sendImage(image, id)
       })
-      .then((image_path, product_id) => {
-        return dispatch(updateImage(image_path, product_id))
+      .then(({ image_path, product_id }) => {
+        return dispatch(updateImage(image_path, Number(product_id)))
       })
       .catch((err) => {
         const errMessage = err.response?.text || err.message
@@ -127,7 +136,7 @@ export function updateMusicAndState(objToUpdate) {
 export function updateImageAndState(image, product_id) {
   return (dispatch) => {
     //database
-    return sendImage(image, product_id).then((image_path) => {
+    return sendImage(image, product_id).then(({ image_path }) => {
       //state
       return dispatch(updateImage(image_path, product_id))
     })

@@ -4,8 +4,7 @@ import { useQuery } from '../hooks/useQuery'
 import { actions } from '../permissions/constants.js'
 import hasPermission from '../permissions/permissions.js'
 import MusicFromModal from './MusicFormModal'
-
-// import { fetchMusic } from '../actions/music'
+import { addMusicAndState } from '../actions/music'
 
 import MusicListItem from './MusicListItem'
 import WaitIndicator from './WaitIndicator'
@@ -46,11 +45,7 @@ function MusicList({ setOpenCart }) {
 
   const handleAddMusic = (e, imageFile, musicInfo) => {
     e.preventDefault()
-    dispatch(addMusicAndState(musicInfo))
-    if (imageFile) {
-      dispatch(addImageAndState(imageFile, product_id))
-    }
-    // potentially send and index to reference if image is replacing image 1 or 2 (if using splice)
+    dispatch(addMusicAndState(musicInfo, imageFile))
     setOpenNewProductModal(false)
   }
 

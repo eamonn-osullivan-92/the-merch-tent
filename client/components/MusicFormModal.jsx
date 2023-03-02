@@ -66,7 +66,7 @@ export default function MusicFormModal({
               className="modal__input"
               id="artist"
               name="artist"
-              onChange={handleChange}
+              onChange={handleInfoChange}
               defaultValue={product.artist}
             />
           </div>

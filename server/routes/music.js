@@ -36,6 +36,25 @@ router.get('/albumimages', async (req, res) => {
   }
 })
 
+router.post('/add', async (req, res) => {
+  if (req.body == null || req.body == undefined) {
+    return res
+      .status(500)
+      .json({ message: 'Error: Object to add not found in request' })
+  }
+
+  const objToAdd = req.body
+
+  try {
+    const product_id = await db.addMusicItem(objToAdd)
+    res.json(product_id)
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: `Error: unable to add object. ${err.message}` })
+  }
+})
+
 router.put('/edit', async (req, res) => {
   if (req.body == null || req.body == undefined) {
     return res
@@ -51,9 +70,9 @@ router.put('/edit', async (req, res) => {
   }
 })
 
+// upload for edit image
 router.post('/upload/:product_id', async (req, res) => {
   try {
-    console.log(req.files)
     //check for file
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.')
@@ -70,11 +89,21 @@ router.post('/upload/:product_id', async (req, res) => {
     file.mv(uploadPath, function (err) {
       if (err) return res.status(500).send(err)
     })
-    // update record in db
-    await imageDb.updateMusicImage(`/images/music/${file.name}`, product_id)
+
+    // get image by product_id. If null, add, else update
+    const imageInDb = await imageDb.getImageByProdId(product_id)
+
+    if (imageInDb.length === 0) {
+      await imageDb.addMusicImage(`/images/music/${file.name}`, product_id)
+    } else {
+      await imageDb.updateMusicImage(`/images/music/${file.name}`, product_id)
+    }
 
     // return path to update redux state
-    res.json(`/images/music/${file.name}`)
+    res.json({
+      image_path: `/images/music/${file.name}`,
+      product_id: product_id,
+    })
   } catch (err) {
     res.status(500).json({ msg: err.message })
   }

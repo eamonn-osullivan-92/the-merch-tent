@@ -8,7 +8,7 @@ function getAlbumById(id, db = connection) {
   return db('music').select().where('id', id).first()
 }
 
-function addAlbum(album, db = connection) {
+function addMusicItem(album, db = connection) {
   return db('music').insert(album).returning('id')
 }
 
@@ -30,7 +30,7 @@ function getAlbumsAndImages(db = connection) {
 module.exports = {
   getMusic,
   getAlbumById,
-  addAlbum,
+  addMusicItem,
   deleteMusicItem,
   updateMusicItem,
   getAlbumsAndImages,

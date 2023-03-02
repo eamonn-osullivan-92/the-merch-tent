@@ -41,7 +41,6 @@ function MusicListItem({ product, setOpenCart }) {
 
   const handleDelete = () => {
     if (user.role == 'admin') {
-      console.log(product.id)
       dispatch(deleteMusicAndState(product.id))
     }
   }
@@ -62,14 +61,16 @@ function MusicListItem({ product, setOpenCart }) {
   return (
     <>
       <div className="product">
-        <img
-          src={product?.image_path[0]}
-          alt=""
-          className="product__image"
-          onMouseEnter={(e) => handleImage(e)}
-          onMouseLeave={(e) => handleImageReset(e)}
-          loading="lazy"
-        />
+        {product.image_path[0] && (
+          <img
+            src={product.image_path[0]}
+            alt=""
+            className="product__image"
+            onMouseEnter={(e) => handleImage(e)}
+            onMouseLeave={(e) => handleImageReset(e)}
+            loading="lazy"
+          />
+        )}
 
         <p className="product__info product__album">
           {product?.album}{' '}
