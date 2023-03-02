@@ -346,6 +346,14 @@ li {
   border-radius: 5px;
 }
 
+@media (max-width: 510px) {
+  .modal-blur {
+    padding: 1em;
+  }
+  .modal-blur .modal__modal {
+    width: 100%;
+  }
+}
 .nav {
   display: flex;
   gap: 1.5em;
