@@ -10,7 +10,7 @@ import { actions } from '../permissions/constants.js'
 import hasPermission from '../permissions/permissions.js'
 import MusicFromModal from './MusicFormModal'
 
-function MusicListItem({ product, setOpenCart }) {
+function MusicListItem({ product, setOpenCart, token }) {
   const user = useSelector((state) => state.user)
   const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
@@ -41,16 +41,16 @@ function MusicListItem({ product, setOpenCart }) {
 
   const handleDelete = () => {
     if (user.role == 'admin') {
-      dispatch(deleteMusicAndState(product.id))
+      dispatch(deleteMusicAndState(product.id, token))
     }
   }
 
   // update function passed through to musicFormModal
   const handleUpdate = (e, imageFile, musicInfo) => {
     e.preventDefault()
-    dispatch(updateMusicAndState(musicInfo))
+    dispatch(updateMusicAndState(musicInfo, token))
     if (imageFile) {
-      dispatch(updateImageAndState(imageFile, product.id))
+      dispatch(updateImageAndState(imageFile, product.id, token))
     }
 
     // potentially send and index to reference if image is replacing image 1 or 2 (if using splice)

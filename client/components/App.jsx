@@ -35,7 +35,7 @@ function App(props) {
       getUser(props.accessToken)
         .then((userInDb) => {
           userInDb
-            ? dispatch(updateLoggedInUser(userInDb))
+            ? dispatch(updateLoggedInUser(userInDb, props.accessToken))
             : dispatch(addAndUpdateLoggedInUser(props.user, props.accessToken))
         })
         .catch((err) => console.error(err.message))
@@ -56,7 +56,10 @@ function App(props) {
             element={
               <>
                 <Header setOpenCart={setOpenCart} setSideNav={setSideNav} />
-                <MusicList setOpenCart={setOpenCart} />
+                <MusicList
+                  setOpenCart={setOpenCart}
+                  token={props.accessToken}
+                />
               </>
             }
           />

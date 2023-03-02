@@ -94,9 +94,9 @@ export function fetchMusic() {
   }
 }
 
-export function addMusicAndState(objToAdd, image) {
+export function addMusicAndState(objToAdd, image, token) {
   return (dispatch) => {
-    return addMusicItem(objToAdd)
+    return addMusicItem(objToAdd, token)
       .then(([{ id }]) => {
         const newProduct = {
           ...objToAdd,
@@ -104,7 +104,7 @@ export function addMusicAndState(objToAdd, image) {
           image_path: [],
         }
         dispatch(addMusic(newProduct))
-        return sendImage(image, id)
+        return sendImage(image, id, token)
       })
       .then(({ image_path, product_id }) => {
         return dispatch(updateImage(image_path, Number(product_id)))
@@ -117,10 +117,10 @@ export function addMusicAndState(objToAdd, image) {
   }
 }
 
-export function updateMusicAndState(objToUpdate) {
+export function updateMusicAndState(objToUpdate, token) {
   return (dispatch) => {
     //databse
-    return updateMusicItem(objToUpdate)
+    return updateMusicItem(objToUpdate, token)
       .then(() => {
         //state
         return dispatch(updateMusic(objToUpdate))
@@ -133,20 +133,20 @@ export function updateMusicAndState(objToUpdate) {
   }
 }
 
-export function updateImageAndState(image, product_id) {
+export function updateImageAndState(image, product_id, token) {
   return (dispatch) => {
     //database
-    return sendImage(image, product_id).then(({ image_path }) => {
+    return sendImage(image, product_id, token).then(({ image_path }) => {
       //state
       return dispatch(updateImage(image_path, product_id))
     })
   }
 }
 
-export function deleteMusicAndState(id) {
+export function deleteMusicAndState(id, token) {
   return (dispatch) => {
     //database
-    return deleteMusicItem(id)
+    return deleteMusicItem(id, token)
       .then(() => {
         //state
         return dispatch(deleteMusic(id))

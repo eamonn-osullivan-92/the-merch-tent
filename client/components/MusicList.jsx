@@ -9,7 +9,7 @@ import { addMusicAndState } from '../actions/music'
 import MusicListItem from './MusicListItem'
 import WaitIndicator from './WaitIndicator'
 
-function MusicList({ setOpenCart }) {
+function MusicList({ setOpenCart, token }) {
   const user = useSelector((state) => state.user)
   const music = useSelector((state) => state.music)
   const dispatch = useDispatch()
@@ -45,7 +45,7 @@ function MusicList({ setOpenCart }) {
 
   const handleAddMusic = (e, imageFile, musicInfo) => {
     e.preventDefault()
-    dispatch(addMusicAndState(musicInfo, imageFile))
+    dispatch(addMusicAndState(musicInfo, imageFile, token))
     setOpenNewProductModal(false)
   }
 
@@ -107,6 +107,7 @@ function MusicList({ setOpenCart }) {
                   key={product.id}
                   product={product}
                   setOpenCart={setOpenCart}
+                  token={token}
                 >
                   <WaitIndicator />{' '}
                 </MusicListItem>

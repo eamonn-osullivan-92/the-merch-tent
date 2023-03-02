@@ -1,7 +1,9 @@
 const express = require('express')
 const path = require('path')
+const { requireUser } = require('./initAuth')
 const db = require('../db/music')
 const imageDb = require('../db/images')
+const userDb = require('../db/users')
 
 const router = express.Router()
 
@@ -36,11 +38,19 @@ router.get('/albumimages', async (req, res) => {
   }
 })
 
-router.post('/add', async (req, res) => {
+router.post('/add', requireUser, async (req, res) => {
   if (req.body == null || req.body == undefined) {
     return res
       .status(500)
       .json({ message: 'Error: Object to add not found in request' })
+  }
+  //auth check
+  const userId = req.user.userId
+  const { role } = await userDb.getUserRole(userId)
+  if (role !== 'admin') {
+    return res
+      .status(500)
+      .json({ message: 'Error: you must be an admin to add a product' })
   }
 
   const objToAdd = req.body
@@ -55,12 +65,21 @@ router.post('/add', async (req, res) => {
   }
 })
 
-router.put('/edit', async (req, res) => {
+router.put('/edit', requireUser, async (req, res) => {
   if (req.body == null || req.body == undefined) {
     return res
       .status(500)
       .json({ message: 'Error: Object to update not found in request' })
   }
+  //auth check
+  const userId = req.user.userId
+  const { role } = await userDb.getUserRole(userId)
+  if (role !== 'admin') {
+    return res
+      .status(500)
+      .json({ message: 'Error: you must be an admin to add a product' })
+  }
+
   const objToUpdate = req.body
   try {
     const updatedObj = await db.updateMusicItem(objToUpdate)
@@ -71,12 +90,22 @@ router.put('/edit', async (req, res) => {
 })
 
 // upload for edit image
-router.post('/upload/:product_id', async (req, res) => {
+router.post('/upload/:product_id', requireUser, async (req, res) => {
   try {
     //check for file
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.')
     }
+
+    //auth check
+    const userId = req.user.userId
+    const { role } = await userDb.getUserRole(userId)
+    if (role !== 'admin') {
+      return res
+        .status(500)
+        .json({ message: 'Error: you must be an admin to add a product' })
+    }
+
     const file = req.files.image
     const { product_id } = req.params
 
@@ -109,12 +138,22 @@ router.post('/upload/:product_id', async (req, res) => {
   }
 })
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', requireUser, async (req, res) => {
   if (req.body == null || req.body == undefined) {
     return res
       .status(500)
       .json({ message: 'Error: Object ID to delete not found in request' })
   }
+
+  //auth check
+  const userId = req.user.userId
+  const { role } = await userDb.getUserRole(userId)
+  if (role !== 'admin') {
+    return res
+      .status(500)
+      .json({ message: 'Error: you must be an admin to add a product' })
+  }
+
   const { id } = req.body
   try {
     const delObjId = await db.deleteMusicItem(id)

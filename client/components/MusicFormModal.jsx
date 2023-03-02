@@ -118,6 +118,7 @@ export default function MusicFormModal({
               className="modal__input"
               id="price"
               name="price"
+              min="0"
               onChange={handleInfoChange}
               defaultValue={product.price}
             />
@@ -131,6 +132,7 @@ export default function MusicFormModal({
               className="modal__input"
               id="quantity"
               name="quantity"
+              min="0"
               onChange={handleInfoChange}
               defaultValue={product.quantity}
             />
