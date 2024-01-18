@@ -4,7 +4,9 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
+
   await knex('images').del()
+  await knex.raw('ALTER SEQUENCE music_id_seq RESTART WITH 1')
   await knex('images').insert([
     {
       product_id: 1,

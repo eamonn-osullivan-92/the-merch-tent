@@ -5,8 +5,9 @@
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
   // Resets id increment so foreign key is consistent
-  await knex.raw('ALTER SEQUENCE music_id_seq RESTART WITH 1')
+
   await knex('music').del()
+  await knex.raw('ALTER SEQUENCE music_id_seq RESTART WITH 1')
   await knex('music').insert([
     {
       artist: 'Avantdale Bowling Club',
