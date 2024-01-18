@@ -61,6 +61,7 @@ function MusicListItem({ product, setOpenCart, token }) {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
+  console.log(product.image_path.sort((a, b) => a.id - b.id))
 
   return (
     <>
