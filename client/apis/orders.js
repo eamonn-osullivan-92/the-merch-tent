@@ -14,11 +14,10 @@ export async function postOrder(orderRequest, token) {
   }
 }
 
-export async function createStripeCheckoutSession(orderRequest, token) {
+export async function createStripeCheckoutSession(orderRequest) {
   try {
     const res = await request
       .post('/api/v1/stripe/create-checkout-session')
-      .set('Authorization', `Bearer ${token}`)
       .send(orderRequest)
     return res.body
   } catch (err) {

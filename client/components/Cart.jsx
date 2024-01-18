@@ -1,27 +1,22 @@
 import React from 'react'
-import { useRedirectFunctions } from '@propelauth/react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { placeOrder } from '../actions/orders'
 
 import CartItem from './CartItem'
 
-export default function Cart({ isOpen, setOpenCart, token, isLoggedIn }) {
+export default function Cart({ isOpen, setOpenCart }) {
   const dispatch = useDispatch()
-  const { redirectToLoginPage } = useRedirectFunctions()
+  //   const { redirectToLoginPage } = useRedirectFunctions()
 
   const music = useSelector((state) => state.music)
   const cartItems = useSelector((state) => state.cart)
 
   const handleOrder = () => {
-    if (isLoggedIn) {
-      dispatch(placeOrder(cartItems, token))
-        .then((stripeUrl) => {
-          window.location.href = stripeUrl
-        })
-        .catch((err) => err.message)
-    } else {
-      redirectToLoginPage()
-    }
+    dispatch(placeOrder(cartItems))
+      .then((stripeUrl) => {
+        window.location.href = stripeUrl
+      })
+      .catch((err) => err.message)
   }
 
   const getCartTotal = () => {

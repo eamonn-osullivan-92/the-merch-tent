@@ -1,11 +1,11 @@
 const express = require('express')
+require('dotenv').config()
 const router = express.Router()
 const bodyParser = require('body-parser')
 const stripe = require('stripe')(process.env.REACT_APP_STRIPE_KEY)
 const db = require('../db/orders')
-const { requireUser } = require('./initAuth')
 
-const DOMAIN = 'https://www.thelostcrates.co.nz/'
+const DOMAIN = process.env.REACT_APP_DOMAIN
 
 router.use((req, res, next) => {
   if (req.originalUrl.includes('/webhook')) {
@@ -15,28 +15,28 @@ router.use((req, res, next) => {
   }
 })
 
-router.post('/create-checkout-session', requireUser, async (req, res) => {
+router.post('/create-checkout-session', async (req, res) => {
   const order = req.body
-  const userId = req.user?.userId
+  //   const userId = req.user?.userId
 
   if (order == null || order == undefined) {
     res.status(500).send('Error: Order not found')
   }
 
-  if (userId == null || userId == undefined) {
-    res
-      .status(500)
-      .send(
-        'Authentication error: User not found. You must be logged in to complete an order'
-      )
-  }
+  //   if (userId == null || userId == undefined) {
+  //     res
+  //       .status(500)
+  //       .send(
+  //         'Authentication error: User not found. You must be logged in to complete an order'
+  //       )
+  //   }
 
   const lineItems = order.map((item) => {
     return { price: item.stripe_price_id, quantity: item.quantity }
   })
 
   // add order with default pending status, to be updated upon payment finalisation
-  const orderId = await db.addOrder(order, userId)
+  const orderId = await db.addOrder(order, 'test userId')
 
   //Create stripe checkout session, pass order ID as metadata to fulfill orders on completion
   const session = await stripe.checkout.sessions.create({

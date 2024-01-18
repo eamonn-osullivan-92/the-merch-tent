@@ -76,10 +76,10 @@ export function fetchOrders(token) {
 // }
 
 // place order w/ Stripe payment system
-export function placeOrder(orders, token) {
+export function placeOrder(orders) {
   return (dispatch) => {
     dispatch(placePending())
-    return createStripeCheckoutSession(orders, token)
+    return createStripeCheckoutSession(orders)
       .then((res) => {
         // clears cart (not optimal as cart will be gone if customer cancels checkout)
         dispatch(placeOrderSuccess())

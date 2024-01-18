@@ -61,7 +61,16 @@ export default function Orders({ token, isLoggedIn }) {
                 ))}
         </div>
       ) : (
-        <div className="no-order danger">Please log in to view your orders</div>
+        <>
+          {/* <div className="no-order danger">
+            Please log in to view your orders
+          </div> */}
+
+          <div className="no-order danger">
+            NOTE: Order history and authentication is currently disabled as this
+            website is not actively maintained
+          </div>
+        </>
       )}
     </>
   )
