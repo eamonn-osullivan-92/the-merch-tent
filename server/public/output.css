@@ -269,7 +269,10 @@ li {
   min-width: 200px;
   min-height: 400px;
 }
-.product .product__image {
+.product .product_image-container {
+  min-height: 240px;
+}
+.product .product_image-container .product__image {
   max-width: 350px;
   width: 100%;
   height: auto;
@@ -565,6 +568,7 @@ li {
   background: #9AA5B1;
   color: #f7f7ff;
   position: fixed;
+  z-index: 10;
   width: 600px;
   top: 0;
   right: 0;

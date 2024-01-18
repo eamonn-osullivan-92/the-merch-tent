@@ -57,7 +57,6 @@ exports.seed = async function (knex) {
       path: '/images/music/little-brother-the-listening-back.webp',
     },
     {
-      id: 11,
       product_id: 10,
       product_type: 'music',
       path: '/images/music/nas-illmatic-front.webp',

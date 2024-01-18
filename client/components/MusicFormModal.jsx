@@ -44,7 +44,9 @@ export default function MusicFormModal({
     <div className="modal-blur">
       <div className="modal__modal">
         <div className="modal__heading">
-          <h3 className="modal-title">Update Product:</h3>
+          <h3 className="modal-title">
+            {product == defaultProduct ? 'Add Product:' : 'Update Product:'}
+          </h3>
           <button className="modal__close" onClick={() => openModalFn(false)}>
             &times;
           </button>

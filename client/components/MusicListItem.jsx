@@ -58,20 +58,25 @@ function MusicListItem({ product, setOpenCart, token }) {
     setOpenUpdateModal(false)
   }
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
   return (
     <>
       <div className="product">
-        {product.image_path[0] && (
-          <img
-            src={product.image_path[0]}
-            alt=""
-            className="product__image"
-            onMouseEnter={(e) => handleImage(e)}
-            onMouseLeave={(e) => handleImageReset(e)}
-            loading="lazy"
-          />
-        )}
-
+        <div className="product_image-container">
+          {product.image_path[0] && (
+            <img
+              src={product.image_path[0]}
+              alt=""
+              className="product__image"
+              onMouseEnter={(e) => handleImage(e)}
+              onMouseLeave={(e) => handleImageReset(e)}
+              loading="lazy"
+            />
+          )}
+        </div>
         <p className="product__info product__album">
           {product?.album}{' '}
           <span className="product__year">{product?.year}</span>
@@ -79,7 +84,7 @@ function MusicListItem({ product, setOpenCart, token }) {
         <p className="product__info" data-testid="artist">
           {product?.artist}
         </p>
-        <p className="product__info">{product?.genre}</p>
+        <p className="product__info">{capitalizeFirstLetter(product?.genre)}</p>
         <p className="product__info">${product?.price}</p>
 
         <div className="product__cart-control">
