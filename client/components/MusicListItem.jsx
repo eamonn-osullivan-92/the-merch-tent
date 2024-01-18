@@ -68,7 +68,7 @@ function MusicListItem({ product, setOpenCart, token }) {
         <div className="product_image-container">
           {product.image_path[0] && (
             <img
-              src={product.image_path[0]}
+              src={product.image_path.sort((a, b) => a.id - b.id)[0]}
               alt=""
               className="product__image"
               onMouseEnter={(e) => handleImage(e)}
