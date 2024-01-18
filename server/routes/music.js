@@ -26,6 +26,8 @@ router.get('/albumimages', async (req, res) => {
         image_path: [],
       }
       result[row.id].image_path.push(row.image_path)
+
+      result[row.id].image_path.sort((a, b) => a.id - b.id)
       return result
     }, [])
     //removes null variables that arrise when rows are deleted
