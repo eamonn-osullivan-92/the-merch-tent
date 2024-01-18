@@ -4,7 +4,7 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex.raw('ALTER TABLE ' + 'music' + ' AUTO_INCREMENT = 1')
+  await knex.raw('ALTER SEQUENCE music_id_seq RESTART WITH 1')
   await knex('music').del()
   await knex('music').insert([
     {
